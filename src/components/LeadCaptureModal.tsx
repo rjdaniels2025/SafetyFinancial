@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { X, ChevronRight, CheckCircle, ChevronLeft } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -20,6 +20,7 @@ export default function LeadCaptureModal({ onClose, preSelectedService }: LeadCa
     email: '',
     phone: '',
     message: '',
+    website: '',
   });
 
   const getQuestionsForService = (service: string) => {
@@ -119,6 +120,17 @@ export default function LeadCaptureModal({ onClose, preSelectedService }: LeadCa
 
   const questions = getQuestionsForService(formData.interest);
 
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [onClose]);
+
   const handleOptionSelect = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
     setTimeout(() => {
@@ -166,6 +178,7 @@ ${questions.step4.title} ${formData.budget}`;
             budget: formData.budget,
             message: formData.message,
             form_answers: formAnswers,
+            website: formData.website,
           }),
         }).then(res => {
           if (!res.ok) {
@@ -212,15 +225,20 @@ ${questions.step4.title} ${formData.budget}`;
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col animate-slide-up">
+    <div
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+    >
+      <div role="dialog" aria-modal="true" aria-label="Free Strategy Call" className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col animate-slide-up">
         <div className="p-4 sm:p-6 border-b border-gray-200 flex justify-between items-center flex-shrink-0">
           <div className="flex-1 min-w-0">
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900 truncate">Free Strategy Call</h2>
             <p className="text-sm text-gray-500 mt-1">Step {step} of {preSelectedService ? 4 : 5}</p>
           </div>
           <button
+            type="button"
             onClick={onClose}
+            aria-label="Close"
             className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 ml-2"
           >
             <X className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -257,6 +275,7 @@ ${questions.step4.title} ${formData.budget}`;
             <div className="space-y-4">
               <div>
                 <button
+                  type="button"
                   onClick={() => setStep(step - 1)}
                   className="flex items-center text-gray-600 hover:text-gray-900 mb-4 text-sm"
                 >
@@ -291,6 +310,7 @@ ${questions.step4.title} ${formData.budget}`;
             <div className="space-y-4">
               <div>
                 <button
+                  type="button"
                   onClick={() => setStep(step - 1)}
                   className="flex items-center text-gray-600 hover:text-gray-900 mb-4 text-sm"
                 >
@@ -325,6 +345,7 @@ ${questions.step4.title} ${formData.budget}`;
             <div className="space-y-4">
               <div>
                 <button
+                  type="button"
                   onClick={() => setStep(step - 1)}
                   className="flex items-center text-gray-600 hover:text-gray-900 mb-4 text-sm"
                 >
@@ -359,6 +380,7 @@ ${questions.step4.title} ${formData.budget}`;
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <button
+                  type="button"
                   onClick={() => setStep(step - 1)}
                   className="flex items-center text-gray-600 hover:text-gray-900 mb-4 text-sm"
                 >
@@ -426,6 +448,17 @@ ${questions.step4.title} ${formData.budget}`;
                     placeholder="Any specific questions or requirements?"
                   />
                 </div>
+
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  value={formData.website}
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                  className="hidden"
+                />
 
                 <button
                   type="submit"

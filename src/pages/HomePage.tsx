@@ -23,6 +23,12 @@ export default function HomePage({
 
   useEffect(() => {
     document.title = 'We Win Consultancy Group | Debt & Tax Solutions';
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute(
+        'content',
+        'We Win Consultancy Group is a debt and tax solutions firm helping business owners and everyday consumers save on taxes, eliminate debt, build credit and access funding to grow.'
+      );
     if (location.hash) {
       document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {

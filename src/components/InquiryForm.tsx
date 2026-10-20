@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { CheckCircle, Send } from 'lucide-react';
 
 interface InquiryFormProps {
@@ -19,6 +19,7 @@ export default function InquiryForm({
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+  const id = useId();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,6 +42,7 @@ export default function InquiryForm({
           businessName: formData.get('businessName') || undefined,
           message: formData.get('message'),
           form_answers: selection ? `${optionsLabel}: ${selection}` : undefined,
+          website: formData.get('website'),
         }),
       });
 
@@ -81,26 +83,26 @@ export default function InquiryForm({
   return (
     <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 gap-4">
       <div>
-        <label className={labelClass}>Full Name *</label>
-        <input name="name" required placeholder="Jane Smith" className={inputClass} />
+        <label htmlFor={`${id}-name`} className={labelClass}>Full Name *</label>
+        <input id={`${id}-name`} name="name" required placeholder="Jane Smith" className={inputClass} />
       </div>
       <div>
-        <label className={labelClass}>Phone *</label>
-        <input name="phone" type="tel" required placeholder="(555) 123-4567" className={inputClass} />
+        <label htmlFor={`${id}-phone`} className={labelClass}>Phone *</label>
+        <input id={`${id}-phone`} name="phone" type="tel" required placeholder="(555) 123-4567" className={inputClass} />
       </div>
       <div>
-        <label className={labelClass}>Email *</label>
-        <input name="email" type="email" required placeholder="jane@example.com" className={inputClass} />
+        <label htmlFor={`${id}-email`} className={labelClass}>Email *</label>
+        <input id={`${id}-email`} name="email" type="email" required placeholder="jane@example.com" className={inputClass} />
       </div>
       <div>
-        <label className={labelClass}>Business Name (optional)</label>
-        <input name="businessName" placeholder="If applicable" className={inputClass} />
+        <label htmlFor={`${id}-businessName`} className={labelClass}>Business Name (optional)</label>
+        <input id={`${id}-businessName`} name="businessName" placeholder="If applicable" className={inputClass} />
       </div>
 
       {options && (
         <div className="sm:col-span-2">
-          <label className={labelClass}>{optionsLabel} *</label>
-          <select name="selection" required defaultValue="" className={inputClass}>
+          <label htmlFor={`${id}-selection`} className={labelClass}>{optionsLabel} *</label>
+          <select id={`${id}-selection`} name="selection" required defaultValue="" className={inputClass}>
             <option value="" disabled>
               Select one
             </option>
@@ -114,9 +116,11 @@ export default function InquiryForm({
       )}
 
       <div className="sm:col-span-2">
-        <label className={labelClass}>Tell us a bit about your situation</label>
-        <textarea name="message" rows={4} placeholder="Optional" className={`${inputClass} resize-none`} />
+        <label htmlFor={`${id}-message`} className={labelClass}>Tell us a bit about your situation</label>
+        <textarea id={`${id}-message`} name="message" rows={4} placeholder="Optional" className={`${inputClass} resize-none`} />
       </div>
+
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 
       <div className="sm:col-span-2">
         <button

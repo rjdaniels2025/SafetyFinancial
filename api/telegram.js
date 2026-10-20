@@ -42,6 +42,11 @@ export default async function handler(req, res) {
       quote_details,
     } = data;
 
+    // Hidden "website" field is invisible to people; bots that fill it get a silent success.
+    if (data.website) {
+      return res.status(200).json({ success: true });
+    }
+
     const timestamp = new Date().toLocaleString("en-CA", {
       timeZone: "America/Toronto",
     });
@@ -154,7 +159,8 @@ ${message}
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chat_id: process.env.TELEGRAM_CHAT_ID,
-          text: formattedMessage,
+          // Telegram rejects messages longer than 4096 characters
+          text: formattedMessage.slice(0, 4000),
         }),
       }
     );
