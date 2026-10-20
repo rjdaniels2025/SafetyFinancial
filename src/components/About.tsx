@@ -35,7 +35,7 @@ export default function About() {
           </h2>
           <div className="space-y-4 text-lg text-slate-700 leading-relaxed">
             <p>
-              We Win Consultancy Group is a Canadian tax, debt and business solutions firm focused on one
+              WeWin Consulting Group is a Canadian tax, debt and business solutions firm focused on one
               thing: helping business owners and individuals keep more of their money and put it to work.
             </p>
             <p>

@@ -148,7 +148,7 @@ ${message}
 
     formattedMessage += `
 ━━━━━━━━━━━━━━━━━━━━━━
-🏆 We Win Consultancy Group
+🏆 WeWin Consulting Group
 📚 Website Inquiry
 `;
 

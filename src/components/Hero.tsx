@@ -57,7 +57,7 @@ export default function Hero({ onOpenLeadCapture }: HeroProps) {
             </h1>
 
             <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-              We Win Consultancy Group helps Canadian business owners and individuals unlock tax
+              WeWin Consulting Group helps Canadian business owners and individuals unlock tax
               incentives like SR&amp;ED, take control of debt, restructure for stability and grow with
               the right strategy and capital — all with one coordinated plan.
             </p>

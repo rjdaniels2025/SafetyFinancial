@@ -29,9 +29,9 @@ export default function Navigation({ onOpenLeadCapture }: NavigationProps) {
               <Trophy className="w-5 h-5 text-amber-300" />
             </div>
             <div className="leading-tight">
-              <div className="text-lg font-extrabold text-slate-900 tracking-tight">We Win</div>
+              <div className="text-lg font-extrabold text-slate-900 tracking-tight">WeWin</div>
               <div className="text-[10px] uppercase tracking-[0.2em] text-emerald-700 font-semibold">
-                Consultancy Group
+                Consulting Group
               </div>
             </div>
           </Link>

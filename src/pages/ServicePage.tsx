@@ -14,7 +14,7 @@ export default function ServicePage({ service }: ServicePageProps) {
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
-    document.title = `${service.name} | We Win Consultancy Group`;
+    document.title = `${service.name} | WeWin Consulting Group`;
     document.querySelector('meta[name="description"]')?.setAttribute('content', service.summary);
   }, [service]);
 

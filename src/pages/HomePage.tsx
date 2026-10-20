@@ -22,12 +22,12 @@ export default function HomePage({
   const location = useLocation();
 
   useEffect(() => {
-    document.title = 'We Win Consultancy Group | Debt & Tax Solutions';
+    document.title = 'WeWin Consulting Group | Debt & Tax Solutions';
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute(
         'content',
-        'We Win Consultancy Group helps Canadian businesses and individuals with SR&ED and tax incentives, debt solutions, corporate restructuring and business growth strategy.'
+        'WeWin Consulting Group helps Canadian businesses and individuals with SR&ED and tax incentives, debt solutions, corporate restructuring and business growth strategy.'
       );
     if (location.hash) {
       document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' });

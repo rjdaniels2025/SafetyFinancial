@@ -217,7 +217,7 @@ ${questions.step4.title} ${formData.budget}`;
           </div>
           <h3 className="text-2xl font-bold text-gray-900 mb-4">Thank You!</h3>
           <p className="text-gray-600">
-            We've received your information and a We Win strategist will contact you within one business day.
+            We've received your information and a WeWin strategist will contact you within one business day.
           </p>
         </div>
       </div>

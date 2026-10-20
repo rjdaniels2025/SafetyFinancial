@@ -74,7 +74,7 @@ export default function InquiryForm({
           You're on the list!
         </h3>
         <p className={dark ? 'text-slate-300' : 'text-slate-600'}>
-          A We Win strategist will reach out within one business day.
+          A WeWin strategist will reach out within one business day.
         </p>
       </div>
     );

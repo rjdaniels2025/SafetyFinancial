@@ -12,7 +12,7 @@ export default function Footer() {
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-slate-800 flex items-center justify-center">
                 <Trophy className="w-5 h-5 text-amber-300" />
               </div>
-              <span className="text-lg font-bold text-white">We Win Consultancy Group</span>
+              <span className="text-lg font-bold text-white">WeWin Consulting Group</span>
             </div>
             <p className="text-sm leading-relaxed">
               Tax strategy and business incentives, debt solutions, corporate restructuring and business
@@ -42,7 +42,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 text-xs leading-relaxed space-y-3">
           <p>
-            We Win Consultancy Group provides financial strategy, consulting, education and referral services.
+            WeWin Consulting Group provides financial strategy, consulting, education and referral services.
             We are not a lender, law firm, accounting firm, licensed insolvency trustee or credit bureau. Where
             accounting, tax filing, legal, credit counselling, insolvency or lending services are required, they
             are provided by qualified third-party professionals in our network and are subject to their own
@@ -50,7 +50,7 @@ export default function Footer() {
             by the administering government program. Results vary by individual
             circumstances.
           </p>
-          <p>© {new Date().getFullYear()} We Win Consultancy Group. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} WeWin Consulting Group. All rights reserved.</p>
         </div>
       </div>
     </footer>
