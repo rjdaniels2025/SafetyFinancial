@@ -1,7 +1,7 @@
 import {
   Receipt,
-  Scale,
-  TrendingUp,
+  HeartPulse,
+  Building2,
   Rocket,
   type LucideIcon,
 } from 'lucide-react';
@@ -30,387 +30,387 @@ export interface ServiceContent {
 export const services: ServiceContent[] = [
   {
     slug: 'tax',
-    path: '/tax-solutions',
-    name: 'Tax Solutions',
-    shortName: 'Tax',
+    path: '/tax-strategy',
+    name: 'Tax Strategy & Business Incentives',
+    shortName: 'Tax & Incentives',
     icon: Receipt,
-    tagline: 'Keep more of what you earn',
+    tagline: 'SR&ED, tax credits and tax savings',
     summary:
-      'Proactive tax planning, back-tax resolution and smarter structures so you stop overpaying and stay ahead of deadlines.',
-    heroTitle: 'Pay what you owe —',
-    heroHighlight: 'not a dollar more',
+      'SR&ED consulting, government tax credits and incentive programs, and tax-saving strategies coordinated with qualified accounting professionals.',
+    heroTitle: 'Claim the incentives',
+    heroHighlight: 'your business has earned',
     heroText:
-      'Most people only think about taxes once a year. We help business owners and households plan all year long, so every deduction, credit and structure is working in your favour.',
+      'Canadian businesses leave millions in SR&ED credits, government incentives and tax savings unclaimed every year. We find the opportunities that apply to you and coordinate with qualified tax professionals to help you capture them.',
     outcomes: [
-      'Year-round tax planning, not just filing season',
-      'Back-tax and tax-debt resolution strategies',
-      'Business structure and write-off reviews',
-      'Organized records that make filing painless',
+      'SR&ED eligibility reviewed and claims supported',
+      'Government credits and incentives identified',
+      'Tax-saving opportunities uncovered',
+      'Corporate tax planning coordinated with professionals',
     ],
     offerings: [
       {
-        title: 'Strategic Tax Planning',
+        title: 'SR&ED Tax Incentive Consulting',
         description:
-          'A forward-looking plan that times income, expenses and contributions to legally reduce what you owe.',
+          'We assess whether your innovation and development work qualifies for the Scientific Research & Experimental Development program and help you prepare a strong, well-documented claim.',
       },
       {
-        title: 'Tax Debt Resolution',
+        title: 'Government Tax Credits & Business Incentives',
         description:
-          'Behind on taxes? We map out options such as payment arrangements and work with qualified partners to resolve balances.',
+          'Federal and provincial credits, hiring incentives and sector-specific programs — we identify what your business may qualify for.',
       },
       {
-        title: 'Business Write-Off Review',
+        title: 'Tax-Saving Opportunity Identification',
         description:
-          'We review your business expenses, vehicle, home office and payroll to find deductions you may be missing.',
+          'A structured review of your business and personal situation to surface deductions, credits and strategies you may be missing.',
       },
       {
-        title: 'Entity & Structure Guidance',
+        title: 'Corporate Tax Planning Coordination',
         description:
-          'Sole proprietor, partnership or corporation? We help you understand which structure fits your income and goals.',
+          'We work alongside your accountant, or ours, to align corporate tax planning with your growth and cash-flow goals.',
       },
       {
-        title: 'Bookkeeping Clean-Up',
+        title: 'Accounting & Tax-Professional Referrals',
         description:
-          'Messy books cost money. We help organize your records so your filings are accurate and stress-free.',
-      },
-      {
-        title: 'Filing Coordination',
-        description:
-          'We coordinate preparation and filing with licensed tax professionals in our network, so nothing slips.',
+          'Need a CPA, bookkeeper or tax specialist? We connect you with qualified professionals in our network.',
       },
     ],
     audiences: [
       {
-        title: 'Business Owners',
+        title: 'Innovative Businesses',
         description:
-          'Self-employed, contractors and small business owners who want a clear plan to lower their tax bill.',
+          'Tech, manufacturing, agri-food and other companies developing new products or processes that may qualify for SR&ED.',
       },
       {
-        title: 'Everyday Earners',
+        title: 'Growing Corporations',
         description:
-          'Employees and families who want to make sure they are claiming every credit and deduction available.',
+          'Incorporated businesses that want proactive tax planning instead of surprises at year-end.',
       },
       {
-        title: 'Anyone Behind on Taxes',
+        title: 'Owners Without a Tax Plan',
         description:
-          'Unfiled returns or a growing balance? We help you build a realistic path back to good standing.',
+          'Business owners who suspect they are paying too much but are not sure where the opportunities are.',
       },
     ],
     steps: [
-      { title: 'Free Review', description: 'Tell us about your income, business and past filings.' },
-      { title: 'Tax Strategy', description: 'We identify savings opportunities and any issues to resolve.' },
-      { title: 'Execute', description: 'We put the plan in motion with our licensed partners where required.' },
-      { title: 'Stay Ahead', description: 'Ongoing check-ins so you are never surprised at tax time again.' },
+      { title: 'Opportunity Review', description: 'We learn about your business, activities and current tax position.' },
+      { title: 'Identify Incentives', description: 'We pinpoint SR&ED, credits and savings that may apply to you.' },
+      { title: 'Coordinate & Claim', description: 'We prepare documentation and coordinate with qualified tax professionals.' },
+      { title: 'Plan Ahead', description: 'Ongoing planning so you capture every eligible incentive year after year.' },
     ],
     faqs: [
       {
-        question: 'Do you prepare and file tax returns?',
+        question: 'What is SR&ED?',
         answer:
-          'We focus on strategy and planning. Where preparation, filing or representation is needed, we coordinate it with licensed tax professionals in our network.',
+          'The Scientific Research and Experimental Development program is a federal tax incentive that rewards Canadian businesses for work that advances technology or resolves technical uncertainty. Eligible businesses can receive refundable or non-refundable tax credits.',
       },
       {
-        question: 'I owe back taxes. Can you help?',
+        question: 'Does my business qualify for SR&ED?',
         answer:
-          'Yes. We review your situation, explain your options and connect you with the right professionals to resolve the balance.',
+          'Many businesses qualify without realizing it — it is not limited to labs. If you develop or improve products, processes or software and solve technical problems along the way, it is worth a review.',
       },
       {
-        question: 'Is this only for businesses?',
+        question: 'Do you file tax returns?',
         answer:
-          'No. We work with business owners and individuals alike. Everyone benefits from a plan that lowers their tax burden.',
+          'We focus on strategy, incentive identification and claim support. Filing and formal tax advice are handled by qualified accountants and tax professionals we coordinate with.',
       },
     ],
-    formTitle: 'Book your free tax strategy review',
-    formOptionsLabel: 'What do you need help with?',
+    formTitle: 'Book your free tax & incentive review',
+    formOptionsLabel: 'What are you most interested in?',
     formOptions: [
-      'Lowering my taxes going forward',
-      'I owe back taxes',
-      'Unfiled returns',
-      'Business structure / write-offs',
-      'Not sure — review everything',
+      'SR&ED tax credits',
+      'Government credits & incentives',
+      'Lowering my tax bill',
+      'Corporate tax planning',
+      'Referral to an accountant / tax professional',
     ],
   },
   {
     slug: 'debt',
     path: '/debt-solutions',
-    name: 'Debt Solutions',
-    shortName: 'Debt',
-    icon: Scale,
-    tagline: 'A clear way out of debt',
+    name: 'Debt Solutions & Financial Wellness',
+    shortName: 'Debt & Wellness',
+    icon: HeartPulse,
+    tagline: 'Less debt, stronger credit',
     summary:
-      'Personalized debt strategies — consolidation, negotiation and payoff plans — designed to lower payments and get you debt-free faster.',
-    heroTitle: 'Get out of debt with',
-    heroHighlight: 'a real plan',
+      'Personalized debt-management strategies, budgeting guidance and credit improvement plans — with referrals to the right debt-relief providers when needed.',
+    heroTitle: 'Take control of your debt and',
+    heroHighlight: 'rebuild your financial health',
     heroText:
-      'Debt grows quietly through high interest and scattered payments. We look at the full picture and build a strategy that lowers what you pay and shortens how long you pay it.',
+      'Debt and credit problems feed each other. We assess your full financial picture, build a realistic plan to reduce what you owe, and help you rebuild the credit history that opens doors again.',
     outcomes: [
-      'One clear plan for every balance you carry',
-      'Lower interest and fewer monthly payments',
-      'Options explained in plain language',
-      'Business and personal debt both covered',
+      'A clear picture of everything you owe',
+      'A personalized debt-management strategy',
+      'A plan to improve and rebuild your credit',
+      'The right referrals when you need formal relief',
     ],
     offerings: [
       {
-        title: 'Debt Analysis',
+        title: 'Personalized Debt-Management Strategies',
         description:
-          'A full breakdown of every balance, rate and payment so you can see exactly where your money is going.',
+          'A plan built around your balances, rates and income — consolidation, payoff order and negotiation options explained clearly.',
       },
       {
-        title: 'Consolidation Strategy',
+        title: 'Financial Assessments & Budgeting Guidance',
         description:
-          'Combine high-interest balances into a single, more manageable payment where it makes sense.',
+          'A full review of your income, spending and obligations, plus a practical budget you can actually stick to.',
       },
       {
-        title: 'Payoff Roadmap',
+        title: 'Credit Profile Reviews & Improvement',
         description:
-          'A month-by-month plan (avalanche, snowball or hybrid) built around your actual budget.',
+          'We walk through your credit report with you, flag errors and prioritize the actions that improve your score most.',
       },
       {
-        title: 'Creditor Negotiation Referrals',
+        title: 'Building Stronger Credit Histories',
         description:
-          'When settlement or formal relief is the right fit, we connect you with licensed professionals to negotiate on your behalf.',
+          'Guidance on the right accounts, utilization and payment habits to build a credit history lenders trust.',
       },
       {
-        title: 'Business Debt Restructuring',
+        title: 'Understanding Collections & Obligations',
         description:
-          'Free up cash flow by restructuring equipment loans, lines of credit and merchant advances.',
+          'Collection calls and letters are stressful. We help you understand what you owe, your rights and your next steps.',
       },
       {
-        title: 'Budget & Cash-Flow Coaching',
+        title: 'Debt-Relief & Financial Service Referrals',
         description:
-          'Simple systems to stay on track so you never end up back where you started.',
+          'When you need credit counselling, a consumer proposal or other formal relief, we refer you to appropriate licensed providers.',
       },
     ],
     audiences: [
       {
         title: 'Overwhelmed Households',
         description:
-          'Credit cards, car loans, lines of credit — when the payments pile up, we bring order to the chaos.',
+          'Credit cards, loans and lines of credit piling up — we bring order and a clear plan.',
       },
-      {
-        title: 'Business Owners',
-        description:
-          'Business debt squeezing your cash flow? We help restructure so you can focus on growth again.',
-      },
-      {
-        title: 'Anyone Facing Collections',
-        description:
-          'Calls and letters from collectors are stressful. We help you understand your options and next steps.',
-      },
-    ],
-    steps: [
-      { title: 'Free Debt Review', description: 'Share your balances, rates and monthly payments.' },
-      { title: 'Options Mapped', description: 'We lay out every realistic path, with pros and cons.' },
-      { title: 'Plan in Motion', description: 'We execute the strategy and bring in licensed partners when needed.' },
-      { title: 'Debt-Free Path', description: 'Track progress with regular check-ins until you are clear.' },
-    ],
-    faqs: [
-      {
-        question: 'Will this hurt my credit?',
-        answer:
-          'It depends on the strategy. Some options, like consolidation, can help over time; others may have a short-term impact. We explain the trade-offs before you decide.',
-      },
-      {
-        question: 'Do you lend money?',
-        answer:
-          'No. We are consultants. When consolidation financing makes sense, we refer you to lending partners in our network.',
-      },
-      {
-        question: 'How much debt do I need to work with you?',
-        answer:
-          'There is no minimum. Whether it is $5,000 or $500,000, a clear plan makes a difference.',
-      },
-    ],
-    formTitle: 'Get your free debt review',
-    formOptionsLabel: 'Approximate total debt',
-    formOptions: ['Under $10,000', '$10,000 – $25,000', '$25,000 – $50,000', '$50,000 – $100,000', 'Over $100,000'],
-  },
-  {
-    slug: 'credit',
-    path: '/credit-building',
-    name: 'Credit Building',
-    shortName: 'Credit',
-    icon: TrendingUp,
-    tagline: 'Build credit that opens doors',
-    summary:
-      'Credit report reviews, error disputes and a step-by-step building plan for personal and business credit.',
-    heroTitle: 'Build the credit that',
-    heroHighlight: 'unlocks your next move',
-    heroText:
-      'Your credit score affects your rates, approvals and even business funding. We help you understand your report, fix what is wrong and build a profile lenders say yes to.',
-    outcomes: [
-      'Know exactly what is on your credit report',
-      'Dispute inaccurate or outdated items',
-      'Build a strong personal and business credit profile',
-      'Position yourself for better rates and approvals',
-    ],
-    offerings: [
-      {
-        title: 'Credit Report Review',
-        description:
-          'A line-by-line walkthrough of your reports so you know what is helping and what is hurting.',
-      },
-      {
-        title: 'Dispute Guidance',
-        description:
-          'We help you challenge inaccurate, incomplete or outdated items with the credit bureaus.',
-      },
-      {
-        title: 'Credit Building Plan',
-        description:
-          'Utilization targets, the right accounts and payment habits that steadily raise your score.',
-      },
-      {
-        title: 'Business Credit Setup',
-        description:
-          'Separate your business from your personal credit and build a business profile for future funding.',
-      },
-      {
-        title: 'Funding Readiness',
-        description:
-          'Get your credit in shape before you apply for a mortgage, car loan or business capital.',
-      },
-      {
-        title: 'Credit Counselling Referrals',
-        description:
-          'When you need formal support, we connect you with trusted credit counselling professionals.',
-      },
-    ],
-    audiences: [
       {
         title: 'Rebuilding After Setbacks',
         description:
-          'Late payments, collections or a past insolvency do not have to define your future.',
+          'Late payments, collections or a past insolvency do not have to define your financial future.',
       },
       {
-        title: 'Planning a Big Purchase',
+        title: 'Planning a Big Move',
         description:
-          'Getting ready for a home, vehicle or major financing? Better credit means better terms.',
-      },
-      {
-        title: 'Business Owners',
-        description:
-          'Build business credit so you can access capital without putting everything on your personal name.',
+          'Getting ready for a mortgage, vehicle or business financing and want your finances in shape first.',
       },
     ],
     steps: [
-      { title: 'Free Credit Review', description: 'We review your credit reports with you.' },
-      { title: 'Custom Plan', description: 'We prioritize disputes and building actions for the biggest impact.' },
-      { title: 'Take Action', description: 'Disputes filed, accounts optimized, habits set.' },
-      { title: 'Track Progress', description: 'Monitor improvements and adjust until you hit your goal.' },
+      { title: 'Financial Assessment', description: 'We review your income, debts, budget and credit report.' },
+      { title: 'Personal Strategy', description: 'A clear plan for debt reduction and credit improvement.' },
+      { title: 'Take Action', description: 'We guide you through each step and make referrals where needed.' },
+      { title: 'Stay on Track', description: 'Regular check-ins as your debt goes down and your credit goes up.' },
     ],
     faqs: [
       {
-        question: 'How fast can my credit improve?',
+        question: 'Will working with you hurt my credit?',
         answer:
-          'Every file is different. Some changes show up within a reporting cycle or two; others take longer. We set realistic expectations after reviewing your report.',
+          'Our assessments and planning do not affect your credit. Some debt strategies can have short-term effects; we explain every trade-off before you decide.',
       },
       {
-        question: 'Can you remove accurate negative items?',
+        question: 'Can you remove negative items from my credit report?',
         answer:
-          'No one can legally remove accurate, timely information. We focus on correcting errors and building positive history that outweighs past setbacks.',
+          'No one can legally remove accurate, timely information. We help you dispute genuine errors and build positive history that outweighs past setbacks.',
       },
       {
-        question: 'Do you help with business credit?',
+        question: 'Are you a licensed insolvency trustee?',
         answer:
-          'Yes. Building a separate business credit profile is a key step toward funding your growth.',
+          'No. When a consumer proposal, bankruptcy or formal credit counselling is the right path, we refer you to appropriate licensed professionals.',
       },
     ],
-    formTitle: 'Start your free credit review',
-    formOptionsLabel: 'Current credit score (estimate)',
-    formOptions: ['Below 550', '550 – 619', '620 – 679', '680 – 739', '740+', 'Not sure'],
+    formTitle: 'Get your free financial assessment',
+    formOptionsLabel: 'What would you like help with?',
+    formOptions: [
+      'Reducing my debt',
+      'Improving my credit',
+      'Budgeting & financial planning',
+      'Dealing with collections',
+      'All of the above',
+    ],
   },
   {
-    slug: 'business',
-    path: '/business-growth',
-    name: 'Business Growth & Funding',
-    shortName: 'Business Growth',
-    icon: Rocket,
-    tagline: 'Capital and strategy to scale',
+    slug: 'restructuring',
+    path: '/corporate-restructuring',
+    name: 'Corporate Restructuring & Business Solutions',
+    shortName: 'Restructuring',
+    icon: Building2,
+    tagline: 'Stabilize and strengthen your business',
     summary:
-      'Growth strategy plus access to our network of funding partners — loans, lines of credit, equipment financing and grants.',
-    heroTitle: 'Fuel your business with',
-    heroHighlight: 'strategy and capital',
+      'Corporate debt and restructuring strategies, business financial assessments and cash-flow improvement — coordinated with qualified lawyers and CPAs.',
+    heroTitle: 'Restructure today for',
+    heroHighlight: 'a stronger business tomorrow',
     heroText:
-      'Growth takes more than hard work — it takes the right plan and the right funding at the right time. We help you get fundable and connect you with partners in our network who can deliver the capital.',
+      'When corporate debt, tight cash flow or a complex structure are holding your business back, you need a clear strategy and the right professionals at the table. We assess your position and coordinate the experts to fix it.',
     outcomes: [
-      'A growth plan built around your numbers',
-      'Access to our network of funding partners',
-      'Help preparing a strong funding application',
-      'Tax, credit and cash flow aligned for growth',
+      'A clear assessment of your financial position',
+      'A strategy for corporate debt and restructuring',
+      'Improved cash flow and stability',
+      'Qualified lawyers and CPAs coordinated for you',
     ],
     offerings: [
       {
-        title: 'Funding Referrals',
+        title: 'Corporate Debt & Restructuring Strategies',
         description:
-          'Term loans, lines of credit, equipment financing and more through our trusted partner network.',
+          'Options to reorganize obligations, renegotiate terms and restore stability to an over-leveraged business.',
       },
       {
-        title: 'Grants & Programs',
+        title: 'Business Financial Assessments',
         description:
-          'We help identify grants and government-backed programs your business may qualify for.',
+          'An objective review of your statements, obligations and cash position so decisions are based on facts.',
       },
       {
-        title: 'Funding Readiness Review',
+        title: 'Cash-Flow & Financial-Position Improvement',
         description:
-          'We review your financials, credit and documents so you apply with confidence.',
+          'Identify leaks, tighten terms and free up working capital to strengthen your balance sheet.',
       },
       {
-        title: 'Growth Strategy Sessions',
+        title: 'Coordination with Lawyers & CPAs',
         description:
-          'Pricing, cash flow, margins and expansion — practical strategy for your next stage.',
+          'We bring in qualified tax lawyers, business lawyers and CPAs and keep everyone aligned on one strategy.',
       },
       {
-        title: 'Cash-Flow Optimization',
+        title: 'Corporate Structure & Succession Referrals',
         description:
-          'Find the leaks, tighten your terms and free up working capital to reinvest.',
-      },
-      {
-        title: 'Start-Up Foundations',
-        description:
-          'Launching something new? Set up the right structure, banking and credit from day one.',
+          'Holding companies, reorganizations and succession plans — referred to the right specialists for your situation.',
       },
     ],
     audiences: [
       {
+        title: 'Businesses Under Pressure',
+        description:
+          'Rising debt, creditor pressure or shrinking margins and a need for a clear way forward.',
+      },
+      {
+        title: 'Owners Planning Ahead',
+        description:
+          'Thinking about succession, selling, or reorganizing your corporate structure.',
+      },
+      {
+        title: 'Complex Situations',
+        description:
+          'Multiple entities, tax exposure or legal questions that need several professionals working together.',
+      },
+    ],
+    steps: [
+      { title: 'Confidential Consultation', description: 'We discuss your business, obligations and goals.' },
+      { title: 'Financial Assessment', description: 'We analyze your financial position and pressure points.' },
+      { title: 'Restructuring Strategy', description: 'A clear plan with the right legal and accounting professionals involved.' },
+      { title: 'Execute & Stabilize', description: 'We coordinate the plan and monitor progress to keep you on track.' },
+    ],
+    faqs: [
+      {
+        question: 'Do you provide legal or accounting advice?',
+        answer:
+          'No. We provide strategy and coordination. Legal and accounting advice comes from qualified tax lawyers, business lawyers and CPAs we work with.',
+      },
+      {
+        question: 'Is it too late if creditors are already calling?',
+        answer:
+          'Not necessarily. The earlier you act, the more options you have — reach out as soon as possible for a confidential review.',
+      },
+      {
+        question: 'Is this confidential?',
+        answer: 'Yes. Everything you share with us is kept strictly confidential.',
+      },
+    ],
+    formTitle: 'Request a confidential business review',
+    formOptionsLabel: 'What is your main concern?',
+    formOptions: [
+      'Corporate debt',
+      'Cash flow',
+      'Corporate structure',
+      'Succession planning',
+      'Need a lawyer / CPA referral',
+    ],
+  },
+  {
+    slug: 'growth',
+    path: '/business-growth',
+    name: 'Business Growth & Strategy',
+    shortName: 'Business Growth',
+    icon: Rocket,
+    tagline: 'Strategy, grants and financing to scale',
+    summary:
+      'Growth and operational consulting, strategic planning, grants and incentives, and financing referrals with application preparation.',
+    heroTitle: 'Grow your business with',
+    heroHighlight: 'strategy and capital',
+    heroText:
+      'Growth takes the right plan, sound financials and access to capital. We help you sharpen operations, find grants and incentives, and prepare strong financing applications through our network of partners.',
+    outcomes: [
+      'A growth plan built around your numbers',
+      'Grants and incentives identified',
+      'Financing applications prepared properly',
+      'Support from startup through expansion',
+    ],
+    offerings: [
+      {
+        title: 'Growth & Operational Consulting',
+        description:
+          'Practical advice on operations, pricing, margins and systems so your business can scale efficiently.',
+      },
+      {
+        title: 'Strategic Planning & Financial Analysis',
+        description:
+          'Clear goals, a realistic roadmap and the financial analysis to back every decision.',
+      },
+      {
+        title: 'Business Grants & Incentive Opportunities',
+        description:
+          'We identify grants and government programs your business may qualify for and help you apply.',
+      },
+      {
+        title: 'Financing Referrals & Application Preparation',
+        description:
+          'We prepare you for lenders and connect you with financing partners in our network suited to your needs.',
+      },
+      {
+        title: 'Startup & Expansion Support',
+        description:
+          'From launching a new venture to opening a new location — structure, planning and funding guidance at every stage.',
+      },
+    ],
+    audiences: [
+      {
+        title: 'Startups',
+        description: 'Building from the ground up and want to do it right from day one.',
+      },
+      {
         title: 'Established Businesses',
-        description: 'Ready to expand, hire or take on bigger contracts and need capital to do it.',
+        description: 'Ready to expand, hire or take on bigger contracts and need a plan and capital.',
       },
       {
-        title: 'Start-Ups & Side Hustles',
-        description: 'Building from the ground up and want to do it right from the start.',
-      },
-      {
-        title: 'Cash-Strapped Owners',
-        description: 'Profitable on paper but tight on cash? Let us fix the flow before you borrow.',
+        title: 'Owners Seeking Funding',
+        description: 'Looking for grants or financing and want a strong, well-prepared application.',
       },
     ],
     steps: [
       { title: 'Discovery Call', description: 'Tell us about your business, revenue and goals.' },
-      { title: 'Readiness Check', description: 'We review credit, financials and documents.' },
-      { title: 'Partner Match', description: 'We connect you with the funding partners best suited to you.' },
-      { title: 'Grow', description: 'Put the capital to work with a plan that keeps you profitable.' },
+      { title: 'Strategy & Analysis', description: 'We review your numbers and map out a growth plan.' },
+      { title: 'Grants & Financing', description: 'We identify programs and prepare your applications.' },
+      { title: 'Grow', description: 'Execute the plan with ongoing support as you scale.' },
     ],
     faqs: [
       {
         question: 'Are you a lender?',
         answer:
-          'No. We are consultants who refer you to funding partners in our network. Approval and terms are set by the lender.',
+          'No. We refer you to financing partners in our network and help you prepare your application. Approval and terms are set by the lender.',
       },
       {
-        question: 'What kind of funding can I access?',
+        question: 'Can you help me find grants?',
         answer:
-          'Depending on your profile: term loans, lines of credit, equipment financing, revenue-based financing and grants.',
+          'Yes. We identify government grants and incentive programs your business may be eligible for and help you prepare applications.',
       },
       {
-        question: 'Do I need good credit to get funding?',
+        question: 'Do you work with startups?',
         answer:
-          'Stronger credit opens more doors, but options exist at many levels. If you are not ready yet, our credit building service gets you there.',
+          'Absolutely. We support businesses from the idea stage through expansion.',
       },
     ],
-    formTitle: 'See what funding you qualify for',
-    formOptionsLabel: 'How much funding are you looking for?',
-    formOptions: ['Under $25,000', '$25,000 – $100,000', '$100,000 – $250,000', '$250,000+', 'Not sure yet'],
+    formTitle: 'Book your free growth strategy session',
+    formOptionsLabel: 'What are you looking for?',
+    formOptions: [
+      'Growth & operations consulting',
+      'Strategic planning',
+      'Grants & incentives',
+      'Financing',
+      'Startup support',
+    ],
   },
 ];
-
-export const getService = (slug: string) => services.find((s) => s.slug === slug)!;

@@ -45,7 +45,7 @@ export default function Hero({ onOpenLeadCapture }: HeroProps) {
           >
             <div className="inline-block mb-6">
               <span className="bg-white/10 border border-white/15 text-emerald-300 px-4 py-2 rounded-full text-sm font-medium">
-                Tax · Debt · Credit · Business Growth
+                Tax · Debt · Restructuring · Growth
               </span>
             </div>
 
@@ -57,17 +57,17 @@ export default function Hero({ onOpenLeadCapture }: HeroProps) {
             </h1>
 
             <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-              We Win Consultancy Group helps business owners and everyday consumers pay less in taxes,
-              get out of debt, build strong credit and access the funding to grow — all with one
-              coordinated plan.
+              We Win Consultancy Group helps Canadian business owners and individuals unlock tax
+              incentives like SR&amp;ED, take control of debt, restructure for stability and grow with
+              the right strategy and capital — all with one coordinated plan.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-3 mb-10">
               {[
-                'Save more on taxes',
-                'Lower and eliminate debt',
-                'Build personal & business credit',
-                'Access growth funding',
+                'SR&ED and government tax incentives',
+                'Debt management and credit rebuilding',
+                'Corporate restructuring support',
+                'Grants, financing and growth strategy',
               ].map((benefit, index) => (
                 <div
                   key={benefit}
@@ -80,10 +80,10 @@ export default function Hero({ onOpenLeadCapture }: HeroProps) {
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
               <button
                 onClick={onOpenLeadCapture}
-                className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold shadow-xl shadow-emerald-600/30 transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 group"
+                className="whitespace-nowrap bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold shadow-xl shadow-emerald-600/30 transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 group"
               >
                 <span>Book a Free Strategy Call</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -91,7 +91,7 @@ export default function Hero({ onOpenLeadCapture }: HeroProps) {
 
               <button
                 onClick={scrollToServices}
-                className="border border-white/25 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-all duration-300"
+                className="whitespace-nowrap border border-white/25 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-all duration-300"
               >
                 Explore Services
               </button>

@@ -5,7 +5,7 @@ export default function About() {
     {
       icon: Layers,
       title: 'The Whole Picture',
-      description: 'Taxes, debt, credit and growth planned together — not in silos.',
+      description: 'Tax, debt, structure and growth planned together — not in silos.',
     },
     {
       icon: Eye,
@@ -15,7 +15,7 @@ export default function About() {
     {
       icon: Handshake,
       title: 'Trusted Network',
-      description: 'Licensed tax, credit and lending partners we bring in when you need them.',
+      description: 'Qualified CPAs, tax and business lawyers, and financing partners we bring in when needed.',
     },
     {
       icon: Target,
@@ -35,18 +35,18 @@ export default function About() {
           </h2>
           <div className="space-y-4 text-lg text-slate-700 leading-relaxed">
             <p>
-              We Win Consultancy Group is a debt and tax solutions firm focused on one thing: helping business
-              owners and everyday people keep more of their money and put it to work.
+              We Win Consultancy Group is a Canadian tax, debt and business solutions firm focused on one
+              thing: helping business owners and individuals keep more of their money and put it to work.
             </p>
             <p>
-              Most financial problems are connected. Taxes drain cash flow, cash flow problems create debt,
-              debt damages credit, and weak credit blocks the funding you need to grow. We break that cycle
-              with strategic planning that tackles every piece together.
+              Most financial problems are connected. Unclaimed incentives and poor tax planning drain cash
+              flow, cash-flow problems create debt, and debt blocks the capital you need to grow. We break
+              that cycle with strategic planning that tackles every piece together.
             </p>
             <p>
-              When you need specialized help — tax preparation, credit counselling or business capital — we
-              connect you with trusted professionals in our network, so you always have the right expert on
-              your side.
+              When you need specialized help — CPAs, tax lawyers, business lawyers, debt-relief providers or
+              financing partners — we coordinate qualified professionals from our network, so you always
+              have the right expert on your side.
             </p>
           </div>
         </div>

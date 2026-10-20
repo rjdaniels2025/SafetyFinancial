@@ -37,12 +37,12 @@ export default function Navigation({ onOpenLeadCapture }: NavigationProps) {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden xl:flex items-center space-x-1">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`whitespace-nowrap px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   isActive(link.to)
                     ? "bg-emerald-50 text-emerald-700"
                     : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
@@ -55,7 +55,7 @@ export default function Navigation({ onOpenLeadCapture }: NavigationProps) {
 
           {/* CTA Button - Desktop */}
           {onOpenLeadCapture && (
-            <div className="hidden lg:block">
+            <div className="hidden xl:block">
               <button
                 onClick={onOpenLeadCapture}
                 className="bg-slate-900 text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-emerald-600 hover:shadow-lg transition-all duration-200"
@@ -68,7 +68,7 @@ export default function Navigation({ onOpenLeadCapture }: NavigationProps) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100"
+            className="xl:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -77,7 +77,7 @@ export default function Navigation({ onOpenLeadCapture }: NavigationProps) {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-slate-200 py-4 space-y-2">
+          <div className="xl:hidden border-t border-slate-200 py-4 space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.to}

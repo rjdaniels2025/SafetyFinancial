@@ -25,25 +25,25 @@ export default function LeadCaptureModal({ onClose, preSelectedService }: LeadCa
 
   const getQuestionsForService = (service: string) => {
     switch (service) {
-      case 'Tax Solutions':
+      case 'Tax Strategy & Business Incentives':
         return {
           step2: {
-            title: 'What best describes your tax situation?',
-            options: ['I want to pay less tax going forward', 'I owe back taxes', 'I have unfiled returns', 'I need help with business taxes', 'Not sure'],
+            title: 'What are you most interested in?',
+            options: ['SR&ED tax credits', 'Government credits & incentives', 'Lowering my tax bill', 'Corporate tax planning', 'Accountant / tax professional referral'],
             field: 'timeline',
           },
           step3: {
-            title: 'How do you earn most of your income?',
-            options: ['Employee (T4 / W-2)', 'Self-employed / contractor', 'Business owner (incorporated)', 'Mix of the above'],
+            title: 'How is your business set up?',
+            options: ['Incorporated (CCPC)', 'Sole proprietor / partnership', 'Not yet started', 'Not sure'],
             field: 'currentCoverage',
           },
           step4: {
-            title: 'Roughly how much do you owe or pay in taxes each year?',
-            options: ['Under $5,000', '$5,000 – $20,000', '$20,000 – $50,000', 'Over $50,000', 'Not sure'],
+            title: 'Does your business develop or improve products, processes or software?',
+            options: ['Yes, regularly', 'Sometimes', 'No', 'Not sure'],
             field: 'budget',
           },
         };
-      case 'Debt Solutions':
+      case 'Debt Solutions & Financial Wellness':
         return {
           step2: {
             title: 'What is your approximate total debt?',
@@ -51,35 +51,35 @@ export default function LeadCaptureModal({ onClose, preSelectedService }: LeadCa
             field: 'timeline',
           },
           step3: {
-            title: 'What types of debt do you have?',
-            options: ['Credit cards', 'Loans / lines of credit', 'Tax debt', 'Business debt', 'A mix of several'],
+            title: 'What would you like help with most?',
+            options: ['Reducing my debt', 'Improving my credit', 'Budgeting & financial planning', 'Dealing with collections', 'All of the above'],
             field: 'currentCoverage',
           },
           step4: {
             title: 'How are you keeping up with payments?',
-            options: ['On time but struggling', 'Missing some payments', 'In collections', 'Only paying minimums'],
+            options: ['On time but struggling', 'Only paying minimums', 'Missing some payments', 'In collections'],
             field: 'budget',
           },
         };
-      case 'Credit Building':
+      case 'Corporate Restructuring & Business Solutions':
         return {
           step2: {
-            title: 'What is your current credit score range?',
-            options: ['Below 550', '550 – 619', '620 – 679', '680 – 739', 'Not sure'],
+            title: 'What is your main concern?',
+            options: ['Corporate debt', 'Cash flow', 'Corporate structure', 'Succession planning', 'Need a lawyer / CPA referral'],
             field: 'timeline',
           },
           step3: {
-            title: 'What is affecting your credit?',
-            options: ['Collections / charge-offs', 'Late payments', 'High balances', 'Errors on my report', 'Limited credit history'],
+            title: 'What is your approximate annual revenue?',
+            options: ['Under $250,000', '$250,000 – $1M', '$1M – $5M', 'Over $5M'],
             field: 'currentCoverage',
           },
           step4: {
-            title: 'What is your main credit goal?',
-            options: ['Buy a home', 'Vehicle or personal financing', 'Business funding', 'Lower my interest rates', 'General improvement'],
+            title: 'How urgent is your situation?',
+            options: ['Urgent — creditors involved', 'Within the next few months', 'Planning ahead', 'Just exploring'],
             field: 'budget',
           },
         };
-      case 'Business Growth & Funding':
+      case 'Business Growth & Strategy':
         return {
           step2: {
             title: 'How long has your business been operating?',
@@ -87,13 +87,13 @@ export default function LeadCaptureModal({ onClose, preSelectedService }: LeadCa
             field: 'timeline',
           },
           step3: {
-            title: 'What is your approximate monthly revenue?',
-            options: ['Pre-revenue', 'Under $10,000', '$10,000 – $50,000', '$50,000 – $150,000', 'Over $150,000'],
+            title: 'What are you looking for?',
+            options: ['Growth & operations consulting', 'Strategic planning', 'Grants & incentives', 'Financing', 'Startup support'],
             field: 'currentCoverage',
           },
           step4: {
-            title: 'How much funding are you looking for?',
-            options: ['Under $25,000', '$25,000 – $100,000', '$100,000 – $250,000', '$250,000+', 'Not sure yet'],
+            title: 'What is your approximate monthly revenue?',
+            options: ['Pre-revenue', 'Under $10,000', '$10,000 – $50,000', '$50,000 – $150,000', 'Over $150,000'],
             field: 'budget',
           },
         };
@@ -106,7 +106,7 @@ export default function LeadCaptureModal({ onClose, preSelectedService }: LeadCa
           },
           step3: {
             title: 'What is your biggest financial challenge right now?',
-            options: ['Paying too much tax', 'Too much debt', 'Low credit score', 'Need funding to grow', 'All of the above'],
+            options: ['Paying too much tax', 'Too much debt', 'Business cash flow or structure', 'Need funding to grow', 'Several of these'],
             field: 'currentCoverage',
           },
           step4: {
@@ -253,7 +253,7 @@ ${questions.step4.title} ${formData.budget}`;
                 <p className="text-sm text-gray-500 mb-6">Select the service that best matches your needs</p>
               </div>
               <div className="grid gap-3">
-                {['Tax Solutions', 'Debt Solutions', 'Credit Building', 'Business Growth & Funding', 'Not sure — full financial review'].map((service) => (
+                {['Tax Strategy & Business Incentives', 'Debt Solutions & Financial Wellness', 'Corporate Restructuring & Business Solutions', 'Business Growth & Strategy', 'Not sure — full review'].map((service) => (
                   <button
                     key={service}
                     onClick={() => handleOptionSelect('interest', service)}

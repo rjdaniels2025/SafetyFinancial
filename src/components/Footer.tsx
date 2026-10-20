@@ -15,8 +15,8 @@ export default function Footer() {
               <span className="text-lg font-bold text-white">We Win Consultancy Group</span>
             </div>
             <p className="text-sm leading-relaxed">
-              Debt and tax solutions, credit building and business growth strategy for business owners and
-              everyday consumers.
+              Tax strategy and business incentives, debt solutions, corporate restructuring and business
+              growth for Canadian business owners and individuals.
             </p>
           </div>
           <div>
@@ -42,10 +42,12 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 text-xs leading-relaxed space-y-3">
           <p>
-            We Win Consultancy Group provides financial strategy, education and referral services. We are not a
-            lender, law firm or credit bureau. Where tax preparation, legal, credit counselling, insolvency or
-            lending services are required, they are provided by qualified third-party professionals in our
-            network and are subject to their own eligibility requirements and terms. Results vary by individual
+            We Win Consultancy Group provides financial strategy, consulting, education and referral services.
+            We are not a lender, law firm, accounting firm, licensed insolvency trustee or credit bureau. Where
+            accounting, tax filing, legal, credit counselling, insolvency or lending services are required, they
+            are provided by qualified third-party professionals in our network and are subject to their own
+            eligibility requirements and terms. Eligibility for SR&amp;ED, grants and other incentives is determined
+            by the administering government program. Results vary by individual
             circumstances.
           </p>
           <p>© {new Date().getFullYear()} We Win Consultancy Group. All rights reserved.</p>

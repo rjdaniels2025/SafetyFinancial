@@ -17,8 +17,8 @@ export default function Services({ onOpenLeadCapture }: ServicesProps) {
               Four pillars. One plan to optimize your finances.
             </h2>
             <p className="text-xl text-slate-600">
-              Taxes, debt, credit and growth are connected. We look at all of them together so every move
-              you make strengthens the others.
+              Taxes, debt, business structure and growth are connected. We look at all of them together so
+              every move you make strengthens the others.
             </p>
           </div>
 
@@ -54,7 +54,7 @@ export default function Services({ onOpenLeadCapture }: ServicesProps) {
                     <p className={`leading-relaxed mb-6 ${featured ? 'text-slate-300' : 'text-slate-600'}`}>
                       {service.summary}
                     </p>
-                    <ul className="grid sm:grid-cols-2 gap-x-4 gap-y-2 mb-8">
+                    <ul className="space-y-2 mb-8">
                       {service.offerings.slice(0, 4).map((o) => (
                         <li
                           key={o.title}
@@ -95,23 +95,23 @@ export default function Services({ onOpenLeadCapture }: ServicesProps) {
               {
                 icon: Briefcase,
                 title: 'Business Owners',
-                service: 'Business Growth & Funding',
+                service: 'Business Growth & Strategy',
                 points: [
-                  'Cut your tax bill with proactive planning',
-                  'Restructure business debt to free up cash flow',
-                  'Build business credit separate from personal',
-                  'Access loans, lines of credit and grants through our network',
+                  'Claim SR&ED credits and government incentives',
+                  'Restructure corporate debt and improve cash flow',
+                  'Coordinated access to tax lawyers, business lawyers and CPAs',
+                  'Grants, financing referrals and growth strategy',
                 ],
               },
               {
                 icon: Home,
-                title: 'Everyday Consumers',
-                service: 'Debt Solutions',
+                title: 'Individuals & Families',
+                service: 'Debt Solutions & Financial Wellness',
                 points: [
-                  'Claim every credit and deduction you are owed',
-                  'A clear, realistic plan to become debt-free',
-                  'Raise your credit score for better rates',
-                  'Budgeting systems that help you save more',
+                  'A personalized debt-management strategy',
+                  'Budgeting guidance and a full financial assessment',
+                  'Credit profile reviews and a plan to rebuild',
+                  'Referrals to the right debt-relief providers',
                 ],
               },
             ].map((group) => {
@@ -155,7 +155,7 @@ export default function Services({ onOpenLeadCapture }: ServicesProps) {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { title: 'Free Strategy Call', description: 'We learn about your goals, income, debts and business.' },
-              { title: 'Financial Snapshot', description: 'We review taxes, debt and credit to find the biggest wins.' },
+              { title: 'Financial Snapshot', description: 'We review taxes, debt, structure and growth to find the biggest wins.' },
               { title: 'Your Game Plan', description: 'A clear, prioritized plan with partners lined up where needed.' },
               { title: 'Win & Grow', description: 'We execute together and check in as your results build.' },
             ].map((step, index) => (

@@ -40,7 +40,9 @@ function App() {
           <Route key={service.slug} path={service.path} element={<ServicePage service={service} />} />
         ))}
         {/* Legacy URLs from the previous site */}
-        <Route path="/credit-repair" element={<Navigate to="/credit-building" replace />} />
+        <Route path="/tax-solutions" element={<Navigate to="/tax-strategy" replace />} />
+        <Route path="/credit-building" element={<Navigate to="/debt-solutions" replace />} />
+        <Route path="/credit-repair" element={<Navigate to="/debt-solutions" replace />} />
         <Route path="/business-funding" element={<Navigate to="/business-growth" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

@@ -39,11 +39,11 @@ export default function Contact() {
             formType="General Contact"
             optionsLabel="Main area of interest"
             options={[
-              'Tax Solutions',
-              'Debt Solutions',
-              'Credit Building',
-              'Business Growth & Funding',
-              'Full financial review',
+              'Tax Strategy & Business Incentives',
+              'Debt Solutions & Financial Wellness',
+              'Corporate Restructuring & Business Solutions',
+              'Business Growth & Strategy',
+              'Not sure — full review',
             ]}
             submitLabel="Send Message"
           />

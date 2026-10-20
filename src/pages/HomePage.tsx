@@ -27,7 +27,7 @@ export default function HomePage({
       .querySelector('meta[name="description"]')
       ?.setAttribute(
         'content',
-        'We Win Consultancy Group is a debt and tax solutions firm helping business owners and everyday consumers save on taxes, eliminate debt, build credit and access funding to grow.'
+        'We Win Consultancy Group helps Canadian businesses and individuals with SR&ED and tax incentives, debt solutions, corporate restructuring and business growth strategy.'
       );
     if (location.hash) {
       document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
