@@ -1,3 +1,37 @@
 {
-  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }]
+  "redirects": [
+    { "source": "/tax-solutions", "destination": "/financial-strategies#corporate-tax", "permanent": true },
+    { "source": "/tax-strategy", "destination": "/financial-strategies#corporate-tax", "permanent": true },
+    { "source": "/corporate-restructuring", "destination": "/financial-strategies#corporate-tax", "permanent": true },
+    { "source": "/credit-building", "destination": "/debt-solutions", "permanent": true },
+    { "source": "/credit-repair", "destination": "/debt-solutions", "permanent": true },
+    { "source": "/business-growth", "destination": "/business-funding", "permanent": true },
+    { "source": "/corporate-insurance", "destination": "/financial-strategies/corporate-life-insurance", "permanent": true },
+    { "source": "/final-expense", "destination": "/financial-strategies#personal-protection", "permanent": true },
+    { "source": "/term-life-insurance", "destination": "/financial-strategies#personal-protection", "permanent": true },
+    { "source": "/whole-life-insurance", "destination": "/financial-strategies#personal-protection", "permanent": true },
+    { "source": "/universal-life-insurance", "destination": "/financial-strategies#personal-protection", "permanent": true },
+    { "source": "/disability-insurance", "destination": "/financial-strategies#personal-protection", "permanent": true },
+    { "source": "/income-replacement-insurance", "destination": "/financial-strategies#personal-protection", "permanent": true }
+  ],
+  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=()" },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ]
 }

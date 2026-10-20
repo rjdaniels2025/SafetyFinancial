@@ -2,10 +2,109 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  overflow-x: hidden;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brass ring-offset-2 ring-offset-paper;
+  }
+
+  ::selection {
+    @apply bg-brass-light text-ink;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
-#root {
-  overflow-x: hidden;
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-eyebrow text-brass-dark;
+  }
+
+  .h-display {
+    @apply font-serif text-[2.5rem] font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.75rem];
+  }
+
+  .h-section {
+    @apply font-serif text-3xl font-semibold leading-tight tracking-tight sm:text-[2.5rem];
+  }
+
+  .lead {
+    @apply text-lg leading-relaxed text-muted;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+
+  .field-input {
+    @apply w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-[15px] text-ink transition placeholder:text-muted/60 focus:border-ink-700 focus:outline-none focus:ring-2 focus:ring-ink-700/15;
+  }
+
+  .field-select {
+    @apply appearance-none bg-no-repeat pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 7.5 10 12l4.5-4.5' stroke='%23535D6B' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-position: right 0.8rem center;
+    background-size: 1.1rem;
+  }
+
+  /* Long-form legal and educational copy */
+  .prose-legal {
+    @apply max-w-prose text-[15px] leading-relaxed text-ink/85;
+  }
+  .prose-legal h2 {
+    @apply mb-3 mt-10 text-2xl font-semibold;
+  }
+  .prose-legal h3 {
+    @apply mb-2 mt-6 text-lg font-semibold;
+  }
+  .prose-legal p {
+    @apply mb-4;
+  }
+  .prose-legal ul {
+    @apply mb-4 list-disc space-y-1.5 pl-5;
+  }
+  .prose-legal a {
+    @apply text-ink underline decoration-brass underline-offset-2 hover:text-brass-dark;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
