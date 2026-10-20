@@ -1,13 +1,10 @@
-export async function handler(event) {
-  if (event.httpMethod !== "POST") {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ error: "Method not allowed" }),
-    };
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    const data = JSON.parse(event.body);
+    const data = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
 
     const {
       formType,
@@ -158,7 +155,6 @@ ${message}
         body: JSON.stringify({
           chat_id: process.env.TELEGRAM_CHAT_ID,
           text: formattedMessage,
-          parse_mode: "HTML",
         }),
       }
     );
@@ -169,15 +165,9 @@ ${message}
       throw new Error("Telegram API failed");
     }
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ success: true }),
-    };
+    return res.status(200).json({ success: true });
   } catch (error) {
     console.error("Error in telegram function:", error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Internal Server Error" }),
-    };
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 }

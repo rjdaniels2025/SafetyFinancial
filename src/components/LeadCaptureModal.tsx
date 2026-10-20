@@ -138,7 +138,7 @@ ${questions.step4.title} ${formData.budget}`;
 
       // Send to both Supabase and Telegram
       const [dbResult, telegramResult] = await Promise.allSettled([
-        supabase.from('leads').insert([
+        supabase?.from('leads').insert([
           {
             interest: formData.interest,
             timeline: formData.timeline,
@@ -150,7 +150,7 @@ ${questions.step4.title} ${formData.budget}`;
             message: formData.message,
           },
         ]),
-        fetch('/.netlify/functions/telegram', {
+        fetch('/api/telegram', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -175,7 +175,7 @@ ${questions.step4.title} ${formData.budget}`;
         }),
       ]);
 
-      if (dbResult.status === 'rejected' || (dbResult.status === 'fulfilled' && dbResult.value.error)) {
+      if (dbResult.status === 'rejected' || (dbResult.status === 'fulfilled' && dbResult.value?.error)) {
         console.error('Database error:', dbResult);
       }
 

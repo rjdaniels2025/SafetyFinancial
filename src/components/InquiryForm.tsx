@@ -30,7 +30,7 @@ export default function InquiryForm({
     const selection = formData.get('selection');
 
     try {
-      const response = await fetch('/.netlify/functions/telegram', {
+      const response = await fetch('/api/telegram', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
