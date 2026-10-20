@@ -63,7 +63,7 @@ Phone: ${phone || "N/A"}
 `;
 
     // Add form-specific details based on form type
-    if (formType === 'lead_capture' || interest) {
+    if ((formType === 'lead_capture' || interest) && !form_answers) {
       formattedMessage += `
 💼 Lead Capture Details:
 ━━━━━━━━━━━━━━━━━━━━━━
@@ -146,8 +146,8 @@ ${message}
 
     formattedMessage += `
 ━━━━━━━━━━━━━━━━━━━━━━
-🏢 Safety Financial Consulting
-📚 Educational & Consultation-Based Inquiry
+🏆 We Win Consultancy Group
+📚 Website Inquiry
 `;
 
     const telegramResponse = await fetch(

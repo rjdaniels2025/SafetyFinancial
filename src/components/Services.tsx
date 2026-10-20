@@ -1,286 +1,187 @@
-import { useEffect, useState } from 'react';
-import {
-  Shield,
-  Heart,
-  Umbrella,
-  Activity,
-  TrendingUp,
-  PiggyBank,
-  GraduationCap,
-  Lock,
-  CreditCard,
-} from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Briefcase, Home } from 'lucide-react';
+import { services } from '../data/services';
 
 interface ServicesProps {
   onOpenLeadCapture: (service?: string) => void;
 }
 
 export default function Services({ onOpenLeadCapture }: ServicesProps) {
-  const [visibleCards, setVisibleCards] = useState<number[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute('data-index') || '0');
-            setVisibleCards((prev) => [...new Set([...prev, index])]);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const cards = document.querySelectorAll('.service-card');
-    cards.forEach((card) => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, []);
-
-  const insuranceServices = [
-    {
-      icon: Shield,
-      title: 'Whole Life Insurance',
-      description:
-        'Permanent coverage with guaranteed cash value growth and lifelong protection for your loved ones.',
-      color: 'from-gray-600 to-gray-700',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Universal Life',
-      description:
-        'Flexible premium payments with investment growth potential and adjustable coverage amounts.',
-      color: 'from-green-600 to-green-700',
-    },
-    {
-      icon: Umbrella,
-      title: 'Term Insurance',
-      description:
-        'Affordable temporary coverage for specific periods, perfect for families and mortgage protection.',
-      color: 'from-gray-500 to-green-600',
-    },
-    {
-      icon: Lock,
-      title: 'Guaranteed Insurance',
-      description:
-        'No medical exam required. Simplified approval process for peace of mind coverage.',
-      color: 'from-green-700 to-gray-600',
-    },
-    {
-      icon: Heart,
-      title: 'Critical Illness',
-      description:
-        'Lump-sum payment upon diagnosis of covered critical illnesses to focus on recovery.',
-      color: 'from-gray-600 to-green-600',
-    },
-    {
-      icon: Activity,
-      title: 'Disability Insurance',
-      description:
-        'Income replacement if injury or illness prevents you from working. Protect your earning power.',
-      color: 'from-green-600 to-gray-700',
-    },
-  ];
-
-  const investmentServices = [
-    {
-      icon: PiggyBank,
-      title: 'TFSA',
-      description:
-        'Tax-Free Savings Account for flexible, tax-free growth and withdrawals for any goal.',
-      color: 'from-green-700 to-green-600',
-    },
-    {
-      icon: TrendingUp,
-      title: 'RRSP',
-      description:
-        'Registered Retirement Savings Plan with tax-deferred growth to build your retirement nest egg.',
-      color: 'from-gray-600 to-green-700',
-    },
-    {
-      icon: GraduationCap,
-      title: 'RESP',
-      description:
-        'Registered Education Savings Plan with government grants to fund your child\'s education.',
-      color: 'from-green-600 to-gray-600',
-    },
-    {
-      icon: Shield,
-      title: 'Segregated Funds',
-      description:
-        'Investment protection with insurance benefits, creditor protection, and estate planning advantages.',
-      color: 'from-gray-700 to-green-600',
-    },
-  ];
-
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-x-hidden">
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Our{' '}
-            <span className="bg-gradient-to-r from-gray-700 to-green-600 bg-clip-text text-transparent">
-              Services
-            </span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive financial solutions designed to protect your family and grow your wealth
-          </p>
-        </div>
-
-        <div id="life-insurance" className="mb-20 scroll-mt-24">
-          <div className="flex items-center mb-8">
-            <Shield className="w-8 h-8 text-green-600 mr-3" />
-            <h3 className="text-3xl font-bold text-gray-900">Life Insurance Solutions</h3>
+    <>
+      <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 bg-white scroll-mt-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mb-14">
+            <p className="text-emerald-600 font-semibold uppercase tracking-widest text-sm mb-3">What we do</p>
+            <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+              Four pillars. One plan to optimize your finances.
+            </h2>
+            <p className="text-xl text-slate-600">
+              Taxes, debt, credit and growth are connected. We look at all of them together so every move
+              you make strengthens the others.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {insuranceServices.map((service, index) => {
+          <div className="grid md:grid-cols-2 gap-6">
+            {services.map((service, index) => {
               const Icon = service.icon;
+              const featured = index < 2;
               return (
-                <div
-                  key={index}
-                  data-index={index}
-                  className={`service-card group bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-all duration-500 cursor-pointer transform ${
-                    visibleCards.includes(index)
-                      ? 'translate-y-0 opacity-100'
-                      : 'translate-y-12 opacity-0'
+                <Link
+                  key={service.slug}
+                  to={service.path}
+                  className={`group relative overflow-hidden rounded-3xl p-8 sm:p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
+                    featured
+                      ? 'bg-slate-950 text-white'
+                      : 'bg-slate-50 text-slate-900 border border-slate-200'
                   }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
-                  onClick={() => onOpenLeadCapture('Life Insurance')}
                 >
-                  <div
-                    className={`w-14 h-14 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <Icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">
-                    {service.title}
-                  </h4>
-                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
-                  <div className="mt-4 text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Learn More →
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div id="investments" className="mb-20 scroll-mt-24">
-          <div className="flex items-center mb-8">
-            <TrendingUp className="w-8 h-8 text-green-600 mr-3" />
-            <h3 className="text-3xl font-bold text-gray-900">Investment Solutions</h3>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {investmentServices.map((service, index) => {
-              const Icon = service.icon;
-              const cardIndex = insuranceServices.length + index;
-              return (
-                <div
-                  key={index}
-                  data-index={cardIndex}
-                  className={`service-card group bg-gradient-to-br from-green-50 to-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-all duration-500 cursor-pointer transform ${
-                    visibleCards.includes(cardIndex)
-                      ? 'translate-y-0 opacity-100'
-                      : 'translate-y-12 opacity-0'
-                  }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
-                  onClick={() => onOpenLeadCapture('Investment Solutions')}
-                >
-                  <div
-                    className={`w-14 h-14 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <Icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">
-                    {service.title}
-                  </h4>
-                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
-                  <div className="mt-4 text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Learn More →
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div>
-          <div className="flex items-center mb-8">
-            <CreditCard className="w-8 h-8 text-green-600 mr-3" />
-            <h3 className="text-3xl font-bold text-gray-900">Credit Repair Services</h3>
-          </div>
-
-          <div className="grid md:grid-cols-1 gap-6 mb-12">
-            <div
-              data-index={insuranceServices.length + investmentServices.length}
-              className={`service-card group bg-gradient-to-br from-slate-900 to-slate-800 border-2 border-green-500/20 rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 cursor-pointer transform ${
-                visibleCards.includes(insuranceServices.length + investmentServices.length)
-                  ? 'translate-y-0 opacity-100'
-                  : 'translate-y-12 opacity-0'
-              }`}
-              onClick={() => {
-                const element = document.getElementById('credit-repair');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            >
-              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-                <div className="flex items-start space-x-6 flex-1">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <CreditCard className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="text-2xl font-semibold text-white mb-3 group-hover:text-green-400 transition-colors">
-                      Professional Credit Repair
-                    </h4>
-                    <p className="text-gray-300 leading-relaxed mb-4">
-                      Transform your credit score and unlock financial opportunities. Our proven process has helped thousands of Canadians remove negative items, dispute errors, and rebuild their credit—no matter how damaged. Average improvement: 150+ points.
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm border border-green-500/30">
-                        98% Success Rate
-                      </span>
-                      <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm border border-blue-500/30">
-                        Money-Back Guarantee
-                      </span>
-                      <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm border border-green-500/30">
-                        Free Analysis
-                      </span>
+                  {featured && (
+                    <div className="absolute -top-20 -right-20 w-64 h-64 bg-emerald-500/20 rounded-full blur-3xl" />
+                  )}
+                  <div className="relative">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-lg">
+                        <Icon className="w-7 h-7 text-white" />
+                      </div>
+                      {featured && (
+                        <span className="text-xs uppercase tracking-widest text-amber-300 font-semibold">
+                          Core focus
+                        </span>
+                      )}
                     </div>
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-3">{service.name}</h3>
+                    <p className={`leading-relaxed mb-6 ${featured ? 'text-slate-300' : 'text-slate-600'}`}>
+                      {service.summary}
+                    </p>
+                    <ul className="grid sm:grid-cols-2 gap-x-4 gap-y-2 mb-8">
+                      {service.offerings.slice(0, 4).map((o) => (
+                        <li
+                          key={o.title}
+                          className={`text-sm flex items-center gap-2 ${featured ? 'text-slate-200' : 'text-slate-700'}`}
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+                          {o.title}
+                        </li>
+                      ))}
+                    </ul>
+                    <span
+                      className={`inline-flex items-center gap-2 font-semibold ${
+                        featured ? 'text-emerald-300' : 'text-emerald-700'
+                      }`}
+                    >
+                      Learn more
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
                   </div>
-                </div>
-                <div className="text-center lg:text-right">
-                  <div className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
-                    <div className="text-sm text-gray-400 mb-2">Average Improvement</div>
-                    <div className="text-4xl font-bold text-green-400 mb-1">+150</div>
-                    <div className="text-gray-400">Credit Points</div>
-                  </div>
-                  <div className="mt-4 text-green-400 font-medium group-hover:translate-x-2 transition-transform inline-block">
-                    View Credit Repair →
-                  </div>
-                </div>
-              </div>
-            </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
+      </section>
 
-        <div className="bg-gradient-to-r from-gray-700 to-green-600 rounded-3xl p-12 text-center text-white">
-          <h3 className="text-3xl font-bold mb-4">Ready to Secure Your Financial Future?</h3>
-          <p className="text-xl mb-8 opacity-90">
-            Get a personalized assessment from our expert advisors
-          </p>
-          <button
-            onClick={() => onOpenLeadCapture()}
-            className="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-          >
-            Schedule Your Free Consultation
-          </button>
+      {/* Who we serve */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Who we serve</h2>
+            <p className="text-lg text-slate-600">
+              Whether you run a company or run a household, the fundamentals of winning financially are the same.
+            </p>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-6">
+            {[
+              {
+                icon: Briefcase,
+                title: 'Business Owners',
+                service: 'Business Growth & Funding',
+                points: [
+                  'Cut your tax bill with proactive planning',
+                  'Restructure business debt to free up cash flow',
+                  'Build business credit separate from personal',
+                  'Access loans, lines of credit and grants through our network',
+                ],
+              },
+              {
+                icon: Home,
+                title: 'Everyday Consumers',
+                service: 'Debt Solutions',
+                points: [
+                  'Claim every credit and deduction you are owed',
+                  'A clear, realistic plan to become debt-free',
+                  'Raise your credit score for better rates',
+                  'Budgeting systems that help you save more',
+                ],
+              },
+            ].map((group) => {
+              const Icon = group.icon;
+              return (
+                <div key={group.title} className="bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-slate-100">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center">
+                      <Icon className="w-6 h-6 text-emerald-600" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-slate-900">{group.title}</h3>
+                  </div>
+                  <ul className="space-y-3 mb-8">
+                    {group.points.map((point) => (
+                      <li key={point} className="flex items-start gap-3 text-slate-700">
+                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    onClick={() => onOpenLeadCapture(group.service)}
+                    className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-semibold hover:bg-emerald-600 transition-colors"
+                  >
+                    Get started <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Process */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">How it works</h2>
+            <p className="text-lg text-slate-600">A simple, transparent process from first call to financial confidence.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { title: 'Free Strategy Call', description: 'We learn about your goals, income, debts and business.' },
+              { title: 'Financial Snapshot', description: 'We review taxes, debt and credit to find the biggest wins.' },
+              { title: 'Your Game Plan', description: 'A clear, prioritized plan with partners lined up where needed.' },
+              { title: 'Win & Grow', description: 'We execute together and check in as your results build.' },
+            ].map((step, index) => (
+              <div key={step.title} className="text-center">
+                <div className="w-14 h-14 mx-auto rounded-full bg-slate-950 text-amber-300 text-xl font-bold flex items-center justify-center mb-5 shadow-lg">
+                  {index + 1}
+                </div>
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">{step.title}</h3>
+                <p className="text-slate-600">{step.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-16 rounded-3xl bg-gradient-to-r from-emerald-600 to-slate-900 p-10 sm:p-14 text-center text-white">
+            <h3 className="text-3xl sm:text-4xl font-bold mb-4">Ready to start winning with your money?</h3>
+            <p className="text-lg text-emerald-50/90 mb-8 max-w-2xl mx-auto">
+              Book a free, no-pressure strategy call and leave with clear next steps — whether we work together or not.
+            </p>
+            <button
+              onClick={() => onOpenLeadCapture()}
+              className="bg-white text-slate-900 px-8 py-4 rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all"
+            >
+              Book My Free Strategy Call
+            </button>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

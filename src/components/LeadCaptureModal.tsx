@@ -24,75 +24,93 @@ export default function LeadCaptureModal({ onClose, preSelectedService }: LeadCa
 
   const getQuestionsForService = (service: string) => {
     switch (service) {
-      case 'Life Insurance':
+      case 'Tax Solutions':
         return {
           step2: {
-            title: 'What type of life insurance are you interested in?',
-            options: ['Whole Life', 'Universal Life', 'Term Life', 'Guaranteed Insurance', 'Not Sure Yet'],
+            title: 'What best describes your tax situation?',
+            options: ['I want to pay less tax going forward', 'I owe back taxes', 'I have unfiled returns', 'I need help with business taxes', 'Not sure'],
             field: 'timeline',
           },
           step3: {
-            title: 'Do you currently have life insurance coverage?',
-            options: ['Yes, through employer', 'Yes, personal policy', 'No coverage', 'Not sure'],
+            title: 'How do you earn most of your income?',
+            options: ['Employee (T4 / W-2)', 'Self-employed / contractor', 'Business owner (incorporated)', 'Mix of the above'],
             field: 'currentCoverage',
           },
           step4: {
-            title: 'What coverage amount are you considering?',
-            options: ['$100K-$250K', '$250K-$500K', '$500K-$1M', 'Over $1M', 'Not sure yet'],
+            title: 'Roughly how much do you owe or pay in taxes each year?',
+            options: ['Under $5,000', '$5,000 – $20,000', '$20,000 – $50,000', 'Over $50,000', 'Not sure'],
             field: 'budget',
           },
         };
-      case 'Investment Solutions':
+      case 'Debt Solutions':
         return {
           step2: {
-            title: 'Which investment product interests you most?',
-            options: ['TFSA', 'RRSP', 'RESP', 'Segregated Funds', 'Multiple products'],
+            title: 'What is your approximate total debt?',
+            options: ['Under $10,000', '$10,000 – $25,000', '$25,000 – $50,000', '$50,000 – $100,000', 'Over $100,000'],
             field: 'timeline',
           },
           step3: {
-            title: 'What is your primary investment goal?',
-            options: ['Retirement savings', 'Education savings', 'Tax-free growth', 'Wealth protection'],
+            title: 'What types of debt do you have?',
+            options: ['Credit cards', 'Loans / lines of credit', 'Tax debt', 'Business debt', 'A mix of several'],
             field: 'currentCoverage',
           },
           step4: {
-            title: 'How much are you looking to invest monthly?',
-            options: ['$100-$250', '$250-$500', '$500-$1,000', 'Over $1,000', 'Lump sum investment'],
+            title: 'How are you keeping up with payments?',
+            options: ['On time but struggling', 'Missing some payments', 'In collections', 'Only paying minimums'],
             field: 'budget',
           },
         };
-      case 'Credit Repair':
+      case 'Credit Building':
         return {
           step2: {
             title: 'What is your current credit score range?',
-            options: ['Below 500', '500-599', '600-649', '650-699', 'Not sure'],
+            options: ['Below 550', '550 – 619', '620 – 679', '680 – 739', 'Not sure'],
             field: 'timeline',
           },
           step3: {
-            title: 'What credit issues are you experiencing?',
-            options: ['Collections/charge-offs', 'Late payments', 'High credit utilization', 'Bankruptcy/consumer proposal', 'Multiple issues'],
+            title: 'What is affecting your credit?',
+            options: ['Collections / charge-offs', 'Late payments', 'High balances', 'Errors on my report', 'Limited credit history'],
             field: 'currentCoverage',
           },
           step4: {
-            title: 'When do you need to improve your credit score?',
-            options: ['ASAP (within 3 months)', '3-6 months', '6-12 months', 'No rush'],
+            title: 'What is your main credit goal?',
+            options: ['Buy a home', 'Vehicle or personal financing', 'Business funding', 'Lower my interest rates', 'General improvement'],
+            field: 'budget',
+          },
+        };
+      case 'Business Growth & Funding':
+        return {
+          step2: {
+            title: 'How long has your business been operating?',
+            options: ['Not started yet', 'Under 1 year', '1 – 3 years', '3+ years'],
+            field: 'timeline',
+          },
+          step3: {
+            title: 'What is your approximate monthly revenue?',
+            options: ['Pre-revenue', 'Under $10,000', '$10,000 – $50,000', '$50,000 – $150,000', 'Over $150,000'],
+            field: 'currentCoverage',
+          },
+          step4: {
+            title: 'How much funding are you looking for?',
+            options: ['Under $25,000', '$25,000 – $100,000', '$100,000 – $250,000', '$250,000+', 'Not sure yet'],
             field: 'budget',
           },
         };
       default:
         return {
           step2: {
-            title: 'When are you looking to get started?',
-            options: ['Immediately', 'Within 1-3 months', 'Within 6 months', 'Just exploring options'],
+            title: 'Are you looking for help personally or for a business?',
+            options: ['Personal', 'Business', 'Both'],
             field: 'timeline',
           },
           step3: {
-            title: 'Do you currently have any coverage?',
-            options: ['Yes, through my employer', 'Yes, personal policy', 'No coverage', 'Not sure'],
+            title: 'What is your biggest financial challenge right now?',
+            options: ['Paying too much tax', 'Too much debt', 'Low credit score', 'Need funding to grow', 'All of the above'],
             field: 'currentCoverage',
           },
           step4: {
-            title: "What's your approximate monthly budget?",
-            options: ['Under $100/month', '$100-$250/month', '$250-$500/month', 'Over $500/month', 'Flexible based on value'],
+            title: 'When would you like to get started?',
+            options: ['Immediately', 'Within 1 month', 'Within 3 months', 'Just exploring options'],
             field: 'budget',
           },
         };
@@ -113,11 +131,10 @@ export default function LeadCaptureModal({ onClose, preSelectedService }: LeadCa
     setIsSubmitting(true);
 
     try {
-      const formAnswers = `Interest: ${formData.interest}
-Timeline: ${formData.timeline}
-Current Coverage: ${formData.currentCoverage}
-Budget: ${formData.budget}
-Message: ${formData.message || 'N/A'}`;
+      const formAnswers = `Interest: ${formData.interest || 'General'}
+${questions.step2.title} ${formData.timeline}
+${questions.step3.title} ${formData.currentCoverage}
+${questions.step4.title} ${formData.budget}`;
 
       // Send to both Supabase and Telegram
       const [dbResult, telegramResult] = await Promise.allSettled([
@@ -182,12 +199,12 @@ Message: ${formData.message || 'N/A'}`;
     return (
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
         <div className="bg-white rounded-3xl p-12 max-w-md w-full text-center animate-scale-in">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="w-12 h-12 text-green-600" />
+          <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-12 h-12 text-emerald-600" />
           </div>
           <h3 className="text-2xl font-bold text-gray-900 mb-4">Thank You!</h3>
           <p className="text-gray-600">
-            We've received your information and one of our advisors will contact you within 24 hours.
+            We've received your information and a We Win strategist will contact you within one business day.
           </p>
         </div>
       </div>
@@ -199,7 +216,7 @@ Message: ${formData.message || 'N/A'}`;
       <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col animate-slide-up">
         <div className="p-4 sm:p-6 border-b border-gray-200 flex justify-between items-center flex-shrink-0">
           <div className="flex-1 min-w-0">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 truncate">Free Financial Assessment</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 truncate">Free Strategy Call</h2>
             <p className="text-sm text-gray-500 mt-1">Step {step} of {preSelectedService ? 4 : 5}</p>
           </div>
           <button
@@ -218,17 +235,17 @@ Message: ${formData.message || 'N/A'}`;
                 <p className="text-sm text-gray-500 mb-6">Select the service that best matches your needs</p>
               </div>
               <div className="grid gap-3">
-                {['Life Insurance', 'Investment Solutions', 'Credit Repair', 'Disability Insurance', 'Critical Illness Insurance'].map((service) => (
+                {['Tax Solutions', 'Debt Solutions', 'Credit Building', 'Business Growth & Funding', 'Not sure — full financial review'].map((service) => (
                   <button
                     key={service}
                     onClick={() => handleOptionSelect('interest', service)}
-                    className="group w-full p-4 text-left border-2 border-gray-200 rounded-2xl hover:border-green-600 hover:bg-green-50 transition-all duration-200"
+                    className="group w-full p-4 text-left border-2 border-gray-200 rounded-2xl hover:border-emerald-600 hover:bg-emerald-50 transition-all duration-200"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-medium text-gray-900 group-hover:text-green-600">
+                      <span className="font-medium text-gray-900 group-hover:text-emerald-600">
                         {service}
                       </span>
-                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-green-600 transform group-hover:translate-x-1 transition-transform" />
+                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-emerald-600 transform group-hover:translate-x-1 transition-transform" />
                     </div>
                   </button>
                 ))}
@@ -256,13 +273,13 @@ Message: ${formData.message || 'N/A'}`;
                   <button
                     key={option}
                     onClick={() => handleOptionSelect(questions.step2.field, option)}
-                    className="group w-full p-4 text-left border-2 border-gray-200 rounded-2xl hover:border-green-600 hover:bg-green-50 transition-all duration-200"
+                    className="group w-full p-4 text-left border-2 border-gray-200 rounded-2xl hover:border-emerald-600 hover:bg-emerald-50 transition-all duration-200"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-medium text-gray-900 group-hover:text-green-600">
+                      <span className="font-medium text-gray-900 group-hover:text-emerald-600">
                         {option}
                       </span>
-                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-green-600 transform group-hover:translate-x-1 transition-transform" />
+                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-emerald-600 transform group-hover:translate-x-1 transition-transform" />
                     </div>
                   </button>
                 ))}
@@ -290,13 +307,13 @@ Message: ${formData.message || 'N/A'}`;
                   <button
                     key={option}
                     onClick={() => handleOptionSelect(questions.step3.field, option)}
-                    className="group w-full p-4 text-left border-2 border-gray-200 rounded-2xl hover:border-green-600 hover:bg-green-50 transition-all duration-200"
+                    className="group w-full p-4 text-left border-2 border-gray-200 rounded-2xl hover:border-emerald-600 hover:bg-emerald-50 transition-all duration-200"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-medium text-gray-900 group-hover:text-green-600">
+                      <span className="font-medium text-gray-900 group-hover:text-emerald-600">
                         {option}
                       </span>
-                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-green-600 transform group-hover:translate-x-1 transition-transform" />
+                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-emerald-600 transform group-hover:translate-x-1 transition-transform" />
                     </div>
                   </button>
                 ))}
@@ -324,13 +341,13 @@ Message: ${formData.message || 'N/A'}`;
                   <button
                     key={option}
                     onClick={() => handleOptionSelect(questions.step4.field, option)}
-                    className="group w-full p-4 text-left border-2 border-gray-200 rounded-2xl hover:border-green-600 hover:bg-green-50 transition-all duration-200"
+                    className="group w-full p-4 text-left border-2 border-gray-200 rounded-2xl hover:border-emerald-600 hover:bg-emerald-50 transition-all duration-200"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-medium text-gray-900 group-hover:text-green-600">
+                      <span className="font-medium text-gray-900 group-hover:text-emerald-600">
                         {option}
                       </span>
-                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-green-600 transform group-hover:translate-x-1 transition-transform" />
+                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-emerald-600 transform group-hover:translate-x-1 transition-transform" />
                     </div>
                   </button>
                 ))}
@@ -364,7 +381,7 @@ Message: ${formData.message || 'N/A'}`;
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     placeholder="John Doe"
                   />
                 </div>
@@ -378,7 +395,7 @@ Message: ${formData.message || 'N/A'}`;
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -392,7 +409,7 @@ Message: ${formData.message || 'N/A'}`;
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     placeholder="(555) 123-4567"
                   />
                 </div>
@@ -405,7 +422,7 @@ Message: ${formData.message || 'N/A'}`;
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={3}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
                     placeholder="Any specific questions or requirements?"
                   />
                 </div>
@@ -413,9 +430,9 @@ Message: ${formData.message || 'N/A'}`;
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-4 rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                  className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-4 rounded-xl font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                 >
-                  {isSubmitting ? 'Submitting...' : 'Get My Free Assessment'}
+                  {isSubmitting ? 'Submitting...' : 'Book My Free Strategy Call'}
                 </button>
 
                 <p className="text-xs text-gray-500 text-center">
