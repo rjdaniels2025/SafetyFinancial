@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Calculator, Factory, FileSignature, Gavel, Landmark, ShieldCheck, User, Building, type LucideIcon } from 'lucide-react';
+import { Calculator, FileSignature, Gavel, Landmark, type LucideIcon } from 'lucide-react';
 import Reveal from '../ui/Reveal';
 import { Notice } from '../ui/Sections';
+import OwnershipDiagram from './OwnershipDiagram';
 
 const team: { icon: LucideIcon; title: string; text: string }[] = [
   {
@@ -26,80 +27,31 @@ const team: { icon: LucideIcon; title: string; text: string }[] = [
   },
 ];
 
-const concepts: { title: string; body: string; link?: { to: string; label: string } }[] = [
+const concepts: { title: string; body: string; links: { to: string; label: string }[] }[] = [
   {
     title: 'Holding & operating companies',
     body: 'Separating a holding company from the operating company lets surplus profits move up to the holding company — generally as tax-free inter-corporate dividends, subject to specific rules — where they sit apart from the day-to-day risks of running the business. The holding company can invest, hold property or lend funds back to the operating company on a properly secured basis.',
+    links: [{ to: '/financial-strategies/corporate-structure', label: 'How corporate structure works' }],
   },
   {
     title: 'Family trusts',
     body: 'A discretionary family trust can own shares for the benefit of family members, supporting succession and estate planning and, in some cases, allowing more than one family member to use their lifetime capital gains exemption on a future sale of qualifying shares. Trusts are subject to the tax on split income (TOSI) rules, annual reporting requirements and a deemed disposition of their assets every 21 years.',
+    links: [{ to: '/financial-strategies/family-trusts', label: 'How family trusts work' }],
   },
   {
     title: 'Estate freezes',
     body: "An estate freeze exchanges the owner's common shares for fixed-value preferred shares, locking in today's value for tax purposes. Future growth accrues to new common shares held by the next generation or a family trust, which can limit — and help you plan for — the tax payable on death. A freeze is often paired with corporate-owned life insurance to fund that frozen tax liability.",
-    link: { to: '/financial-strategies/corporate-life-insurance', label: 'Corporate life insurance' },
+    links: [
+      { to: '/financial-strategies/estate-freeze', label: 'How estate freezes work' },
+      { to: '/financial-strategies/corporate-life-insurance', label: 'Corporate life insurance' },
+    ],
   },
   {
     title: 'Corporate debt restructuring',
     body: 'Reorganizing how and where debt sits across your companies — consolidating or refinancing, properly documenting and securing shareholder and intercompany loans, and aligning repayment with cash flow — can improve stability and help protect key assets. Where a formal insolvency process may be appropriate, a licensed insolvency trustee is involved.',
+    links: [],
   },
 ];
-
-function Entity({
-  icon: Icon,
-  title,
-  text,
-  tone = 'light',
-  delay = 0,
-}: {
-  icon: LucideIcon;
-  title: string;
-  text: string;
-  tone?: 'light' | 'dark';
-  delay?: number;
-}) {
-  const dark = tone === 'dark';
-  return (
-    <Reveal
-      variant="scale"
-      delay={delay}
-      className={`relative rounded-2xl border p-4 text-center sm:p-5 ${
-        dark ? 'border-ink bg-ink text-paper shadow-float' : 'border-line bg-white shadow-card'
-      }`}
-    >
-      <span
-        className={`mx-auto flex h-10 w-10 items-center justify-center rounded-xl ${
-          dark ? 'bg-paper/10 text-accent-light' : 'bg-accent-50 text-accent-dark'
-        }`}
-      >
-        <Icon className="h-5 w-5" aria-hidden="true" />
-      </span>
-      <p className={`mt-3 font-serif text-base font-semibold sm:text-lg ${dark ? 'text-paper' : 'text-ink'}`}>{title}</p>
-      <p className={`mt-1 text-xs leading-relaxed sm:text-[13px] ${dark ? 'text-paper/70' : 'text-muted'}`}>{text}</p>
-    </Reveal>
-  );
-}
-
-function Connector({ label, merge = false }: { label: string; merge?: boolean }) {
-  return (
-    <Reveal variant="fade">
-      <div className="relative flex flex-col items-center py-1" aria-hidden="true">
-        {merge ? (
-          <svg viewBox="0 0 200 36" preserveAspectRatio="none" className="h-9 w-1/2 text-accent">
-            <path d="M1 0 V12 Q1 18 8 18 H192 Q199 18 199 12 V0 M100 18 V36" fill="none" stroke="currentColor" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
-          </svg>
-        ) : (
-          <span className="h-9 w-px bg-accent" />
-        )}
-        <span className="my-1.5 rounded-full border border-line bg-white px-3 py-1 text-[11px] font-medium text-muted shadow-card">
-          {label}
-        </span>
-        <span className="h-5 w-px bg-accent" />
-      </div>
-    </Reveal>
-  );
-}
 
 /** Professional team, a typical ownership structure, plain-language concepts and disclosures for restructuring. */
 export default function RestructuringDetails() {
@@ -149,29 +101,7 @@ export default function RestructuringDetails() {
           </p>
         </Reveal>
 
-        <figure className="lg:col-span-7" aria-label="Diagram of a typical restructured ownership: the owner and a family trust own a holding company, which owns the operating company">
-          <div className="rounded-3xl border border-line bg-paper p-4 sm:p-8">
-            <div className="grid grid-cols-2 gap-3 sm:gap-5">
-              <Entity icon={User} title="You, the owner" text="Fixed-value preferred shares after an estate freeze" />
-              <Entity icon={ShieldCheck} title="Family trust" text="New common shares that hold future growth" delay={100} />
-            </div>
-            <Connector merge label="Own the shares of" />
-            <div className="mx-auto max-w-xs">
-              <Entity
-                icon={Building}
-                tone="dark"
-                title="Holding company"
-                text="Receives surplus and holds investments, property and other valuable assets"
-                delay={200}
-              />
-            </div>
-            <Connector label="Owns · surplus flows up as dividends" />
-            <div className="mx-auto max-w-xs">
-              <Entity icon={Factory} title="Operating company" text="Runs the business and carries the day-to-day operating risk" delay={300} />
-            </div>
-          </div>
-          <figcaption className="mt-3 text-center text-xs text-muted">Illustrative only — not a recommendation for any specific situation.</figcaption>
-        </figure>
+        <OwnershipDiagram className="lg:col-span-7" />
       </div>
 
       {/* Concepts */}
@@ -183,13 +113,18 @@ export default function RestructuringDetails() {
               {c.title}
             </h3>
             <p className="mt-3 text-[15px] leading-relaxed text-ink/80">{c.body}</p>
-            {c.link && (
-              <Link
-                to={c.link.to}
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-dark underline decoration-accent underline-offset-4 hover:text-ink"
-              >
-                {c.link.label} →
-              </Link>
+            {c.links.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                {c.links.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent-dark underline decoration-accent underline-offset-4 hover:text-ink"
+                  >
+                    {link.label} →
+                  </Link>
+                ))}
+              </div>
             )}
           </Reveal>
         ))}

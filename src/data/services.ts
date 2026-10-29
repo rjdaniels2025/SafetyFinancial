@@ -61,6 +61,30 @@ export const strategySections = [
   { id: 'wealth-retirement', title: 'Wealth, Retirement & Financial Architecture', short: 'Wealth & Retirement' },
 ];
 
+/** In-depth guide pages that sit under Financial Strategies. */
+export const strategyGuides = [
+  {
+    path: '/financial-strategies/corporate-structure',
+    title: 'Corporate Structure',
+    blurb: 'Operating companies, holding companies and family trusts',
+  },
+  {
+    path: '/financial-strategies/estate-freeze',
+    title: 'Estate Freezes',
+    blurb: 'Fix the tax on death at today\'s value',
+  },
+  {
+    path: '/financial-strategies/family-trusts',
+    title: 'Family Trusts',
+    blurb: 'Settlors, trustees, beneficiaries and the 21-year rule',
+  },
+  {
+    path: '/financial-strategies/corporate-life-insurance',
+    title: 'Corporate Life Insurance',
+    blurb: 'Corporate-owned coverage and the Capital Dividend Account',
+  },
+];
+
 export const serviceOfInterestOptions = [
   'Debt Solutions & Credit Counselling',
   'Business Funding Solutions',

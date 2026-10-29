@@ -3,14 +3,11 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown, Mail, Menu, Phone, X } from 'lucide-react';
 import Logo from '../ui/Logo';
 import Button from '../ui/Button';
-import { coreServices, strategySections } from '../../data/services';
+import { coreServices, strategyGuides, strategySections } from '../../data/services';
 import { site } from '../../config/site';
 
 const strategiesPath = '/financial-strategies';
-const strategyLinks = [
-  ...strategySections.map((s) => ({ to: `${strategiesPath}#${s.id}`, label: s.title })),
-  { to: `${strategiesPath}/corporate-life-insurance`, label: 'Corporate Life Insurance' },
-];
+const strategyLinks = strategySections.map((s) => ({ to: `${strategiesPath}#${s.id}`, label: s.title }));
 
 export default function Header() {
   const location = useLocation();
@@ -119,24 +116,35 @@ export default function Header() {
                 <ChevronDown className={`h-4 w-4 transition-transform ${dropdown ? 'rotate-180' : ''}`} aria-hidden="true" />
               </button>
               {dropdown && (
-                <div className="absolute left-1/2 top-full mt-3 w-[22rem] -translate-x-1/2">
+                <div className="absolute left-1/2 top-full mt-3 w-[40rem] -translate-x-1/2">
                   {/* Inner wrapper animates so its transform doesn't fight the centring above */}
-                  <div className="animate-pop rounded-2xl border border-line bg-white p-2 shadow-float">
-                    <Link to={strategiesPath} className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-paper">
-                      <span className="block text-sm font-semibold text-ink">Financial Strategies overview</span>
-                      <span className="mt-0.5 block text-xs text-muted">Corporate and personal planning in one place</span>
-                    </Link>
-                    <div className="my-1.5 h-px bg-line" />
-                    {strategyLinks.map((l) => (
-                      <Link
-                        key={l.to}
-                        to={l.to}
-                        className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink/75 transition-colors hover:bg-paper hover:text-ink"
-                      >
-                        <span className="h-px w-0 bg-accent transition-all duration-300 ease-brand group-hover:w-3" aria-hidden="true" />
-                        {l.label}
+                  <div className="animate-pop grid grid-cols-2 gap-2 rounded-2xl border border-line bg-white p-2 shadow-float">
+                    <div>
+                      <Link to={strategiesPath} className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-paper">
+                        <span className="block text-sm font-semibold text-ink">Financial Strategies overview</span>
+                        <span className="mt-0.5 block text-xs text-muted">Corporate and personal planning in one place</span>
                       </Link>
-                    ))}
+                      <div className="my-1.5 h-px bg-line" />
+                      {strategyLinks.map((l) => (
+                        <Link
+                          key={l.to}
+                          to={l.to}
+                          className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink/75 transition-colors hover:bg-paper hover:text-ink"
+                        >
+                          <span className="h-px w-0 bg-accent transition-all duration-300 ease-brand group-hover:w-3" aria-hidden="true" />
+                          {l.label}
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="rounded-xl bg-paper p-2">
+                      <p className="px-3 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-eyebrow text-accent-dark">In-depth guides</p>
+                      {strategyGuides.map((g) => (
+                        <Link key={g.path} to={g.path} className="block rounded-lg px-3 py-2 transition-colors hover:bg-white">
+                          <span className="block text-sm font-semibold text-ink">{g.title}</span>
+                          <span className="mt-0.5 block text-xs text-muted">{g.blurb}</span>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
@@ -207,6 +215,12 @@ export default function Header() {
                   {strategyLinks.map((l) => (
                     <Link key={l.to} to={l.to} className="block rounded-md py-2.5 pl-3 text-[15px] text-ink/75">
                       {l.label}
+                    </Link>
+                  ))}
+                  <p className="pb-1 pl-3 pt-4 text-[11px] font-semibold uppercase tracking-eyebrow text-accent-dark">In-depth guides</p>
+                  {strategyGuides.map((g) => (
+                    <Link key={g.path} to={g.path} className="block rounded-md py-2.5 pl-3 text-[15px] text-ink/75">
+                      {g.title}
                     </Link>
                   ))}
                 </div>

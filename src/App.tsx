@@ -13,6 +13,9 @@ const DebtSolutionsPage = lazy(() => import('./pages/DebtSolutionsPage'));
 const BusinessFundingPage = lazy(() => import('./pages/BusinessFundingPage'));
 const FinancialStrategiesPage = lazy(() => import('./pages/FinancialStrategiesPage'));
 const CorporateLifeInsurancePage = lazy(() => import('./pages/CorporateLifeInsurancePage'));
+const CorporateStructurePage = lazy(() => import('./pages/guides/CorporateStructurePage'));
+const EstateFreezePage = lazy(() => import('./pages/guides/EstateFreezePage'));
+const FamilyTrustsPage = lazy(() => import('./pages/guides/FamilyTrustsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const PrivacyPage = lazy(() => import('./pages/LegalPages').then((m) => ({ default: m.PrivacyPage })));
 const TermsPage = lazy(() => import('./pages/LegalPages').then((m) => ({ default: m.TermsPage })));
@@ -38,6 +41,9 @@ function App() {
               <Route path="/business-funding" element={<BusinessFundingPage />} />
               <Route path="/financial-strategies" element={<FinancialStrategiesPage />} />
               <Route path="/financial-strategies/corporate-life-insurance" element={<CorporateLifeInsurancePage />} />
+              <Route path="/financial-strategies/corporate-structure" element={<CorporateStructurePage />} />
+              <Route path="/financial-strategies/estate-freeze" element={<EstateFreezePage />} />
+              <Route path="/financial-strategies/family-trusts" element={<FamilyTrustsPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/terms" element={<TermsPage />} />
