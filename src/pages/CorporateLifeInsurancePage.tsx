@@ -100,7 +100,7 @@ export default function CorporateLifeInsurancePage() {
           {/* Phones: one block per row, comparing both ownership types */}
           <div className="mt-8 space-y-4 md:hidden">
             {comparison.map((row) => (
-              <div key={row.label} className="rounded-xl border border-line bg-paper p-5">
+              <div key={row.label} className="rounded-2xl border border-line bg-paper p-5">
                 <h3 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-brass-dark">{row.label}</h3>
                 <dl className="mt-3 space-y-3 text-[15px] leading-relaxed">
                   <div>
@@ -116,7 +116,7 @@ export default function CorporateLifeInsurancePage() {
             ))}
           </div>
 
-          <Reveal className="mt-12 hidden overflow-hidden rounded-xl border border-line md:block">
+          <Reveal className="mt-12 hidden overflow-hidden rounded-2xl border border-line md:block">
             <table className="w-full border-collapse text-left text-[15px]">
               <thead>
                 <tr className="bg-ink text-paper">
@@ -144,7 +144,7 @@ export default function CorporateLifeInsurancePage() {
           <SectionHeader eyebrow="Purposes" title="How corporations use life insurance" />
           <div className="mt-8 sm:mt-12 grid gap-6 sm:grid-cols-2">
             {purposes.map((p, i) => (
-              <Reveal key={p.title} delay={i * 80} className="rounded-xl border border-line bg-white p-6 sm:p-7">
+              <Reveal key={p.title} delay={i * 80} className="rounded-2xl border border-line bg-white p-6 sm:p-7">
                 <h3 className="text-xl font-semibold">{p.title}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-muted">{p.text}</p>
               </Reveal>

@@ -71,7 +71,7 @@ export default function BusinessFundingPage() {
       <section className="bg-white py-14 sm:py-20 lg:py-28">
         <div className="container-page">
           <SectionHeader eyebrow="Financing options" title="Funding channels we help you explore." />
-          <div className="mt-8 sm:mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 sm:mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {financingOptions.map((o) => (
               <div key={o.title} className="bg-white p-6">
                 <h3 className="text-lg font-semibold leading-snug">{o.title}</h3>
@@ -79,7 +79,7 @@ export default function BusinessFundingPage() {
               </div>
             ))}
           </div>
-          <Reveal className="mt-10 rounded-xl border border-line bg-paper p-5 sm:p-7">
+          <Reveal className="mt-10 rounded-2xl border border-line bg-paper p-5 sm:p-7">
             <h3 className="text-lg font-semibold">Advisory support</h3>
             <div className="mt-4">
               <TopicList items={advisory} columns={3} />
@@ -120,7 +120,7 @@ export default function BusinessFundingPage() {
         <div className="container-page">
           <SectionHeader eyebrow="Our role" title="Clear about what we do — and what we don't." />
           <Reveal className="mt-8 sm:mt-12 grid gap-6 lg:grid-cols-2">
-            <div className="rounded-xl border border-line bg-white p-6 sm:p-8">
+            <div className="rounded-2xl border border-line bg-white p-6 sm:p-8">
               <h3 className="text-xl font-semibold">WeWin Consulting Group</h3>
               <ul className="mt-5 space-y-3">
                 {[
@@ -136,7 +136,7 @@ export default function BusinessFundingPage() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-xl border border-line bg-paper p-6 sm:p-8">
+            <div className="rounded-2xl border border-line bg-paper p-6 sm:p-8">
               <h3 className="text-xl font-semibold">Lenders & authorized professionals</h3>
               <ul className="mt-5 space-y-3">
                 {[
@@ -170,7 +170,7 @@ export default function BusinessFundingPage() {
               </Notice>
             </div>
           </div>
-          <div className="-mx-4 border-y border-line bg-paper px-4 py-7 sm:mx-0 sm:rounded-xl sm:border sm:p-10 lg:col-span-8">
+          <div className="-mx-4 border-y border-line bg-paper px-4 py-7 sm:mx-0 sm:rounded-2xl sm:border sm:p-10 lg:col-span-8">
             <FundingIntakeForm />
           </div>
         </div>

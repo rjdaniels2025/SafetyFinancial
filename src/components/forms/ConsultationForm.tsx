@@ -96,7 +96,7 @@ export default function ConsultationForm({ defaultService = '' }: { defaultServi
       />
 
       {isBusiness && (
-        <div className="grid gap-5 rounded-lg border border-line bg-paper p-5 sm:grid-cols-2">
+        <div className="grid animate-pop gap-5 rounded-xl border border-line bg-paper p-5 sm:grid-cols-2">
           <SelectField label="Business type" required options={businessTypes} value={values.businessType} onChange={set('businessType')} />
           <TextField
             label="General objective"

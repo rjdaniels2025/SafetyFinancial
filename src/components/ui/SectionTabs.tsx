@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 interface SectionTabsProps {
   label: string;
@@ -12,6 +12,7 @@ interface SectionTabsProps {
 export default function SectionTabs({ label, sections }: SectionTabsProps) {
   const [active, setActive] = useState(sections[0]?.id);
   const rowRef = useRef<HTMLDivElement>(null);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0 });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,13 +30,18 @@ export default function SectionTabs({ label, sections }: SectionTabsProps) {
     return () => observer.disconnect();
   }, [sections]);
 
-  // Keep the active tab in view within the horizontally scrolling row
-  useEffect(() => {
+  // Slide the highlight under the active tab and keep that tab in view on narrow screens
+  useLayoutEffect(() => {
     const row = rowRef.current;
     const tab = row?.querySelector<HTMLElement>(`[data-id="${active}"]`);
-    if (row && tab) {
-      row.scrollTo({ left: tab.offsetLeft - row.clientWidth / 2 + tab.clientWidth / 2, behavior: 'smooth' });
-    }
+    if (!row || !tab) return;
+    const measure = () => setIndicator({ left: tab.offsetLeft, width: tab.offsetWidth });
+    measure();
+    // Tab widths change once the web fonts load
+    document.fonts?.ready.then(measure);
+    row.scrollTo({ left: tab.offsetLeft - row.clientWidth / 2 + tab.clientWidth / 2, behavior: 'smooth' });
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
   }, [active]);
 
   const go = (id: string) => (e: React.MouseEvent) => {
@@ -48,8 +54,13 @@ export default function SectionTabs({ label, sections }: SectionTabsProps) {
     <nav aria-label={label} className="sticky top-16 z-30 border-b border-line bg-paper/95 backdrop-blur lg:top-20">
       <div
         ref={rowRef}
-        className="container-page flex gap-1.5 overflow-x-auto py-2.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="container-page relative flex gap-1.5 overflow-x-auto py-2.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
+        <span
+          aria-hidden="true"
+          className="absolute top-2.5 h-[calc(100%-1.25rem)] rounded-full bg-ink shadow-[0_6px_16px_-8px_rgba(11,27,46,0.6)] transition-all duration-500 ease-brand"
+          style={{ left: indicator.left, width: indicator.width }}
+        />
         {sections.map((s, i) => (
           <a
             key={s.id}
@@ -57,11 +68,11 @@ export default function SectionTabs({ label, sections }: SectionTabsProps) {
             data-id={s.id}
             onClick={go(s.id)}
             aria-current={active === s.id ? 'true' : undefined}
-            className={`flex flex-shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition-colors ${
-              active === s.id ? 'bg-ink text-paper' : 'text-ink/70 hover:bg-paper-dark hover:text-ink'
+            className={`relative flex flex-shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition-colors duration-300 ${
+              active === s.id ? 'text-paper' : 'text-ink/70 hover:bg-paper-dark hover:text-ink'
             }`}
           >
-            <span className={`font-serif font-semibold ${active === s.id ? 'text-brass-light' : 'text-brass-dark'}`}>
+            <span className={`font-serif font-semibold transition-colors duration-300 ${active === s.id ? 'text-brass-light' : 'text-brass-dark'}`}>
               {String.fromCharCode(65 + i)}
             </span>
             {s.short}

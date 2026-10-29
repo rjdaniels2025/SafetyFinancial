@@ -96,7 +96,7 @@ export default function DebtSolutionsPage() {
           <SectionHeader eyebrow="Services" title="What we help with" />
           <div className="mt-8 sm:mt-12 grid gap-6 lg:grid-cols-3">
             {serviceGroups.map((group, i) => (
-              <Reveal key={group.title} delay={i * 100} className="rounded-xl border border-line bg-paper p-5 sm:p-7">
+              <Reveal key={group.title} delay={i * 100} className="rounded-2xl border border-line bg-paper p-5 sm:p-7">
                 <h3 className="text-xl font-semibold">{group.title}</h3>
                 <div className="mt-5">
                   <TopicList items={group.items} columns={1} />
@@ -125,7 +125,7 @@ export default function DebtSolutionsPage() {
 
           <div className="mt-8 sm:mt-12 grid gap-6 lg:grid-cols-2">
             {debtPackages.map((pkg, i) => (
-              <Reveal key={pkg.name} delay={i * 100} className="flex flex-col rounded-xl border border-line bg-paper p-6 sm:p-8">
+              <Reveal key={pkg.name} delay={i * 100} className="flex flex-col rounded-2xl border border-line bg-paper p-6 sm:p-8">
                 <p className="eyebrow">Package {i + 1}</p>
                 <h3 className="mt-3 text-2xl font-semibold leading-snug">{pkg.name}</h3>
                 <p className="mt-4 text-[15px] leading-relaxed text-muted">{pkg.description}</p>
@@ -154,7 +154,7 @@ export default function DebtSolutionsPage() {
             ))}
           </div>
 
-          <Reveal className="mt-10 grid gap-8 rounded-xl border border-line p-6 sm:p-8 lg:grid-cols-2">
+          <Reveal className="mt-10 grid gap-8 rounded-2xl border border-line p-6 sm:p-8 lg:grid-cols-2">
             <div>
               <h3 className="text-lg font-semibold">Not included</h3>
               <ul className="mt-4 space-y-2.5">

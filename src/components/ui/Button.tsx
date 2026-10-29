@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 type Variant = 'primary' | 'secondary' | 'ghost' | 'light' | 'outlineLight';
 
 const base =
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-semibold transition-colors duration-200';
+  'group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-300 ease-brand active:scale-[0.98]';
 
 // Padding lives here rather than in `base` so the text-style ghost variant can opt out of it
 const sizes = {
@@ -14,10 +14,10 @@ const sizes = {
 };
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-ink text-paper hover:bg-ink-700',
-  secondary: 'border border-ink/20 text-ink hover:border-ink hover:bg-white',
+  primary: 'sheen bg-ink text-paper shadow-[0_8px_20px_-10px_rgba(11,27,46,0.55)] hover:bg-ink-700 hover:shadow-[0_14px_28px_-12px_rgba(11,27,46,0.6)]',
+  secondary: 'border border-ink/20 bg-white/40 text-ink hover:border-ink/60 hover:bg-white',
   ghost: 'text-[15px] text-ink hover:text-brass-dark',
-  light: 'bg-paper text-ink hover:bg-white',
+  light: 'sheen bg-paper text-ink hover:bg-white',
   outlineLight: 'border border-paper/30 text-paper hover:border-paper/60 hover:bg-paper/10',
 };
 
@@ -51,7 +51,9 @@ export default function Button({
   const content = (
     <>
       {children}
-      {arrow && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
+      {arrow && (
+        <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" />
+      )}
     </>
   );
 

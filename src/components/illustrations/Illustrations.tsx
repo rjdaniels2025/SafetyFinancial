@@ -1,19 +1,36 @@
-/** Restrained, on-brand illustrations used where photography has not yet been supplied. */
+/** Restrained, on-brand decorative artwork used where photography has not yet been supplied. */
 
-export function ArcPattern({ className = '' }: { className?: string }) {
+const radii = [60, 110, 160, 210, 260, 310];
+
+/** Concentric quarter-arcs that draw themselves in on load; `spin` adds a very slow rotation. */
+export function ArcPattern({ className = '', spin = false }: { className?: string; spin?: boolean }) {
   return (
     <svg viewBox="0 0 400 400" className={className} aria-hidden="true">
-      {[60, 110, 160, 210, 260, 310].map((r, i) => (
-        <circle
-          key={r}
-          cx="400"
-          cy="400"
-          r={r}
-          fill="none"
-          stroke={i % 2 ? '#A8834A' : '#F7F5F0'}
-          strokeOpacity={i % 2 ? 0.35 : 0.08}
-        />
-      ))}
+      <g
+        style={spin ? { transformOrigin: '400px 400px', animation: 'slow-spin 120s linear infinite' } : undefined}
+      >
+        {radii.map((r, i) => {
+          const length = Math.ceil(2 * Math.PI * r);
+          return (
+            <circle
+              key={r}
+              cx="400"
+              cy="400"
+              r={r}
+              fill="none"
+              stroke={i % 2 ? '#A8834A' : '#F7F5F0'}
+              strokeOpacity={i % 2 ? 0.35 : 0.08}
+              strokeDasharray={length}
+              style={
+                {
+                  '--dash': length,
+                  animation: `draw 2.4s cubic-bezier(0.22, 1, 0.36, 1) ${200 + i * 140}ms both`,
+                } as React.CSSProperties
+              }
+            />
+          );
+        })}
+      </g>
     </svg>
   );
 }

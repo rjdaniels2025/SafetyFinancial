@@ -48,7 +48,7 @@ export default function ContactPage() {
                 const Icon = e.icon;
                 return (
                   <div key={e.title} className="flex gap-4">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-paper text-brass-dark">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-paper text-brass-dark">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </div>
                     <div>
@@ -61,7 +61,7 @@ export default function ContactPage() {
             </div>
 
             {site.bookingUrl && (
-              <div className="rounded-xl border border-line bg-paper p-6">
+              <div className="rounded-2xl border border-line bg-paper p-6">
                 <h2 className="text-lg font-semibold">Prefer to pick a time?</h2>
                 <p className="mt-2 text-sm text-muted">Choose an available slot in our online calendar.</p>
                 <Button href={site.bookingUrl} className="mt-4" arrow>
@@ -83,7 +83,7 @@ export default function ContactPage() {
             )}
           </aside>
 
-          <div className="order-1 -mx-4 border-y border-line bg-paper px-4 py-7 sm:mx-0 sm:rounded-xl sm:border sm:p-10 lg:order-2 lg:col-span-8">
+          <div className="order-1 -mx-4 border-y border-line bg-paper px-4 py-7 sm:mx-0 sm:rounded-2xl sm:border sm:p-10 lg:order-2 lg:col-span-8">
             <ConsultationForm defaultService={params.get('service') ?? ''} />
           </div>
         </div>

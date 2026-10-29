@@ -61,8 +61,8 @@ export default function Header() {
   }, [dropdown]);
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `relative rounded-md px-3 py-2 text-[14px] font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-[1px] after:h-px after:bg-brass after:transition-opacity ${
-      isActive ? 'text-ink after:opacity-100' : 'text-ink/65 after:opacity-0 hover:text-ink'
+    `relative rounded-md px-3 py-2 text-[14px] font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-[1px] after:h-px after:origin-center after:bg-brass after:transition-transform after:duration-300 after:ease-brand ${
+      isActive ? 'text-ink after:scale-x-100' : 'text-ink/65 after:scale-x-0 hover:text-ink hover:after:scale-x-100'
     }`;
 
   const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -78,7 +78,7 @@ export default function Header() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ${
-          solid ? 'border-line bg-paper/95 shadow-[0_1px_0_rgba(11,27,46,0.02)] backdrop-blur' : 'border-transparent bg-paper'
+          solid ? 'border-line/80 bg-paper/85 shadow-[0_8px_30px_-18px_rgba(11,27,46,0.25)] backdrop-blur-md' : 'border-transparent bg-paper'
         }`}
       >
         <a
@@ -119,17 +119,25 @@ export default function Header() {
                 <ChevronDown className={`h-4 w-4 transition-transform ${dropdown ? 'rotate-180' : ''}`} aria-hidden="true" />
               </button>
               {dropdown && (
-                <div className="absolute left-1/2 top-full mt-3 w-[22rem] -translate-x-1/2 rounded-lg border border-line bg-white p-2 shadow-lift">
-                  <Link to={strategiesPath} className="block rounded-md px-3 py-2.5 hover:bg-paper">
-                    <span className="block text-sm font-semibold text-ink">Financial Strategies overview</span>
-                    <span className="mt-0.5 block text-xs text-muted">Corporate and personal planning in one place</span>
-                  </Link>
-                  <div className="my-1.5 h-px bg-line" />
-                  {strategyLinks.map((l) => (
-                    <Link key={l.to} to={l.to} className="block rounded-md px-3 py-2 text-sm text-ink/75 hover:bg-paper hover:text-ink">
-                      {l.label}
+                <div className="absolute left-1/2 top-full mt-3 w-[22rem] -translate-x-1/2">
+                  {/* Inner wrapper animates so its transform doesn't fight the centring above */}
+                  <div className="animate-pop rounded-2xl border border-line bg-white p-2 shadow-float">
+                    <Link to={strategiesPath} className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-paper">
+                      <span className="block text-sm font-semibold text-ink">Financial Strategies overview</span>
+                      <span className="mt-0.5 block text-xs text-muted">Corporate and personal planning in one place</span>
                     </Link>
-                  ))}
+                    <div className="my-1.5 h-px bg-line" />
+                    {strategyLinks.map((l) => (
+                      <Link
+                        key={l.to}
+                        to={l.to}
+                        className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink/75 transition-colors hover:bg-paper hover:text-ink"
+                      >
+                        <span className="h-px w-0 bg-brass transition-all duration-300 ease-brand group-hover:w-3" aria-hidden="true" />
+                        {l.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -163,9 +171,9 @@ export default function Header() {
         <nav
           id="mobile-menu"
           aria-label="Mobile"
-          className="fixed inset-x-0 bottom-0 top-16 z-50 flex flex-col overflow-y-auto bg-paper lg:hidden"
+          className="fixed inset-x-0 bottom-0 top-16 z-50 flex animate-[reveal-fade_0.25s_ease-out_both] flex-col overflow-y-auto bg-paper lg:hidden"
         >
-          <div className="container-page flex-1 pt-2">
+          <div className="container-page flex-1 pt-2 [&>*]:animate-[reveal-left_0.5s_cubic-bezier(0.22,1,0.36,1)_both] [&>*:nth-child(2)]:[animation-delay:40ms] [&>*:nth-child(3)]:[animation-delay:80ms] [&>*:nth-child(4)]:[animation-delay:120ms] [&>*:nth-child(5)]:[animation-delay:160ms] [&>*:nth-child(6)]:[animation-delay:200ms]">
             <NavLink to="/" end className={mobileLinkClass}>
               Home
             </NavLink>
@@ -192,7 +200,7 @@ export default function Header() {
                 <ChevronDown className={`h-5 w-5 transition-transform ${mobileSubmenu ? 'rotate-180' : ''}`} aria-hidden="true" />
               </button>
               {mobileSubmenu && (
-                <div className="-mt-1 space-y-0.5 pb-4">
+                <div className="-mt-1 animate-pop space-y-0.5 pb-4">
                   <Link to={strategiesPath} className="block rounded-md py-2.5 pl-3 text-[15px] font-semibold text-ink">
                     Overview
                   </Link>

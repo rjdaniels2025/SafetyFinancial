@@ -39,9 +39,14 @@ export default {
       letterSpacing: {
         eyebrow: '0.18em',
       },
+      transitionTimingFunction: {
+        // Gentle, decelerating curve used for all brand motion
+        out: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      },
       boxShadow: {
         card: '0 1px 2px rgba(11,27,46,0.04), 0 8px 24px -12px rgba(11,27,46,0.12)',
         lift: '0 2px 4px rgba(11,27,46,0.05), 0 18px 40px -16px rgba(11,27,46,0.22)',
+        float: '0 1px 2px rgba(11,27,46,0.04), 0 30px 60px -24px rgba(11,27,46,0.30)',
       },
     },
   },

@@ -48,9 +48,9 @@ export default function AboutPage() {
           </Reveal>
           <Reveal className="lg:col-span-5" delay={120}>
             {site.images.about ? (
-              <img src={site.images.about} alt="" className="w-full rounded-xl object-cover shadow-lift" loading="lazy" />
+              <img src={site.images.about} alt="" className="w-full rounded-2xl object-cover shadow-lift" loading="lazy" />
             ) : (
-              <ConsultationIllustration className="w-full rounded-xl" />
+              <ConsultationIllustration className="w-full rounded-2xl" />
             )}
           </Reveal>
         </div>
@@ -59,7 +59,7 @@ export default function AboutPage() {
       <section className="py-14 sm:py-20 lg:py-28">
         <div className="container-page">
           <SectionHeader eyebrow="Our approach" title="How we work with clients" />
-          <div className="mt-8 sm:mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 sm:mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {principles.map((p) => (
               <div key={p.title} className="bg-white p-5 sm:p-7">
                 <h3 className="text-lg font-semibold">{p.title}</h3>
@@ -97,7 +97,7 @@ export default function AboutPage() {
             <SectionHeader eyebrow="Our team" title="The people behind WeWin" />
             <div className="mt-8 sm:mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {team.map((m) => (
-                <Reveal key={m.name} className="rounded-xl border border-line bg-white p-5 sm:p-7">
+                <Reveal key={m.name} className="rounded-2xl border border-line bg-white p-5 sm:p-7">
                   {m.photo && <img src={m.photo} alt={m.name} className="mb-5 aspect-square w-24 rounded-full object-cover" loading="lazy" />}
                   <h3 className="text-xl font-semibold">{m.name}</h3>
                   <p className="mt-1 text-sm font-medium text-brass-dark">

@@ -36,6 +36,8 @@
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      animation-delay: 0ms !important;
       transition-duration: 0.01ms !important;
     }
   }
@@ -72,7 +74,7 @@
   }
 
   .field-input {
-    @apply w-full rounded-md border border-line bg-white px-3.5 py-3 text-base text-ink transition sm:py-2.5 sm:text-[15px] placeholder:text-muted/60 focus:border-ink-700 focus:outline-none focus:ring-2 focus:ring-ink-700/15;
+    @apply w-full rounded-lg border border-line bg-white px-3.5 py-3 text-base text-ink transition sm:py-2.5 sm:text-[15px] placeholder:text-muted/60 focus:border-ink-700 focus:outline-none focus:ring-2 focus:ring-ink-700/15;
   }
 
   .field-select {
@@ -103,13 +105,163 @@
   }
 }
 
+/* ---------- Motion ---------- */
+/* All brand motion uses the same decelerating curve. Durations are kept short and
+   distances small so movement feels considered rather than flashy. */
+
 @keyframes reveal-up {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes reveal-scale {
+  from { opacity: 0; transform: scale(0.96) translate3d(0, 10px, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes reveal-left {
+  from { opacity: 0; transform: translate3d(-24px, 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes reveal-right {
+  from { opacity: 0; transform: translate3d(28px, 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+/* Headline lines slide up from behind a mask */
+@keyframes line-up {
+  from { transform: translate3d(0, 105%, 0); }
+  to { transform: none; }
+}
+/* SVG strokes that draw themselves in */
+@keyframes draw {
+  from { stroke-dashoffset: var(--dash, 1000); }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(4%, -3%, 0) scale(1.08); }
+}
+@keyframes drift-alt {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-5%, 4%, 0) scale(0.95); }
+}
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes slow-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(168, 131, 74, 0.45); }
+  70% { box-shadow: 0 0 0 8px rgba(168, 131, 74, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(168, 131, 74, 0); }
+}
+@keyframes sheen {
+  from { transform: translateX(-120%) skewX(-20deg); }
+  to { transform: translateX(260%) skewX(-20deg); }
+}
+/* Opacity only: moving the whole page would throw off in-page jump positions while it settles */
+@keyframes page-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: translate3d(0, -6px, 0) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes check-in {
+  0% { opacity: 0; transform: scale(0.6); }
+  60% { opacity: 1; transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@layer utilities {
+  .ease-brand {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .animate-page {
+    animation: page-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-pop {
+    animation: pop-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-check {
+    animation: check-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-pulse-dot {
+    animation: pulse-dot 2.4s ease-out infinite;
+  }
+}
+
+@layer components {
+  /* Masked headline line: wrap text in .line > span */
+  .line {
+    @apply block overflow-hidden pb-[0.08em];
+  }
+  .line > span {
+    @apply inline-block;
+    animation: line-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Soft, slowly drifting colour fields behind dark or hero sections */
+  .aurora {
+    @apply pointer-events-none absolute inset-0 overflow-hidden;
+  }
+  .aurora::before,
+  .aurora::after {
+    content: '';
+    @apply absolute rounded-full;
+    width: 60vmax;
+    height: 60vmax;
+  }
+  .aurora::before {
+    top: -30vmax;
+    right: -20vmax;
+    background: radial-gradient(closest-side, rgba(168, 131, 74, var(--aurora-a, 0.16)), transparent);
+    animation: drift 18s ease-in-out infinite;
+  }
+  .aurora::after {
+    bottom: -35vmax;
+    left: -25vmax;
+    background: radial-gradient(closest-side, rgba(42, 68, 103, var(--aurora-b, 0.35)), transparent);
+    animation: drift-alt 22s ease-in-out infinite;
+  }
+
+  /* Light sheen that sweeps across primary buttons on hover */
+  .sheen {
+    @apply relative overflow-hidden;
+  }
+  .sheen::after {
+    content: '';
+    @apply pointer-events-none absolute inset-y-0 left-0 w-1/3;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+    transform: translateX(-120%) skewX(-20deg);
+  }
+  .sheen:hover::after {
+    animation: sheen 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Cursor-following highlight for cards (position set from JS via --x / --y) */
+  .spotlight {
+    @apply relative isolate;
+  }
+  .spotlight::before {
+    content: '';
+    @apply pointer-events-none absolute inset-0 -z-10 rounded-[inherit] opacity-0 transition-opacity duration-500;
+    background: radial-gradient(420px circle at var(--x, 50%) var(--y, 0%), rgba(168, 131, 74, 0.12), transparent 60%);
+  }
+  .spotlight:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Gradient accent for display text */
+  .text-gradient-brass {
+    background: linear-gradient(100deg, #7f6131 0%, #a8834a 55%, #8a6a38 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 }

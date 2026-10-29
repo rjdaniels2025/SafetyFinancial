@@ -48,7 +48,7 @@ export default function MobileBookingBar() {
           <a
             href={`tel:${phone.replace(/[^\d+]/g, '')}`}
             tabIndex={visible ? 0 : -1}
-            className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-md border border-ink/20 text-ink"
+            className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg border border-ink/20 text-ink"
             aria-label={`Call ${phone}`}
           >
             <Phone className="h-5 w-5" aria-hidden="true" />
@@ -57,7 +57,7 @@ export default function MobileBookingBar() {
         <Link
           to="/contact"
           tabIndex={visible ? 0 : -1}
-          className="flex h-12 flex-1 items-center justify-center gap-2 rounded-md bg-ink text-[15px] font-semibold text-paper"
+          className="flex h-12 flex-1 items-center justify-center gap-2 rounded-lg bg-ink text-[15px] font-semibold text-paper"
         >
           Book a Consultation
           <ArrowRight className="h-4 w-4" aria-hidden="true" />

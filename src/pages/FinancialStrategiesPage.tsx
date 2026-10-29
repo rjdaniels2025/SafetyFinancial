@@ -58,7 +58,7 @@ function StrategySection({
 
 function Explainer({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div className="rounded-xl border border-line bg-white p-5 sm:p-7">
+    <div className="rounded-2xl border border-line bg-white p-5 sm:p-7">
       <h3 className="text-xl font-semibold">{title}</h3>
       <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-ink/80">{children}</div>
     </div>
@@ -141,7 +141,7 @@ export default function FinancialStrategiesPage() {
         </p>
         <Link
           to="/financial-strategies/corporate-life-insurance"
-          className="group flex items-center justify-between gap-6 rounded-xl bg-ink p-6 text-paper sm:p-7 transition-colors hover:bg-ink-800"
+          className="group flex items-center justify-between gap-6 rounded-2xl bg-ink p-6 text-paper sm:p-7 transition-colors hover:bg-ink-800"
         >
           <span>
             <span className="block text-xs font-semibold uppercase tracking-eyebrow text-brass-light">In depth</span>

@@ -126,7 +126,7 @@ export function RadioGroup({
         {options.map((o) => (
           <label
             key={o}
-            className={`cursor-pointer rounded-md border px-4 py-2.5 text-sm transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brass ${
+            className={`cursor-pointer rounded-full border px-4 py-2.5 text-sm transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brass ${
               value === o ? 'border-ink bg-ink text-paper' : 'border-line bg-white text-ink hover:border-ink/40'
             }`}
           >
@@ -150,7 +150,7 @@ export function RadioGroup({
 export function ConsentField({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) {
   const id = useId();
   return (
-    <div className="flex gap-3 rounded-md border border-line bg-paper p-4">
+    <div className="flex gap-3 rounded-xl border border-line bg-paper p-4">
       <input
         id={id}
         type="checkbox"
@@ -213,8 +213,10 @@ export function SubmitRow({ submitting, label, error }: { submitting: boolean; l
 
 export function FormSuccess({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div role="status" className="rounded-lg border border-line bg-white p-8 text-center">
-      <CheckCircle2 className="mx-auto h-10 w-10 text-brass" aria-hidden="true" />
+    <div role="status" className="animate-page rounded-2xl border border-line bg-white p-8 text-center">
+      <span className="animate-check mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brass-50">
+        <CheckCircle2 className="h-9 w-9 text-brass" aria-hidden="true" />
+      </span>
       <h3 className="mt-4 text-2xl font-semibold">{title}</h3>
       <div className="mx-auto mt-2 max-w-md text-muted">{children}</div>
     </div>
