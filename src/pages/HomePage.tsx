@@ -27,6 +27,8 @@ const audiences = [
 const specialized = [
   { title: 'Credit analysis & debt resolution', to: '/debt-solutions' },
   { title: 'Grants & business incentives', to: '/business-funding#grants' },
+  { title: 'Corporate restructuring & asset protection', to: '/financial-strategies#corporate-restructuring' },
+  { title: 'Holding companies, family trusts & estate freezes', to: '/financial-strategies#corporate-restructuring' },
   { title: 'Corporate tax-planning coordination', to: '/financial-strategies#corporate-tax' },
   { title: 'Corporate-owned life insurance', to: '/financial-strategies/corporate-life-insurance' },
   { title: 'Life, critical illness & disability protection', to: '/financial-strategies#personal-protection' },
@@ -54,13 +56,13 @@ export default function HomePage() {
         <div className="aurora" style={{ '--aurora-a': 0.14, '--aurora-b': 0.07 } as CSSProperties} />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:linear-gradient(to_right,#DDD7CB_1px,transparent_1px),linear-gradient(to_bottom,#DDD7CB_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_70%_60%_at_70%_30%,black,transparent)]"
+          className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:linear-gradient(to_right,#D8DEDB_1px,transparent_1px),linear-gradient(to_bottom,#D8DEDB_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_70%_60%_at_70%_30%,black,transparent)]"
         />
         <div className="container-page relative grid items-center gap-14 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Reveal variant="fade">
-              <p className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/70 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-eyebrow text-brass-dark backdrop-blur sm:text-xs">
-                <span className="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-brass" aria-hidden="true" />
+              <p className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/70 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-eyebrow text-accent-dark backdrop-blur sm:text-xs">
+                <span className="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
                 Debt · Funding · Financial Strategy
               </p>
             </Reveal>
@@ -72,7 +74,7 @@ export default function HomePage() {
                 <span style={{ animationDelay: '240ms' }}>Strategic Solutions.</span>
               </span>
               <span className="line">
-                <span className="text-gradient-brass" style={{ animationDelay: '360ms' }}>
+                <span className="text-gradient-accent" style={{ animationDelay: '360ms' }}>
                   Stronger Futures.
                 </span>
               </span>
@@ -107,24 +109,25 @@ export default function HomePage() {
               <div
                 onPointerMove={trackSpotlight}
                 className="spotlight relative overflow-hidden rounded-3xl bg-ink p-8 text-paper shadow-float"
+                style={{ '--spot': 'rgba(211, 217, 214, 0.10)' } as CSSProperties}
               >
                 <ArcPattern spin className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80" />
-                <p className="relative flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow text-brass-light">
-                  <span className="h-px w-6 bg-brass-light/70" aria-hidden="true" />
+                <p className="relative flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow text-accent-light">
+                  <span className="h-px w-6 bg-accent-light/70" aria-hidden="true" />
                   How we can help
                 </p>
                 <ul className="relative mt-6 divide-y divide-paper/10 border-y border-paper/10">
                   {coreServices.map((service, i) => (
                     <li key={service.slug} style={{ animation: `reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${650 + i * 130}ms both` }}>
                       <Link to={service.path} className="group relative -mx-3 flex items-start gap-5 rounded-2xl px-3 py-5 transition-colors duration-300 hover:bg-paper/[0.04]">
-                        <span className="font-serif text-2xl font-semibold text-brass transition-transform duration-500 ease-brand group-hover:-translate-y-0.5">
+                        <span className="font-serif text-2xl font-semibold text-accent transition-transform duration-500 ease-brand group-hover:-translate-y-0.5">
                           {String(i + 1).padStart(2, '0')}
                         </span>
                         <span className="flex-1">
                           <span className="block font-serif text-lg font-semibold leading-snug">{service.title}</span>
                           <span className="mt-1 block text-sm text-paper/60 transition-colors group-hover:text-paper/80">{service.tagline}</span>
                         </span>
-                        <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-paper/15 transition-all duration-300 ease-brand group-hover:border-brass group-hover:bg-brass">
+                        <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-paper/15 transition-all duration-300 ease-brand group-hover:border-accent group-hover:bg-accent">
                           <ArrowRight className="h-3.5 w-3.5 text-paper/60 transition-colors group-hover:text-ink" aria-hidden="true" />
                         </span>
                       </Link>
@@ -132,7 +135,7 @@ export default function HomePage() {
                   ))}
                 </ul>
                 <p className="relative mt-6 flex items-center gap-2 text-sm text-paper/60">
-                  <Lock className="h-4 w-4 text-brass-light" aria-hidden="true" />
+                  <Lock className="h-4 w-4 text-accent-light" aria-hidden="true" />
                   Confidential, no-obligation consultations
                 </p>
               </div>
@@ -155,8 +158,8 @@ export default function HomePage() {
                   delay={i * 90}
                   className="group flex flex-col gap-2.5 bg-white py-5 pr-3 odd:pl-0 even:pl-4 sm:flex-row sm:items-center sm:gap-3 lg:px-6 lg:py-6 lg:odd:pl-6 lg:even:pl-6"
                 >
-                  <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-brass-50 transition-colors duration-300 group-hover:bg-brass/15">
-                    <Icon className="h-[18px] w-[18px] text-brass-dark" aria-hidden="true" />
+                  <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-accent-50 transition-colors duration-300 group-hover:bg-accent/15">
+                    <Icon className="h-[18px] w-[18px] text-accent-dark" aria-hidden="true" />
                   </span>
                   <span className="text-[13px] font-medium leading-snug text-ink sm:text-sm">{a.title}</span>
                 </Reveal>
@@ -182,23 +185,23 @@ export default function HomePage() {
                   <Link
                     to={service.path}
                     onPointerMove={trackSpotlight}
-                    className="spotlight group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper p-6 transition-all duration-500 ease-brand hover:-translate-y-1.5 hover:border-brass/40 hover:bg-white hover:shadow-float sm:p-8"
+                    className="spotlight group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper p-6 transition-all duration-500 ease-brand hover:-translate-y-1.5 hover:border-accent/40 hover:bg-white hover:shadow-float sm:p-8"
                   >
                     <span
-                      className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-brass-dark via-brass to-brass-light transition-transform duration-700 ease-brand group-hover:scale-x-100"
+                      className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-accent-dark via-accent to-accent-light transition-transform duration-700 ease-brand group-hover:scale-x-100"
                       aria-hidden="true"
                     />
                     <div className="flex items-center justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-brass-light transition-all duration-500 ease-brand group-hover:rotate-[-6deg] group-hover:bg-brass group-hover:text-ink">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-accent-light transition-all duration-500 ease-brand group-hover:rotate-[-6deg] group-hover:bg-accent group-hover:text-ink">
                         <Icon className="h-6 w-6" aria-hidden="true" />
                       </div>
-                      <span className="font-serif text-sm font-semibold text-ink/30 transition-colors group-hover:text-brass-dark">
+                      <span className="font-serif text-sm font-semibold text-ink/30 transition-colors group-hover:text-accent-dark">
                         {String(i + 1).padStart(2, '0')}
                       </span>
                     </div>
                     <h3 className="mt-6 text-2xl font-semibold leading-snug">{service.title}</h3>
                     <p className="mt-4 flex-1 text-[15px] leading-relaxed text-muted">{service.summary}</p>
-                    <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors group-hover:text-brass-dark">
+                    <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors group-hover:text-accent-dark">
                       {service.cta}
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-brand group-hover:translate-x-1.5" aria-hidden="true" />
                     </span>
@@ -227,7 +230,7 @@ export default function HomePage() {
               {audiences.map((a, i) => (
                 <Reveal key={a.title} variant="fade" delay={i * 90} className="group bg-paper p-6 transition-colors duration-500 hover:bg-white">
                   <h3 className="flex items-center gap-2 text-lg font-semibold">
-                    <span className="h-1.5 w-1.5 rounded-full bg-brass transition-transform duration-500 group-hover:scale-150" aria-hidden="true" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent transition-transform duration-500 group-hover:scale-150" aria-hidden="true" />
                     {a.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted">{a.text}</p>
@@ -268,15 +271,15 @@ export default function HomePage() {
                 <Reveal as="li" key={s.title} variant="left" delay={i * 60}>
                   <Link
                     to={s.to}
-                    className="group relative flex items-center justify-between gap-4 overflow-hidden py-4 text-[15px] font-medium text-ink transition-colors hover:text-brass-dark"
+                    className="group relative flex items-center justify-between gap-4 overflow-hidden py-4 text-[15px] font-medium text-ink transition-colors hover:text-accent-dark"
                   >
                     <span
-                      className="absolute inset-0 -z-10 origin-left scale-x-0 bg-gradient-to-r from-brass-50 to-transparent transition-transform duration-500 ease-brand group-hover:scale-x-100"
+                      className="absolute inset-0 -z-10 origin-left scale-x-0 bg-gradient-to-r from-accent-50 to-transparent transition-transform duration-500 ease-brand group-hover:scale-x-100"
                       aria-hidden="true"
                     />
                     <span className="transition-transform duration-500 ease-brand group-hover:translate-x-2">{s.title}</span>
                     <ArrowUpRight
-                      className="h-4 w-4 flex-shrink-0 text-muted transition-transform duration-300 ease-brand group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brass-dark"
+                      className="h-4 w-4 flex-shrink-0 text-muted transition-transform duration-300 ease-brand group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-dark"
                       aria-hidden="true"
                     />
                   </Link>

@@ -45,7 +45,7 @@ function App() {
               {/* Fallback for retired URLs when visited inside the app; vercel.json issues permanent redirects for direct visits */}
               <Route path="/business-growth" element={<Navigate to="/business-funding" replace />} />
               <Route path="/tax-strategy" element={<Navigate to="/financial-strategies#corporate-tax" replace />} />
-              <Route path="/corporate-restructuring" element={<Navigate to="/financial-strategies#corporate-tax" replace />} />
+              <Route path="/corporate-restructuring" element={<Navigate to="/financial-strategies#corporate-restructuring" replace />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>

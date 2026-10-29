@@ -58,7 +58,7 @@ export default function SectionTabs({ label, sections }: SectionTabsProps) {
       >
         <span
           aria-hidden="true"
-          className="absolute top-2.5 h-[calc(100%-1.25rem)] rounded-full bg-ink shadow-[0_6px_16px_-8px_rgba(11,27,46,0.6)] transition-all duration-500 ease-brand"
+          className="absolute top-2.5 h-[calc(100%-1.25rem)] rounded-full bg-ink shadow-[0_6px_16px_-8px_rgba(18,58,38,0.6)] transition-all duration-500 ease-brand"
           style={{ left: indicator.left, width: indicator.width }}
         />
         {sections.map((s, i) => (
@@ -72,7 +72,7 @@ export default function SectionTabs({ label, sections }: SectionTabsProps) {
               active === s.id ? 'text-paper' : 'text-ink/70 hover:bg-paper-dark hover:text-ink'
             }`}
           >
-            <span className={`font-serif font-semibold transition-colors duration-300 ${active === s.id ? 'text-brass-light' : 'text-brass-dark'}`}>
+            <span className={`font-serif font-semibold transition-colors duration-300 ${active === s.id ? 'text-accent-light' : 'text-accent-dark'}`}>
               {String.fromCharCode(65 + i)}
             </span>
             {s.short}

@@ -14,9 +14,9 @@ const sizes = {
 };
 
 const variants: Record<Variant, string> = {
-  primary: 'sheen bg-ink text-paper shadow-[0_8px_20px_-10px_rgba(11,27,46,0.55)] hover:bg-ink-700 hover:shadow-[0_14px_28px_-12px_rgba(11,27,46,0.6)]',
+  primary: 'sheen bg-ink text-paper shadow-[0_8px_20px_-10px_rgba(18,58,38,0.55)] hover:bg-ink-700 hover:shadow-[0_14px_28px_-12px_rgba(18,58,38,0.6)]',
   secondary: 'border border-ink/20 bg-white/40 text-ink hover:border-ink/60 hover:bg-white',
-  ghost: 'text-[15px] text-ink hover:text-brass-dark',
+  ghost: 'text-[15px] text-ink hover:text-accent-dark',
   light: 'sheen bg-paper text-ink hover:bg-white',
   outlineLight: 'border border-paper/30 text-paper hover:border-paper/60 hover:bg-paper/10',
 };

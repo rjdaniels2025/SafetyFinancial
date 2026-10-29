@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Reveal from '../components/ui/Reveal';
 import SectionTabs from '../components/ui/SectionTabs';
+import RestructuringDetails from '../components/strategies/RestructuringDetails';
 import { ConsultationBand, Notice, PageHero, TopicList } from '../components/ui/Sections';
 import { strategySections } from '../data/services';
 import usePageMeta from '../hooks/usePageMeta';
@@ -17,6 +18,7 @@ function StrategySection({
   description,
   topics,
   children,
+  after,
   tone,
   cta,
 }: {
@@ -26,6 +28,8 @@ function StrategySection({
   description: string;
   topics: string[];
   children?: ReactNode;
+  /** Full-width content shown beneath the two-column introduction */
+  after?: ReactNode;
   tone: 'white' | 'paper';
   cta: { label: string; service: string };
 }) {
@@ -34,7 +38,7 @@ function StrategySection({
       <div className="container-page grid gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-5">
           <Reveal>
-            <p className="font-serif text-4xl font-semibold text-brass sm:text-5xl">{String.fromCharCode(64 + index)}</p>
+            <p className="font-serif text-4xl font-semibold text-accent sm:text-5xl">{String.fromCharCode(64 + index)}</p>
             <h2 className="h-section mt-4">{title}</h2>
             <p className="lead mt-4">{description}</p>
             <Button to={contactFor(cta.service)} variant="ghost" arrow className="mt-6 sm:mt-8">
@@ -52,6 +56,7 @@ function StrategySection({
           {children}
         </Reveal>
       </div>
+      {after && <div className="container-page">{after}</div>}
     </section>
   );
 }
@@ -68,7 +73,7 @@ function Explainer({ title, children }: { title: string; children: ReactNode }) 
 export default function FinancialStrategiesPage() {
   usePageMeta(
     'Corporate & Personal Financial Strategies',
-    'Corporate financial and tax-planning coordination, corporate and personal protection, retirement planning, IPPs and long-term wealth strategies for individuals, families and corporations.',
+    'Corporate restructuring, holding companies, family trusts and estate freezes, tax-planning coordination, corporate and personal protection, retirement planning and IPPs for individuals, families and corporations.',
     '/financial-strategies'
   );
 
@@ -84,16 +89,37 @@ export default function FinancialStrategiesPage() {
         }
       >
         Integrated financial planning for individuals, families, entrepreneurs, and corporations, covering corporate
-        financial strategies, tax-planning coordination, financial protection, retirement planning, and long-term wealth
-        objectives.
+        restructuring, corporate financial strategies, tax-planning coordination, financial protection, retirement planning,
+        and long-term wealth objectives.
       </PageHero>
 
       <SectionTabs label="Financial strategies sections" sections={strategySections} />
 
       <StrategySection
-        id="corporate-tax"
+        id="corporate-restructuring"
         index={1}
         tone="paper"
+        title="Corporate Restructuring & Asset Protection"
+        description="Restructure your business the right way. We organize corporate debt, ownership and assets so the structure supports a more tax-efficient approach, helps protect what you have built, and prepares the business for the future — working with a coordinated team of CPAs and corporate, tax and litigation lawyers."
+        cta={{ label: 'Discuss restructuring', service: 'Corporate Restructuring, Trusts & Estate Freezes' }}
+        topics={[
+          'Corporate debt restructuring',
+          'Holding company and operating company structures',
+          'Family trust planning',
+          'Estate freezes',
+          'Tax-efficient movement of corporate surplus',
+          'Separating valuable assets from operating risk',
+          'Shareholder and intercompany loan structuring',
+          'Succession and ownership planning',
+          'Coordination with CPAs and corporate, tax and litigation lawyers',
+        ]}
+        after={<RestructuringDetails />}
+      />
+
+      <StrategySection
+        id="corporate-tax"
+        index={2}
+        tone="white"
         title="Corporate Financial & Tax Strategies"
         description="Explore corporate financial structures and long-term planning strategies designed around your business objectives, ownership structure, and future priorities."
         cta={{ label: 'Discuss corporate strategy', service: 'Corporate Financial & Tax Strategies' }}
@@ -118,8 +144,8 @@ export default function FinancialStrategiesPage() {
 
       <StrategySection
         id="corporate-protection"
-        index={2}
-        tone="white"
+        index={3}
+        tone="paper"
         title="Corporate Protection & Legacy Planning"
         description="Strategic planning for business continuity, shareholder protection, corporate insurance structures, and long-term succession objectives."
         cta={{ label: 'Discuss corporate protection', service: 'Corporate Protection & Corporate Life Insurance' }}
@@ -144,7 +170,7 @@ export default function FinancialStrategiesPage() {
           className="group flex items-center justify-between gap-6 rounded-2xl bg-ink p-6 text-paper sm:p-7 transition-colors hover:bg-ink-800"
         >
           <span>
-            <span className="block text-xs font-semibold uppercase tracking-eyebrow text-brass-light">In depth</span>
+            <span className="block text-xs font-semibold uppercase tracking-eyebrow text-accent-light">In depth</span>
             <span className="mt-2 block font-serif text-2xl font-semibold">Corporate Life Insurance</span>
             <span className="mt-2 block text-sm text-paper/70">
               Corporate-owned vs. personally owned policies, common purposes and Capital Dividend Account considerations.
@@ -156,8 +182,8 @@ export default function FinancialStrategiesPage() {
 
       <StrategySection
         id="personal-protection"
-        index={3}
-        tone="paper"
+        index={4}
+        tone="white"
         title="Personal Financial Protection"
         description="Explore financial protection options designed to help individuals and families prepare for unexpected events, protect important obligations, and plan for long-term security."
         cta={{ label: 'Discuss personal protection', service: 'Personal Financial Protection' }}
@@ -190,8 +216,8 @@ export default function FinancialStrategiesPage() {
 
       <StrategySection
         id="wealth-retirement"
-        index={4}
-        tone="white"
+        index={5}
+        tone="paper"
         title="Wealth, Retirement & Financial Architecture"
         description="Explore retirement, wealth-planning, and financial architecture concepts designed to support longer-term personal and corporate objectives."
         cta={{ label: 'Discuss long-term planning', service: 'Wealth, Retirement & Financial Architecture' }}

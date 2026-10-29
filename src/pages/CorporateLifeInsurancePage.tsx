@@ -101,7 +101,7 @@ export default function CorporateLifeInsurancePage() {
           <div className="mt-8 space-y-4 md:hidden">
             {comparison.map((row) => (
               <div key={row.label} className="rounded-2xl border border-line bg-paper p-5">
-                <h3 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-brass-dark">{row.label}</h3>
+                <h3 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-accent-dark">{row.label}</h3>
                 <dl className="mt-3 space-y-3 text-[15px] leading-relaxed">
                   <div>
                     <dt className="font-semibold text-ink">Corporate-owned</dt>
@@ -154,7 +154,7 @@ export default function CorporateLifeInsurancePage() {
           <h3 className="mt-16 text-2xl font-semibold">Policy types</h3>
           <div className="mt-6 grid gap-6 md:grid-cols-3">
             {policyTypes.map((p) => (
-              <div key={p.title} className="border-t-2 border-brass pt-5">
+              <div key={p.title} className="border-t-2 border-accent pt-5">
                 <h4 className="text-lg font-semibold">{p.title}</h4>
                 <p className="mt-2 text-[15px] leading-relaxed text-muted">{p.text}</p>
               </div>
@@ -204,7 +204,7 @@ export default function CorporateLifeInsurancePage() {
           </Notice>
           <Link
             to="/financial-strategies#corporate-protection"
-            className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-brass-dark"
+            className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-accent-dark"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             Corporate Protection & Legacy Planning

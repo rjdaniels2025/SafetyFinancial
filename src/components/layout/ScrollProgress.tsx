@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-/** Thin brass line along the top of the screen showing how far down the page the reader is. */
+/** Thin accent line along the top of the screen showing how far down the page the reader is. */
 export default function ScrollProgress() {
   const barRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +27,7 @@ export default function ScrollProgress() {
 
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[2px]">
-      <div ref={barRef} className="h-full origin-left bg-gradient-to-r from-brass-dark via-brass to-brass-light" style={{ transform: 'scaleX(0)' }} />
+      <div ref={barRef} className="h-full origin-left bg-gradient-to-r from-accent-dark via-accent to-accent-light" style={{ transform: 'scaleX(0)' }} />
     </div>
   );
 }

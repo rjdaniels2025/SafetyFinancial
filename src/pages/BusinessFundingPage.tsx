@@ -130,7 +130,7 @@ export default function BusinessFundingPage() {
                   'Refers you to relevant lenders and qualified professionals',
                 ].map((t) => (
                   <li key={t} className="flex gap-3 text-[15px] text-ink/85">
-                    <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-brass-dark" aria-hidden="true" />
+                    <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent-dark" aria-hidden="true" />
                     {t}
                   </li>
                 ))}

@@ -100,7 +100,7 @@ export default function AboutPage() {
                 <Reveal key={m.name} className="rounded-2xl border border-line bg-white p-5 sm:p-7">
                   {m.photo && <img src={m.photo} alt={m.name} className="mb-5 aspect-square w-24 rounded-full object-cover" loading="lazy" />}
                   <h3 className="text-xl font-semibold">{m.name}</h3>
-                  <p className="mt-1 text-sm font-medium text-brass-dark">
+                  <p className="mt-1 text-sm font-medium text-accent-dark">
                     {m.role}
                     {m.credentials && `, ${m.credentials}`}
                   </p>

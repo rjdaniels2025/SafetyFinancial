@@ -132,7 +132,7 @@ export default function DebtSolutionsPage() {
                 <ul className="mt-6 flex-1 space-y-3">
                   {pkg.includes.map((item) => (
                     <li key={item} className="flex gap-3 text-[15px] text-ink/85">
-                      <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-brass-dark" aria-hidden="true" />
+                      <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent-dark" aria-hidden="true" />
                       {item}
                     </li>
                   ))}

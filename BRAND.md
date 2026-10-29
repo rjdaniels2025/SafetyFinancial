@@ -18,13 +18,14 @@ Brand attributes: **clarity, credibility, discretion, strategic thinking.**
 | File | Use |
 | --- | --- |
 | `public/brand/wewin-logo.png` | Primary horizontal logo on light backgrounds (transparent PNG) |
-| `public/brand/wewin-logo-reversed.png` | Horizontal logo on navy or dark backgrounds (transparent PNG) |
-| `public/brand/wewin-mark.svg` | Symbol only, navy tile — favicons, social avatars, document headers |
+| `public/brand/wewin-logo-reversed.png` | Horizontal logo on forest green or dark backgrounds (transparent PNG) |
+| `public/brand/wewin-mark.svg` | Symbol only, forest green tile — favicons, social avatars, document headers |
 | `public/brand/wewin-mark-reversed.svg` | Symbol only, light tile — for dark backgrounds |
 | `public/brand/wewin-mark-512.png` | Square symbol for profile images and app icons |
 
 **The mark:** a "W" drawn as a single continuous stroke whose final line rises above its starting point —
-a quiet signal of forward progress. It always appears in brass on a navy (or paper) rounded tile.
+a quiet signal of forward progress. It appears in metallic silver on a forest green tile, or in forest green on a
+silver-white tile when used on dark backgrounds.
 
 **Wordmark:** "WeWin" in Source Serif 4 Semibold, with "CONSULTING GROUP" in Inter Semibold, uppercase,
 letter-spaced 0.24em, beneath it.
@@ -35,27 +36,33 @@ version on dark backgrounds.
 
 ## Colour palette
 
-| Name | Hex | Role |
-| --- | --- | --- |
-| Ink (navy) | `#0B1B2E` | Primary brand colour, headings, dark sections, primary buttons |
-| Ink 800 | `#12263F` | Hover states on dark surfaces |
-| Ink 700 | `#1B3354` | Secondary navy, illustration fills |
-| Brass | `#A8834A` | Accent — the mark, numerals, rules. Use sparingly |
-| Brass dark | `#7F6131` | Accent text on light backgrounds (eyebrows, links) |
-| Brass light | `#D8C29B` | Accent text on navy backgrounds |
-| Paper | `#F7F5F0` | Default page background |
-| Paper dark | `#EEEAE1` | Subtle panels |
-| Line | `#DDD7CB` | Borders and dividers |
-| Muted | `#535D6B` | Body copy secondary text |
+Forest green, white and silver. Green carries the brand; silver is used for lines, highlights and text on green;
+white keeps pages clean and open.
 
-All text colour pairings used on the site meet WCAG 2.1 AA contrast. Brass `#A8834A` on white is only used for
-large numerals (3:1 large-text threshold).
+| Name (code token) | Hex | Role |
+| --- | --- | --- |
+| Forest green (`ink`) | `#123A26` | Primary brand colour, headings, dark sections, primary buttons |
+| Forest 800 (`ink-800`) | `#184A31` | Hover states on dark surfaces |
+| Forest 700 (`ink-700`) | `#1F5A3C` | Secondary green, illustration fills, the mark on light tiles |
+| Green accent (`accent-dark`) | `#2A6E4B` | Accent text on white (eyebrows, links, gradients) |
+| Silver (`accent`) | `#7D8A84` | Rules, numerals and focus rings. Use sparingly |
+| Light silver (`accent-light`) | `#D3D9D6` | Accent text and icons on green backgrounds |
+| Metallic silver | `#C9D0CD` | The "W" mark on green tiles |
+| Silver tint (`accent-50`) | `#EEF3F0` | Notices and subtle highlighted panels |
+| White | `#FFFFFF` | Primary page sections and cards |
+| Silver white (`paper`) | `#F5F7F6` | Alternating page background |
+| Silver white dark (`paper-dark`) | `#E9EDEB` | Subtle panels |
+| Line (`line`) | `#D8DEDB` | Borders and dividers |
+| Muted (`muted`) | `#56625C` | Secondary body text |
+
+All text colour pairings used on the site meet WCAG 2.1 AA contrast. Silver `#7D8A84` is only used for large numerals
+and decorative lines (3:1 large-text threshold); never set small text in silver on white — use the green accent instead.
 
 ## Typography
 
 - **Headings:** Source Serif 4 (Semibold 600). Tight tracking at display sizes.
 - **Body & interface:** Inter (Regular 400, Medium 500, Semibold 600).
-- **Eyebrow labels:** Inter Semibold, 12px, uppercase, letter-spacing 0.18em, Brass dark.
+- **Eyebrow labels:** Inter Semibold, 12px, uppercase, letter-spacing 0.18em, green accent.
 
 Both fonts are free (Google Fonts, SIL Open Font License) and can be installed for documents and presentations.
 

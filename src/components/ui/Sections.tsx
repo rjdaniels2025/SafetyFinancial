@@ -22,8 +22,8 @@ export function PageHero({
       <ArcPattern className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 opacity-70 sm:-right-10 sm:h-[34rem] sm:w-[34rem] sm:opacity-100" />
       <div className="container-page relative">
         <Reveal variant="fade">
-          <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow text-brass-light">
-            <span className="h-px w-8 bg-brass-light/70" aria-hidden="true" />
+          <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow text-accent-light">
+            <span className="h-px w-8 bg-accent-light/70" aria-hidden="true" />
             {eyebrow}
           </p>
         </Reveal>
@@ -63,7 +63,7 @@ export function SectionHeader({
       {eyebrow && (
         <p className={`eyebrow flex items-center gap-3 ${align === 'center' ? 'justify-center' : ''}`}>
           <span
-            className="h-px w-8 origin-left bg-brass"
+            className="h-px w-8 origin-left bg-accent"
             style={{ animation: 'reveal-fade 1s ease both, line-grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) 150ms both' }}
             aria-hidden="true"
           />
@@ -87,10 +87,10 @@ export function ProcessSteps({ steps }: { steps: { title: string; text: string }
           className="group relative flex gap-5 border-b border-line py-5 transition-colors duration-500 sm:block sm:border-0 sm:bg-white sm:p-7 sm:hover:bg-paper"
         >
           <span
-            className="absolute inset-x-0 top-0 hidden h-0.5 origin-left scale-x-0 bg-brass transition-transform duration-500 ease-brand group-hover:scale-x-100 sm:block"
+            className="absolute inset-x-0 top-0 hidden h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-brand group-hover:scale-x-100 sm:block"
             aria-hidden="true"
           />
-          <span className="w-8 flex-shrink-0 font-serif text-2xl font-semibold leading-none text-brass transition-transform duration-500 ease-brand sm:text-3xl sm:group-hover:-translate-y-0.5">
+          <span className="w-8 flex-shrink-0 font-serif text-2xl font-semibold leading-none text-accent transition-transform duration-500 ease-brand sm:text-3xl sm:group-hover:-translate-y-0.5">
             {String(i + 1).padStart(2, '0')}
           </span>
           <div>
@@ -109,7 +109,7 @@ export function TopicList({ items, columns = 2 }: { items: string[]; columns?: 1
     <ul className={`grid gap-x-8 gap-y-3 ${grid}`}>
       {items.map((item, i) => (
         <Reveal as="li" key={item} variant="left" delay={Math.min(i, 8) * 45} className="flex gap-3 text-[15px] leading-relaxed text-ink/85">
-          <span className="mt-2.5 h-px w-4 flex-shrink-0 bg-brass" aria-hidden="true" />
+          <span className="mt-2.5 h-px w-4 flex-shrink-0 bg-accent" aria-hidden="true" />
           {item}
         </Reveal>
       ))}
@@ -120,8 +120,8 @@ export function TopicList({ items, columns = 2 }: { items: string[]; columns?: 1
 /** Compliance or "please note" box. */
 export function Notice({ title = 'Important information', children }: { title?: string; children: ReactNode }) {
   return (
-    <aside className="flex gap-4 rounded-xl border border-brass/30 bg-brass-50 p-5 text-sm leading-relaxed text-ink/80">
-      <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-brass-dark" aria-hidden="true" />
+    <aside className="flex gap-4 rounded-xl border border-accent/30 bg-accent-50 p-5 text-sm leading-relaxed text-ink/80">
+      <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent-dark" aria-hidden="true" />
       <div>
         <p className="mb-1 font-semibold text-ink">{title}</p>
         {children}

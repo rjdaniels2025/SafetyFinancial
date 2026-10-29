@@ -24,7 +24,7 @@ export function TextField({
   return (
     <div className={className}>
       <label htmlFor={id} className="field-label">
-        {label} {required && <span className="text-brass-dark">*</span>}
+        {label} {required && <span className="text-accent-dark">*</span>}
       </label>
       <input
         id={id}
@@ -55,7 +55,7 @@ export function SelectField({
   return (
     <div className={className}>
       <label htmlFor={id} className="field-label">
-        {label} {required && <span className="text-brass-dark">*</span>}
+        {label} {required && <span className="text-accent-dark">*</span>}
       </label>
       <select
         id={id}
@@ -91,7 +91,7 @@ export function TextArea({
   return (
     <div className={className}>
       <label htmlFor={id} className="field-label">
-        {label} {required && <span className="text-brass-dark">*</span>}
+        {label} {required && <span className="text-accent-dark">*</span>}
       </label>
       <textarea
         id={id}
@@ -120,13 +120,13 @@ export function RadioGroup({
   return (
     <fieldset className={className}>
       <legend className="field-label">
-        {label} {required && <span className="text-brass-dark">*</span>}
+        {label} {required && <span className="text-accent-dark">*</span>}
       </legend>
       <div className="flex flex-wrap gap-2">
         {options.map((o) => (
           <label
             key={o}
-            className={`cursor-pointer rounded-full border px-4 py-2.5 text-sm transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brass ${
+            className={`cursor-pointer rounded-full border px-4 py-2.5 text-sm transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-accent ${
               value === o ? 'border-ink bg-ink text-paper' : 'border-line bg-white text-ink hover:border-ink/40'
             }`}
           >
@@ -161,10 +161,10 @@ export function ConsentField({ checked, onChange }: { checked: boolean; onChange
       />
       <label htmlFor={id} className="text-sm leading-relaxed text-ink/80">
         I consent to WeWin Consulting Group contacting me about my inquiry using the details provided, and I acknowledge the{' '}
-        <Link to="/privacy" className="underline decoration-brass underline-offset-2" target="_blank">
+        <Link to="/privacy" className="underline decoration-accent underline-offset-2" target="_blank">
           Privacy Policy
         </Link>
-        . <span className="text-brass-dark">*</span>
+        . <span className="text-accent-dark">*</span>
       </label>
     </div>
   );
@@ -214,8 +214,8 @@ export function SubmitRow({ submitting, label, error }: { submitting: boolean; l
 export function FormSuccess({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div role="status" className="animate-page rounded-2xl border border-line bg-white p-8 text-center">
-      <span className="animate-check mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brass-50">
-        <CheckCircle2 className="h-9 w-9 text-brass" aria-hidden="true" />
+      <span className="animate-check mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent-50">
+        <CheckCircle2 className="h-9 w-9 text-accent" aria-hidden="true" />
       </span>
       <h3 className="mt-4 text-2xl font-semibold">{title}</h3>
       <div className="mx-auto mt-2 max-w-md text-muted">{children}</div>

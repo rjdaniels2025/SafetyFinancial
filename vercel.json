@@ -2,7 +2,7 @@
   "redirects": [
     { "source": "/tax-solutions", "destination": "/financial-strategies#corporate-tax", "permanent": true },
     { "source": "/tax-strategy", "destination": "/financial-strategies#corporate-tax", "permanent": true },
-    { "source": "/corporate-restructuring", "destination": "/financial-strategies#corporate-tax", "permanent": true },
+    { "source": "/corporate-restructuring", "destination": "/financial-strategies#corporate-restructuring", "permanent": true },
     { "source": "/credit-building", "destination": "/debt-solutions", "permanent": true },
     { "source": "/credit-repair", "destination": "/debt-solutions", "permanent": true },
     { "source": "/business-growth", "destination": "/business-funding", "permanent": true },

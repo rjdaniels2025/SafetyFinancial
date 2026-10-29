@@ -48,7 +48,7 @@ export default function ContactPage() {
                 const Icon = e.icon;
                 return (
                   <div key={e.title} className="flex gap-4">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-paper text-brass-dark">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-paper text-accent-dark">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </div>
                     <div>
@@ -74,8 +74,8 @@ export default function ContactPage() {
               <div className="border-t border-line pt-8 text-sm leading-relaxed">
                 <h2 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-muted">Contact details</h2>
                 <ul className="mt-4 space-y-2 text-ink/85">
-                  {phone && <li><a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="hover:text-brass-dark">{phone}</a></li>}
-                  {email && <li><a href={`mailto:${email}`} className="hover:text-brass-dark">{email}</a></li>}
+                  {phone && <li><a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="hover:text-accent-dark">{phone}</a></li>}
+                  {email && <li><a href={`mailto:${email}`} className="hover:text-accent-dark">{email}</a></li>}
                   {address && <li>{address}</li>}
                   {hours && <li>{hours}</li>}
                 </ul>

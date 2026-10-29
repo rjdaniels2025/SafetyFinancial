@@ -19,7 +19,7 @@ export default function Footer() {
           </div>
 
           <div className="col-span-2 md:col-span-3">
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-brass-light">Solutions</h2>
+            <h2 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-accent-light">Solutions</h2>
             <ul className="mt-2 text-sm sm:mt-4 sm:space-y-2.5">
               {coreServices.map((s) => (
                 <li key={s.slug}>
@@ -37,7 +37,7 @@ export default function Footer() {
           </div>
 
           <div className="col-span-1 md:col-span-2">
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-brass-light">Firm</h2>
+            <h2 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-accent-light">Firm</h2>
             <ul className="mt-2 text-sm sm:mt-4 sm:space-y-2.5">
               <li><Link to="/about" className="inline-block py-2.5 hover:text-paper sm:py-0">About Us</Link></li>
               <li><Link to="/contact" className="inline-block py-2.5 hover:text-paper sm:py-0">Contact</Link></li>
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
 
           <div className="col-span-1 md:col-span-3">
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-brass-light">Contact</h2>
+            <h2 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-accent-light">Contact</h2>
             {hasContact ? (
               <ul className="mt-2 text-sm sm:mt-4 sm:space-y-2.5">
                 {phone && <li><a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="inline-block py-2.5 hover:text-paper sm:py-0">{phone}</a></li>}
@@ -58,7 +58,7 @@ export default function Footer() {
               </ul>
             ) : (
               <p className="mt-4 text-sm">
-                <Link to="/contact" className="underline decoration-brass underline-offset-4 hover:text-paper">
+                <Link to="/contact" className="underline decoration-accent underline-offset-4 hover:text-paper">
                   Send us a message
                 </Link>{' '}
                 and a member of our team will be in touch.
@@ -67,7 +67,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-paper/10 pt-8 sm:mt-14 text-xs leading-relaxed text-paper/55">
+        <div className="mt-10 border-t border-paper/10 pt-8 sm:mt-14 text-xs leading-relaxed text-paper/65">
           <p>
             {site.name} provides financial consulting, education and referral services. We are not a lender, mortgage
             brokerage, credit bureau, licensed insolvency trustee, law firm or accounting firm. Financing is subject to

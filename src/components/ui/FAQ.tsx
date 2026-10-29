@@ -19,12 +19,12 @@ export default function FAQ({ items }: { items: { q: string; a: string }[] }) {
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpen(isOpen ? null : i)}
-                className="group flex w-full items-start justify-between gap-6 py-5 text-left font-sans text-[16px] font-semibold text-ink transition-colors hover:text-brass-dark"
+                className="group flex w-full items-start justify-between gap-6 py-5 text-left font-sans text-[16px] font-semibold text-ink transition-colors hover:text-accent-dark"
               >
                 {item.q}
                 <span
                   className={`mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border transition-all duration-300 ease-brand ${
-                    isOpen ? 'rotate-45 border-brass bg-brass text-ink' : 'border-line text-brass-dark group-hover:border-brass'
+                    isOpen ? 'rotate-45 border-accent bg-accent text-ink' : 'border-line text-accent-dark group-hover:border-accent'
                   }`}
                 >
                   <Plus className="h-3.5 w-3.5" aria-hidden="true" />

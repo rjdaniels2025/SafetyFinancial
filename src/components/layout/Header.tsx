@@ -61,13 +61,13 @@ export default function Header() {
   }, [dropdown]);
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `relative rounded-md px-3 py-2 text-[14px] font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-[1px] after:h-px after:origin-center after:bg-brass after:transition-transform after:duration-300 after:ease-brand ${
+    `relative rounded-md px-3 py-2 text-[14px] font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-[1px] after:h-px after:origin-center after:bg-accent after:transition-transform after:duration-300 after:ease-brand ${
       isActive ? 'text-ink after:scale-x-100' : 'text-ink/65 after:scale-x-0 hover:text-ink hover:after:scale-x-100'
     }`;
 
   const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
     `flex items-center justify-between border-b border-line py-4 font-serif text-[1.35rem] font-semibold ${
-      isActive ? 'text-brass-dark' : 'text-ink'
+      isActive ? 'text-accent-dark' : 'text-ink'
     }`;
 
   const [debt, funding, strategies] = coreServices;
@@ -78,7 +78,7 @@ export default function Header() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ${
-          solid ? 'border-line/80 bg-paper/85 shadow-[0_8px_30px_-18px_rgba(11,27,46,0.25)] backdrop-blur-md' : 'border-transparent bg-paper'
+          solid ? 'border-line/80 bg-paper/85 shadow-[0_8px_30px_-18px_rgba(18,58,38,0.25)] backdrop-blur-md' : 'border-transparent bg-paper'
         }`}
       >
         <a
@@ -133,7 +133,7 @@ export default function Header() {
                         to={l.to}
                         className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink/75 transition-colors hover:bg-paper hover:text-ink"
                       >
-                        <span className="h-px w-0 bg-brass transition-all duration-300 ease-brand group-hover:w-3" aria-hidden="true" />
+                        <span className="h-px w-0 bg-accent transition-all duration-300 ease-brand group-hover:w-3" aria-hidden="true" />
                         {l.label}
                       </Link>
                     ))}
@@ -193,7 +193,7 @@ export default function Header() {
                 aria-expanded={mobileSubmenu}
                 onClick={() => setMobileSubmenu((s) => !s)}
                 className={`flex w-full items-center justify-between py-4 text-left font-serif text-[1.35rem] font-semibold ${
-                  location.pathname.startsWith(strategiesPath) ? 'text-brass-dark' : 'text-ink'
+                  location.pathname.startsWith(strategiesPath) ? 'text-accent-dark' : 'text-ink'
                 }`}
               >
                 {strategies.navLabel}

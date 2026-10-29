@@ -7,11 +7,11 @@ interface LogoMarkProps {
 export function LogoMark({ className = 'h-9 w-9', reversed = false }: LogoMarkProps) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-      <rect width="48" height="48" rx="9" fill={reversed ? '#F7F5F0' : '#0B1B2E'} />
+      <rect width="48" height="48" rx="9" fill={reversed ? '#F5F7F6' : '#123A26'} />
       <path
         d="M11 16 17.5 33 24 20.5 30.5 33 38 11"
         fill="none"
-        stroke="#A8834A"
+        stroke={reversed ? '#1F5A3C' : '#C9D0CD'}
         strokeWidth="3.4"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -36,7 +36,7 @@ export default function Logo({ reversed = false }: LogoProps) {
         </span>
         <span
           className={`mt-1 text-[0.6rem] font-semibold uppercase tracking-[0.24em] ${
-            reversed ? 'text-brass-light' : 'text-brass-dark'
+            reversed ? 'text-accent-light' : 'text-accent-dark'
           }`}
         >
           Consulting Group
