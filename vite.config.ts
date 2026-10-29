@@ -2,7 +2,7 @@ import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { publicRoutes } from './src/config/routes';
 
-const DEFAULT_SITE_URL = 'https://safetyfinancial.vercel.app';
+const DEFAULT_SITE_URL = 'https://www.wewinconsulting.ca';
 
 /** Injects the public site URL into index.html and writes sitemap.xml and robots.txt at build time. */
 function siteMeta(siteUrl: string): Plugin {

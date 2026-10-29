@@ -11,7 +11,7 @@ export const site = {
 
   // Public URL used for canonical links, sitemap and social previews.
   // Override at build time with the VITE_SITE_URL environment variable.
-  url: (import.meta.env.VITE_SITE_URL as string | undefined) || 'https://safetyfinancial.vercel.app',
+  url: (import.meta.env.VITE_SITE_URL as string | undefined) || 'https://www.wewinconsulting.ca',
 
   contact: {
     email: '', // e.g. 'info@wewinconsulting.ca'
