@@ -32,7 +32,20 @@ export const site = {
   },
 
   // Province(s) of operation, used in legal pages.
-  jurisdiction: '', // e.g. 'Ontario'
+  jurisdiction: 'Ontario',
 
-  legalUpdated: 'October 20, 2026',
+  // Regulatory licensing details shown on the Disclosures page. Only verified details
+  // belong here; anything left empty is replaced by a general statement.
+  licensing: {
+    // Life insurance agents licensed by FSRA, e.g. { name: 'Jane Smith', licence: '12345678' }
+    insuranceAgents: [] as { name: string; licence: string }[],
+    // Managing General Agency (MGA) the agents are contracted through, e.g. 'Example Financial Group Inc.'
+    mga: '',
+    // Insurance companies the agents are contracted with, e.g. ['Insurer A', 'Insurer B']
+    insurers: [] as string[],
+    // Registration under Ontario's Collection and Debt Settlement Services Act, if held
+    debtSettlementRegistration: '',
+  },
+
+  legalUpdated: 'October 30, 2026',
 };

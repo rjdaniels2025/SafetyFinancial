@@ -19,7 +19,7 @@ const FamilyTrustsPage = lazy(() => import('./pages/guides/FamilyTrustsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const PrivacyPage = lazy(() => import('./pages/LegalPages').then((m) => ({ default: m.PrivacyPage })));
 const TermsPage = lazy(() => import('./pages/LegalPages').then((m) => ({ default: m.TermsPage })));
-const DisclosuresPage = lazy(() => import('./pages/LegalPages').then((m) => ({ default: m.DisclosuresPage })));
+const DisclosuresPage = lazy(() => import('./pages/DisclosuresPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {

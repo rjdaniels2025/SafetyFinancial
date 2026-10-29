@@ -197,7 +197,12 @@ export default function CorporateLifeInsurancePage() {
               <li>We do not guarantee tax savings, tax-free distributions, investment returns or future policy performance.</li>
               <li>
                 Coverage is subject to underwriting, eligibility and policy terms. Individualized recommendations and all
-                regulated insurance activity are provided by appropriately licensed professionals.
+                insurance sales are provided only by life insurance agents licensed by FSRA, who are generally compensated by
+                commissions from the insurer.{' '}
+                <Link to="/disclosures#insurance" className="font-medium underline decoration-accent underline-offset-2">
+                  Read our insurance disclosures
+                </Link>
+                .
               </li>
               <li>Corporate insurance and CDA treatment require individualized review with qualified tax and legal advisors.</li>
             </ul>

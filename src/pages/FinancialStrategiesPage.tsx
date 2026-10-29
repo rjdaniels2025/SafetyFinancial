@@ -209,8 +209,13 @@ export default function FinancialStrategiesPage() {
           </Explainer>
         </div>
         <Notice>
-          All insurance recommendations, sales and arrangements are completed by appropriately licensed professionals and
-          remain subject to underwriting, policy terms, exclusions and eligibility.
+          Insurance is offered only through life insurance agents licensed by FSRA, who are generally compensated by
+          commissions from the insurer. All recommendations remain subject to underwriting, policy terms, exclusions and
+          eligibility. See our{' '}
+          <Link to="/disclosures#insurance" className="font-medium underline decoration-accent underline-offset-2">
+            insurance disclosures
+          </Link>
+          .
         </Notice>
       </StrategySection>
 
@@ -274,7 +279,7 @@ export default function FinancialStrategiesPage() {
         <Notice>
           Any regulated investment or insurance activity is handled by appropriately authorized professionals. IPPs,
           participating whole life strategies and tax-planning approaches require individualized review by qualified
-          professionals, including actuaries, accountants and licensed advisors where applicable.
+          professionals, including actuaries, accountants and FSRA-licensed insurance agents where applicable.
         </Notice>
       </StrategySection>
 

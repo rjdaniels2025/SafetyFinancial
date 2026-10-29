@@ -20,7 +20,7 @@ const clients = [
   'Corporations planning for continuity and succession',
 ];
 
-const professionals = ['Accountants and CPAs', 'Tax and business lawyers', 'Licensed insurance advisors', 'Lenders and financing professionals', 'Licensed insolvency trustees', 'Grant writers and program specialists'];
+const professionals = ['Accountants and CPAs', 'Tax and business lawyers', 'FSRA-licensed life insurance agents', 'Lenders and financing professionals', 'Licensed insolvency trustees', 'Grant writers and program specialists'];
 
 export default function AboutPage() {
   usePageMeta(

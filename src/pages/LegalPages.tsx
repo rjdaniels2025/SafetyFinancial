@@ -19,7 +19,7 @@ function LegalLayout({ eyebrow, title, children }: { eyebrow: string; title: str
   );
 }
 
-function ContactLine() {
+export function ContactLine() {
   return site.contact.email ? (
     <>
       by email at <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or through our{' '}
@@ -96,7 +96,7 @@ export function PrivacyPage() {
         </li>
         <li>
           <strong>Professionals and partners.</strong> With your consent, we may share relevant information with lenders,
-          licensed insurance advisors, accountants, lawyers, licensed insolvency trustees or other professionals to whom you
+          licensed insurance agents, accountants, lawyers, licensed insolvency trustees or other professionals to whom you
           ask to be referred.
         </li>
         <li>
@@ -162,7 +162,7 @@ export function TermsPage() {
 
       <h2>Third-party professionals and websites</h2>
       <p>
-        Where we refer you to lenders, licensed advisors or other professionals, their services are provided under their own
+        Where we refer you to lenders, licensed insurance agents or other professionals, their services are provided under their own
         terms and are their responsibility. Links to third-party websites are provided for convenience; we are not
         responsible for their content or practices.
       </p>
@@ -192,74 +192,6 @@ export function TermsPage() {
       <p>
         We may update these terms from time to time. Continued use of the website after changes are posted constitutes
         acceptance of the updated terms. Questions about these terms can be sent to us <ContactLine />.
-      </p>
-    </LegalLayout>
-  );
-}
-
-export function DisclosuresPage() {
-  usePageMeta('Disclosures', `Important disclosures about the services offered by ${site.name}.`, '/disclosures');
-  return (
-    <LegalLayout eyebrow="Legal" title="Disclosures">
-      <p>
-        {site.name} provides financial consulting, education and referral services. Please read the following disclosures
-        carefully.
-      </p>
-
-      <h2>Our role</h2>
-      <p>
-        WeWin is not a lender, mortgage brokerage, credit bureau, licensed insolvency trustee, law firm, accounting firm,
-        actuarial firm, insurance company or investment dealer. Legal, tax, actuarial and insolvency advice is provided by
-        appropriately qualified professionals. Regulated insurance and investment services and recommendations are provided
-        only by appropriately licensed and authorized professionals.
-      </p>
-
-      <h2>Debt solutions and credit</h2>
-      <ul>
-        <li>
-          Debt-resolution outcomes depend on individual circumstances, creditors, applicable law and the agreed scope of
-          service.
-        </li>
-        <li>Accurate negative credit information cannot be guaranteed for removal.</li>
-        <li>We do not guarantee any particular credit score change or the acceptance of a proposed settlement.</li>
-        <li>Collection-related consulting is provided only where permitted by applicable law.</li>
-      </ul>
-
-      <h2>Business funding and grants</h2>
-      <ul>
-        <li>Financing is subject to lender requirements, due diligence and approval.</li>
-        <li>Grant programs are subject to eligibility, availability, deadlines and program conditions.</li>
-        <li>We do not lend money, underwrite credit or make approval decisions.</li>
-      </ul>
-
-      <h2>Insurance</h2>
-      <ul>
-        <li>Insurance is subject to underwriting, policy conditions, eligibility and applicable licensing requirements.</li>
-        <li>
-          Policy guarantees, premiums, cash values, dividends and benefits vary. Non-guaranteed values may be higher or lower
-          than illustrated.
-        </li>
-      </ul>
-
-      <h2>Corporate and tax planning</h2>
-      <ul>
-        <li>
-          Corporate insurance, Capital Dividend Account treatment, Individual Pension Plans and tax-planning strategies
-          require individualized review by qualified professionals.
-        </li>
-        <li>We do not guarantee tax savings, tax-free distributions, investment returns or future policy performance.</li>
-      </ul>
-
-      <h2>Referral arrangements</h2>
-      <p>
-        We may refer clients to third-party professionals and service providers. If WeWin receives a referral fee or other
-        compensation in connection with a referral, we will disclose the arrangement to you before the referral is made, where
-        required by law. You are never obliged to use a professional we refer you to.
-      </p>
-
-      <h2>Questions</h2>
-      <p>
-        If you have questions about these disclosures, please contact us <ContactLine />.
       </p>
     </LegalLayout>
   );

@@ -94,7 +94,9 @@ Most content can be changed by editing a single file; pushing to `main` on GitHu
 | Debt package pricing, inclusions, exclusions and payment terms | `src/data/packages.ts` |
 | Team members (About page section appears once filled in) | `src/data/team.ts` |
 | Page copy | `src/pages/*.tsx` |
-| Privacy Policy, Terms, Disclosures | `src/pages/LegalPages.tsx` |
+| FSRA agent names and licence numbers, MGA, insurers, debt settlement registration | `src/config/site.ts` → `licensing` |
+| Privacy Policy and Terms | `src/pages/LegalPages.tsx` |
+| Disclosures (licensing, compensation, conflicts, complaints) | `src/pages/DisclosuresPage.tsx` |
 | Retired URL redirects and security headers | `vercel.json` |
 
 Anything left empty in `site.ts`, `packages.ts` (price) or `team.ts` is simply hidden — the site never displays

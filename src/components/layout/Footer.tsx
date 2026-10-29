@@ -72,11 +72,13 @@ export default function Footer() {
         <div className="mt-10 border-t border-paper/10 pt-8 sm:mt-14 text-xs leading-relaxed text-paper/65">
           <p>
             {site.name} provides financial consulting, education and referral services. We are not a lender, mortgage
-            brokerage, credit bureau, licensed insolvency trustee, law firm or accounting firm. Financing is subject to
-            lender approval; grants are subject to program eligibility; insurance is subject to underwriting; and debt-resolution
-            outcomes depend on individual circumstances. Regulated insurance, investment, legal, tax, actuarial and insolvency
-            services are provided only by appropriately licensed professionals. Referral arrangements are disclosed where
-            required. See our{' '}
+            brokerage, securities dealer, credit bureau, collection agency, licensed insolvency trustee, law firm or accounting
+            firm. Insurance products are offered only through life insurance agents licensed by the Financial Services
+            Regulatory Authority of Ontario (FSRA), who are generally compensated by commissions from insurers. Financing is
+            subject to lender approval; grants are subject to program eligibility; insurance is subject to underwriting; and
+            debt-resolution outcomes depend on individual circumstances. Legal, tax, actuarial and insolvency services are
+            provided only by appropriately qualified professionals. Referral arrangements and conflicts of interest are
+            disclosed. See our{' '}
             <Link to="/disclosures" className="underline underline-offset-2 hover:text-paper">
               full disclosures
             </Link>

@@ -80,7 +80,7 @@ export default function BusinessFundingPage() {
             ))}
           </div>
           <Reveal className="mt-10 rounded-2xl border border-line bg-paper p-5 sm:p-7">
-            <h3 className="text-lg font-semibold">Advisory support</h3>
+            <h3 className="text-lg font-semibold">Funding readiness support</h3>
             <div className="mt-4">
               <TopicList items={advisory} columns={3} />
             </div>
