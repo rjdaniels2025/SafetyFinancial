@@ -8,51 +8,51 @@ export default function Footer() {
   const hasContact = Boolean(email || phone || address || hours);
 
   return (
-    <footer className="bg-ink text-paper/70">
-      <div className="container-page py-16">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-4">
+    <footer className="pb-safe bg-ink text-paper/70 lg:pb-0">
+      <div className="container-page py-12 sm:py-16">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-12 md:gap-12">
+          <div className="col-span-2 md:col-span-4">
             <Logo reversed />
             <p className="mt-5 max-w-xs text-sm leading-relaxed">
               Financial consulting for individuals, families, entrepreneurs and corporations in Canada.
             </p>
           </div>
 
-          <div className="md:col-span-3">
+          <div className="col-span-2 md:col-span-3">
             <h2 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-brass-light">Solutions</h2>
-            <ul className="mt-4 space-y-2.5 text-sm">
+            <ul className="mt-2 text-sm sm:mt-4 sm:space-y-2.5">
               {coreServices.map((s) => (
                 <li key={s.slug}>
-                  <Link to={s.path} className="hover:text-paper">
+                  <Link to={s.path} className="inline-block py-2.5 hover:text-paper sm:py-0">
                     {s.title}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link to="/financial-strategies/corporate-life-insurance" className="hover:text-paper">
+                <Link to="/financial-strategies/corporate-life-insurance" className="inline-block py-2.5 hover:text-paper sm:py-0">
                   Corporate Life Insurance
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div className="md:col-span-2">
+          <div className="col-span-1 md:col-span-2">
             <h2 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-brass-light">Firm</h2>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              <li><Link to="/about" className="hover:text-paper">About Us</Link></li>
-              <li><Link to="/contact" className="hover:text-paper">Contact</Link></li>
-              <li><Link to="/privacy" className="hover:text-paper">Privacy Policy</Link></li>
-              <li><Link to="/terms" className="hover:text-paper">Terms of Service</Link></li>
-              <li><Link to="/disclosures" className="hover:text-paper">Disclosures</Link></li>
+            <ul className="mt-2 text-sm sm:mt-4 sm:space-y-2.5">
+              <li><Link to="/about" className="inline-block py-2.5 hover:text-paper sm:py-0">About Us</Link></li>
+              <li><Link to="/contact" className="inline-block py-2.5 hover:text-paper sm:py-0">Contact</Link></li>
+              <li><Link to="/privacy" className="inline-block py-2.5 hover:text-paper sm:py-0">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="inline-block py-2.5 hover:text-paper sm:py-0">Terms of Service</Link></li>
+              <li><Link to="/disclosures" className="inline-block py-2.5 hover:text-paper sm:py-0">Disclosures</Link></li>
             </ul>
           </div>
 
-          <div className="md:col-span-3">
+          <div className="col-span-1 md:col-span-3">
             <h2 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-brass-light">Contact</h2>
             {hasContact ? (
-              <ul className="mt-4 space-y-2.5 text-sm">
-                {phone && <li><a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="hover:text-paper">{phone}</a></li>}
-                {email && <li><a href={`mailto:${email}`} className="hover:text-paper">{email}</a></li>}
+              <ul className="mt-2 text-sm sm:mt-4 sm:space-y-2.5">
+                {phone && <li><a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="inline-block py-2.5 hover:text-paper sm:py-0">{phone}</a></li>}
+                {email && <li><a href={`mailto:${email}`} className="inline-block py-2.5 hover:text-paper sm:py-0">{email}</a></li>}
                 {address && <li>{address}</li>}
                 {hours && <li>{hours}</li>}
               </ul>
@@ -67,7 +67,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-paper/10 pt-8 text-xs leading-relaxed text-paper/55">
+        <div className="mt-10 border-t border-paper/10 pt-8 sm:mt-14 text-xs leading-relaxed text-paper/55">
           <p>
             {site.name} provides financial consulting, education and referral services. We are not a lender, mortgage
             brokerage, credit bureau, licensed insolvency trustee, law firm or accounting firm. Financing is subject to

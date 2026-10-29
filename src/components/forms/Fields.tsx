@@ -157,7 +157,7 @@ export function ConsentField({ checked, onChange }: { checked: boolean; onChange
         required
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="mt-0.5 h-4 w-4 flex-shrink-0 accent-ink"
+        className="mt-0.5 h-5 w-5 flex-shrink-0 accent-ink"
       />
       <label htmlFor={id} className="text-sm leading-relaxed text-ink/80">
         I consent to WeWin Consulting Group contacting me about my inquiry using the details provided, and I acknowledge the{' '}

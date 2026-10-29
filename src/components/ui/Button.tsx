@@ -5,12 +5,18 @@ import type { ReactNode } from 'react';
 type Variant = 'primary' | 'secondary' | 'ghost' | 'light' | 'outlineLight';
 
 const base =
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md px-6 py-3 text-[15px] font-semibold transition-colors duration-200';
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-semibold transition-colors duration-200';
+
+// Padding lives here rather than in `base` so the text-style ghost variant can opt out of it
+const sizes = {
+  md: 'px-6 py-3 text-[15px]',
+  sm: 'px-5 py-2.5 text-sm',
+};
 
 const variants: Record<Variant, string> = {
   primary: 'bg-ink text-paper hover:bg-ink-700',
   secondary: 'border border-ink/20 text-ink hover:border-ink hover:bg-white',
-  ghost: 'px-0 py-0 text-ink hover:text-brass-dark',
+  ghost: 'text-[15px] text-ink hover:text-brass-dark',
   light: 'bg-paper text-ink hover:bg-white',
   outlineLight: 'border border-paper/30 text-paper hover:border-paper/60 hover:bg-paper/10',
 };
@@ -19,6 +25,7 @@ interface ButtonProps {
   to?: string;
   href?: string;
   variant?: Variant;
+  size?: keyof typeof sizes;
   arrow?: boolean;
   children: ReactNode;
   className?: string;
@@ -31,6 +38,7 @@ export default function Button({
   to,
   href,
   variant = 'primary',
+  size = 'md',
   arrow = false,
   children,
   className = '',
@@ -38,7 +46,8 @@ export default function Button({
   disabled,
   onClick,
 }: ButtonProps) {
-  const classes = `${base} ${variants[variant]} ${disabled ? 'cursor-not-allowed opacity-60' : ''} ${className}`;
+  const padding = variant === 'ghost' ? '' : sizes[size];
+  const classes = `${base} ${padding} ${variants[variant]} ${disabled ? 'cursor-not-allowed opacity-60' : ''} ${className}`;
   const content = (
     <>
       {children}

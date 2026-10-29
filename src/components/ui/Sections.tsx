@@ -17,13 +17,13 @@ export function PageHero({
   actions?: ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden bg-ink pb-20 pt-36 text-paper sm:pb-24 sm:pt-44">
-      <ArcPattern className="pointer-events-none absolute -right-10 bottom-0 h-[26rem] w-[26rem] sm:h-[34rem] sm:w-[34rem]" />
+    <section className="relative overflow-hidden bg-ink pb-14 pt-28 text-paper sm:pb-24 sm:pt-44">
+      <ArcPattern className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 opacity-70 sm:-right-10 sm:h-[34rem] sm:w-[34rem] sm:opacity-100" />
       <div className="container-page relative">
         <p className="text-xs font-semibold uppercase tracking-eyebrow text-brass-light">{eyebrow}</p>
-        <h1 className="h-display mt-5 max-w-3xl text-paper">{title}</h1>
-        {children && <div className="mt-6 max-w-2xl text-lg leading-relaxed text-paper/75">{children}</div>}
-        {actions && <div className="mt-10 flex flex-col gap-3 sm:flex-row">{actions}</div>}
+        <h1 className="h-display mt-4 max-w-3xl text-paper sm:mt-5">{title}</h1>
+        {children && <div className="mt-5 max-w-2xl text-[17px] leading-relaxed text-paper/75 sm:mt-6 sm:text-lg">{children}</div>}
+        {actions && <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">{actions}</div>}
       </div>
     </section>
   );
@@ -51,12 +51,16 @@ export function SectionHeader({
 
 export function ProcessSteps({ steps }: { steps: { title: string; text: string }[] }) {
   return (
-    <ol className="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+    <ol className="grid border-t border-line sm:gap-px sm:overflow-hidden sm:rounded-lg sm:border sm:bg-line md:grid-cols-2 lg:grid-cols-3">
       {steps.map((step, i) => (
-        <li key={step.title} className="bg-white p-7">
-          <span className="font-serif text-3xl font-semibold text-brass">{String(i + 1).padStart(2, '0')}</span>
-          <h3 className="mt-3 text-lg font-semibold">{step.title}</h3>
-          <p className="mt-2 text-[15px] leading-relaxed text-muted">{step.text}</p>
+        <li key={step.title} className="flex gap-5 border-b border-line py-5 sm:block sm:border-0 sm:bg-white sm:p-7">
+          <span className="w-8 flex-shrink-0 font-serif text-2xl font-semibold leading-none text-brass sm:text-3xl">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <div>
+            <h3 className="text-lg font-semibold leading-snug sm:mt-3">{step.title}</h3>
+            <p className="mt-1.5 text-[15px] leading-relaxed text-muted sm:mt-2">{step.text}</p>
+          </div>
         </li>
       ))}
     </ol>
@@ -98,9 +102,9 @@ export function ConsultationBand({
   text?: string;
 }) {
   return (
-    <section className="bg-paper py-20 sm:py-24">
+    <section className="bg-paper py-14 sm:py-24">
       <div className="container-page">
-        <Reveal className="relative overflow-hidden rounded-xl bg-ink px-6 py-14 text-center sm:px-14">
+        <Reveal className="relative overflow-hidden rounded-xl bg-ink px-6 py-12 text-center sm:px-14 sm:py-14">
           <ArcPattern className="pointer-events-none absolute -right-16 -top-16 h-80 w-80 rotate-180 opacity-70" />
           <h2 className="h-section relative mx-auto max-w-2xl text-paper">{title}</h2>
           <p className="relative mx-auto mt-4 max-w-xl text-paper/70">{text}</p>

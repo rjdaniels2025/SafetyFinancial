@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import ScrollManager from './components/layout/ScrollManager';
+import MobileBookingBar from './components/layout/MobileBookingBar';
 import HomePage from './pages/HomePage';
 
 // Interior pages load on demand to keep the first page fast
@@ -44,6 +45,7 @@ function App() {
         </Suspense>
       </main>
       <Footer />
+      <MobileBookingBar />
     </div>
   );
 }

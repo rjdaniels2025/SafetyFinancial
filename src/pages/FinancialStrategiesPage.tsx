@@ -1,19 +1,14 @@
 import { Link } from 'react-router-dom';
+import type { ReactNode } from 'react';
 import { ArrowRight } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Reveal from '../components/ui/Reveal';
+import SectionTabs from '../components/ui/SectionTabs';
 import { ConsultationBand, Notice, PageHero, TopicList } from '../components/ui/Sections';
 import { strategySections } from '../data/services';
 import usePageMeta from '../hooks/usePageMeta';
 
 const contactFor = (service: string) => `/contact?service=${encodeURIComponent(service)}`;
-
-const sectionBlurbs: Record<string, string> = {
-  'corporate-tax': 'Corporate planning, tax-planning coordination and succession for business owners.',
-  'corporate-protection': 'Continuity, shareholder protection and corporate insurance structures.',
-  'personal-protection': 'Protection for individuals and families against unexpected events.',
-  'wealth-retirement': 'Retirement, wealth planning and long-term financial architecture.',
-};
 
 function StrategySection({
   id,
@@ -30,19 +25,19 @@ function StrategySection({
   title: string;
   description: string;
   topics: string[];
-  children?: React.ReactNode;
+  children?: ReactNode;
   tone: 'white' | 'paper';
   cta: { label: string; service: string };
 }) {
   return (
-    <section id={id} className={`scroll-mt-20 border-t border-line py-20 sm:py-28 ${tone === 'white' ? 'bg-white' : 'bg-paper'}`}>
-      <div className="container-page grid gap-12 lg:grid-cols-12">
+    <section id={id} className={`scroll-mt-[125px] border-t border-line lg:scroll-mt-[141px] py-14 sm:py-20 lg:py-28 ${tone === 'white' ? 'bg-white' : 'bg-paper'}`}>
+      <div className="container-page grid gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-5">
           <Reveal>
-            <p className="font-serif text-5xl font-semibold text-brass">{String.fromCharCode(64 + index)}</p>
+            <p className="font-serif text-4xl font-semibold text-brass sm:text-5xl">{String.fromCharCode(64 + index)}</p>
             <h2 className="h-section mt-4">{title}</h2>
             <p className="lead mt-4">{description}</p>
-            <Button to={contactFor(cta.service)} variant="ghost" arrow className="mt-8">
+            <Button to={contactFor(cta.service)} variant="ghost" arrow className="mt-6 sm:mt-8">
               {cta.label}
             </Button>
           </Reveal>
@@ -61,9 +56,9 @@ function StrategySection({
   );
 }
 
-function Explainer({ title, children }: { title: string; children: React.ReactNode }) {
+function Explainer({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div className="rounded-xl border border-line bg-white p-7">
+    <div className="rounded-xl border border-line bg-white p-5 sm:p-7">
       <h3 className="text-xl font-semibold">{title}</h3>
       <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-ink/80">{children}</div>
     </div>
@@ -93,20 +88,7 @@ export default function FinancialStrategiesPage() {
         objectives.
       </PageHero>
 
-      {/* Subsection index */}
-      <nav aria-label="Financial strategies sections" className="border-b border-line bg-white">
-        <div className="container-page">
-          <div className="grid gap-px border-x border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-          {strategySections.map((s, i) => (
-            <Link key={s.id} to={`#${s.id}`} className="group bg-white p-6 transition-colors hover:bg-paper">
-              <span className="font-serif text-2xl font-semibold text-brass">{String.fromCharCode(65 + i)}</span>
-              <span className="mt-2 block font-semibold leading-snug text-ink">{s.title}</span>
-              <span className="mt-2 block text-sm leading-relaxed text-muted">{sectionBlurbs[s.id]}</span>
-            </Link>
-          ))}
-          </div>
-        </div>
-      </nav>
+      <SectionTabs label="Financial strategies sections" sections={strategySections} />
 
       <StrategySection
         id="corporate-tax"
@@ -159,7 +141,7 @@ export default function FinancialStrategiesPage() {
         </p>
         <Link
           to="/financial-strategies/corporate-life-insurance"
-          className="group flex items-center justify-between gap-6 rounded-xl bg-ink p-7 text-paper transition-colors hover:bg-ink-800"
+          className="group flex items-center justify-between gap-6 rounded-xl bg-ink p-6 text-paper sm:p-7 transition-colors hover:bg-ink-800"
         >
           <span>
             <span className="block text-xs font-semibold uppercase tracking-eyebrow text-brass-light">In depth</span>

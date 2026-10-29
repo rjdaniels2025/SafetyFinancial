@@ -94,11 +94,30 @@ export default function CorporateLifeInsurancePage() {
         corporation, the insured person, the policy and the strategy you intend to pursue.
       </PageHero>
 
-      <section className="bg-white py-20 sm:py-28">
+      <section className="bg-white py-14 sm:py-20 lg:py-28">
         <div className="container-page">
           <SectionHeader eyebrow="The basics" title="Corporate-owned vs. personally owned policies" />
-          <Reveal className="mt-12 overflow-x-auto rounded-xl border border-line">
-            <table className="w-full min-w-[40rem] border-collapse text-left text-[15px]">
+          {/* Phones: one block per row, comparing both ownership types */}
+          <div className="mt-8 space-y-4 md:hidden">
+            {comparison.map((row) => (
+              <div key={row.label} className="rounded-xl border border-line bg-paper p-5">
+                <h3 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-brass-dark">{row.label}</h3>
+                <dl className="mt-3 space-y-3 text-[15px] leading-relaxed">
+                  <div>
+                    <dt className="font-semibold text-ink">Corporate-owned</dt>
+                    <dd className="text-ink/80">{row.corporate}</dd>
+                  </div>
+                  <div className="border-t border-line pt-3">
+                    <dt className="font-semibold text-ink">Personally owned</dt>
+                    <dd className="text-ink/80">{row.personal}</dd>
+                  </div>
+                </dl>
+              </div>
+            ))}
+          </div>
+
+          <Reveal className="mt-12 hidden overflow-hidden rounded-xl border border-line md:block">
+            <table className="w-full border-collapse text-left text-[15px]">
               <thead>
                 <tr className="bg-ink text-paper">
                   <th scope="col" className="w-1/4 p-5 font-semibold" />
@@ -120,12 +139,12 @@ export default function CorporateLifeInsurancePage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <div className="container-page">
           <SectionHeader eyebrow="Purposes" title="How corporations use life insurance" />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          <div className="mt-8 sm:mt-12 grid gap-6 sm:grid-cols-2">
             {purposes.map((p, i) => (
-              <Reveal key={p.title} delay={i * 80} className="rounded-xl border border-line bg-white p-7">
+              <Reveal key={p.title} delay={i * 80} className="rounded-xl border border-line bg-white p-6 sm:p-7">
                 <h3 className="text-xl font-semibold">{p.title}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-muted">{p.text}</p>
               </Reveal>
@@ -144,7 +163,7 @@ export default function CorporateLifeInsurancePage() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-white py-20 sm:py-28">
+      <section className="border-y border-line bg-white py-14 sm:py-20 lg:py-28">
         <div className="container-page grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionHeader eyebrow="Tax considerations" title="The Capital Dividend Account (CDA)" />
@@ -169,7 +188,7 @@ export default function CorporateLifeInsurancePage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <div className="container-page max-w-4xl">
           <Notice title="Please note">
             <ul className="mt-2 list-disc space-y-1.5 pl-5">

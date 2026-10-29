@@ -91,12 +91,12 @@ export default function DebtSolutionsPage() {
         structured approach to the client's financial circumstances.
       </PageHero>
 
-      <section className="bg-white py-20 sm:py-28">
+      <section className="bg-white py-14 sm:py-20 lg:py-28">
         <div className="container-page">
           <SectionHeader eyebrow="Services" title="What we help with" />
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          <div className="mt-8 sm:mt-12 grid gap-6 lg:grid-cols-3">
             {serviceGroups.map((group, i) => (
-              <Reveal key={group.title} delay={i * 100} className="rounded-xl border border-line bg-paper p-7">
+              <Reveal key={group.title} delay={i * 100} className="rounded-xl border border-line bg-paper p-5 sm:p-7">
                 <h3 className="text-xl font-semibold">{group.title}</h3>
                 <div className="mt-5">
                   <TopicList items={group.items} columns={1} />
@@ -107,25 +107,25 @@ export default function DebtSolutionsPage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <div className="container-page">
           <SectionHeader eyebrow="Client process" title="A structured approach, step by step." />
-          <Reveal className="mt-12">
+          <Reveal className="mt-8 sm:mt-12">
             <ProcessSteps steps={steps} />
           </Reveal>
         </div>
       </section>
 
-      <section id="packages" className="scroll-mt-24 border-y border-line bg-white py-20 sm:py-28">
+      <section id="packages" className="scroll-mt-24 border-y border-line bg-white py-14 sm:py-20 lg:py-28">
         <div className="container-page">
           <SectionHeader eyebrow="Service packages" title="Choose the level of support you need.">
             Every engagement begins with a consultation so we can confirm which package, if any, is appropriate for your
             situation.
           </SectionHeader>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          <div className="mt-8 sm:mt-12 grid gap-6 lg:grid-cols-2">
             {debtPackages.map((pkg, i) => (
-              <Reveal key={pkg.name} delay={i * 100} className="flex flex-col rounded-xl border border-line bg-paper p-8">
+              <Reveal key={pkg.name} delay={i * 100} className="flex flex-col rounded-xl border border-line bg-paper p-6 sm:p-8">
                 <p className="eyebrow">Package {i + 1}</p>
                 <h3 className="mt-3 text-2xl font-semibold leading-snug">{pkg.name}</h3>
                 <p className="mt-4 text-[15px] leading-relaxed text-muted">{pkg.description}</p>
@@ -154,7 +154,7 @@ export default function DebtSolutionsPage() {
             ))}
           </div>
 
-          <Reveal className="mt-10 grid gap-8 rounded-xl border border-line p-8 lg:grid-cols-2">
+          <Reveal className="mt-10 grid gap-8 rounded-xl border border-line p-6 sm:p-8 lg:grid-cols-2">
             <div>
               <h3 className="text-lg font-semibold">Not included</h3>
               <ul className="mt-4 space-y-2.5">
@@ -174,7 +174,7 @@ export default function DebtSolutionsPage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <div className="container-page grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionHeader eyebrow="Questions" title="Common questions" />

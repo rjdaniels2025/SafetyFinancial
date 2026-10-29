@@ -33,7 +33,7 @@ export default function AboutPage() {
     <>
       <PageHero eyebrow="About WeWin Consulting Group" title="Strategic Thinking for Complex Financial Decisions." />
 
-      <section className="bg-white py-20 sm:py-28">
+      <section className="bg-white py-14 sm:py-20 lg:py-28">
         <div className="container-page grid items-center gap-14 lg:grid-cols-12">
           <Reveal className="space-y-5 text-lg leading-relaxed text-ink/80 lg:col-span-7">
             <p>
@@ -56,12 +56,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <div className="container-page">
           <SectionHeader eyebrow="Our approach" title="How we work with clients" />
-          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 sm:mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {principles.map((p) => (
-              <div key={p.title} className="bg-white p-7">
+              <div key={p.title} className="bg-white p-5 sm:p-7">
                 <h3 className="text-lg font-semibold">{p.title}</h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-muted">{p.text}</p>
               </div>
@@ -70,7 +70,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-white py-20 sm:py-28">
+      <section className="border-y border-line bg-white py-14 sm:py-20 lg:py-28">
         <div className="container-page grid gap-14 lg:grid-cols-2">
           <Reveal>
             <h2 className="h-section">Who we work with</h2>
@@ -92,12 +92,12 @@ export default function AboutPage() {
       </section>
 
       {team.length > 0 && (
-        <section className="py-20 sm:py-28">
+        <section className="py-14 sm:py-20 lg:py-28">
           <div className="container-page">
             <SectionHeader eyebrow="Our team" title="The people behind WeWin" />
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 sm:mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {team.map((m) => (
-                <Reveal key={m.name} className="rounded-xl border border-line bg-white p-7">
+                <Reveal key={m.name} className="rounded-xl border border-line bg-white p-5 sm:p-7">
                   {m.photo && <img src={m.photo} alt={m.name} className="mb-5 aspect-square w-24 rounded-full object-cover" loading="lazy" />}
                   <h3 className="text-xl font-semibold">{m.name}</h3>
                   <p className="mt-1 text-sm font-medium text-brass-dark">

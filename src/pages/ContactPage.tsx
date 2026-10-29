@@ -40,9 +40,9 @@ export default function ContactPage() {
         a time to talk.
       </PageHero>
 
-      <section className="bg-white py-20 sm:py-24">
-        <div className="container-page grid gap-14 lg:grid-cols-12">
-          <aside className="space-y-10 lg:col-span-4">
+      <section className="bg-white py-14 sm:py-20 lg:py-24">
+        <div className="container-page grid gap-12 lg:grid-cols-12 lg:gap-14">
+          <aside className="order-2 space-y-10 lg:order-1 lg:col-span-4">
             <div className="space-y-7">
               {expectations.map((e) => {
                 const Icon = e.icon;
@@ -83,7 +83,7 @@ export default function ContactPage() {
             )}
           </aside>
 
-          <div className="rounded-xl border border-line bg-paper p-6 sm:p-10 lg:col-span-8">
+          <div className="order-1 -mx-4 border-y border-line bg-paper px-4 py-7 sm:mx-0 sm:rounded-xl sm:border sm:p-10 lg:order-2 lg:col-span-8">
             <ConsultationForm defaultService={params.get('service') ?? ''} />
           </div>
         </div>

@@ -46,6 +46,11 @@
     @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8;
   }
 
+  /* Leaves room for the fixed mobile booking bar, including the iPhone home indicator */
+  .pb-safe {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  }
+
   .eyebrow {
     @apply text-xs font-semibold uppercase tracking-eyebrow text-brass-dark;
   }
@@ -67,7 +72,7 @@
   }
 
   .field-input {
-    @apply w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-[15px] text-ink transition placeholder:text-muted/60 focus:border-ink-700 focus:outline-none focus:ring-2 focus:ring-ink-700/15;
+    @apply w-full rounded-md border border-line bg-white px-3.5 py-3 text-base text-ink transition sm:py-2.5 sm:text-[15px] placeholder:text-muted/60 focus:border-ink-700 focus:outline-none focus:ring-2 focus:ring-ink-700/15;
   }
 
   .field-select {

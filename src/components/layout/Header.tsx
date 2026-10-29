@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { ChevronDown, Mail, Menu, Phone, X } from 'lucide-react';
 import Logo from '../ui/Logo';
 import Button from '../ui/Button';
 import { coreServices, strategySections } from '../../data/services';
+import { site } from '../../config/site';
 
 const strategiesPath = '/financial-strategies';
 const strategyLinks = [
@@ -14,6 +15,7 @@ const strategyLinks = [
 export default function Header() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
+  const [mobileSubmenu, setMobileSubmenu] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -31,6 +33,19 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Keep the page behind the full-screen mobile menu from scrolling
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
   useEffect(() => {
     if (!dropdown) return;
     const onClick = (e: MouseEvent) => {
@@ -46,124 +61,180 @@ export default function Header() {
   }, [dropdown]);
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `rounded-md px-3 py-2 text-[14px] font-medium transition-colors ${
-      isActive ? 'text-ink' : 'text-ink/65 hover:text-ink'
+    `relative rounded-md px-3 py-2 text-[14px] font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-[1px] after:h-px after:bg-brass after:transition-opacity ${
+      isActive ? 'text-ink after:opacity-100' : 'text-ink/65 after:opacity-0 hover:text-ink'
+    }`;
+
+  const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `flex items-center justify-between border-b border-line py-4 font-serif text-[1.35rem] font-semibold ${
+      isActive ? 'text-brass-dark' : 'text-ink'
     }`;
 
   const [debt, funding, strategies] = coreServices;
   const solid = scrolled || open;
+  const { phone, email } = site.contact;
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-        solid ? 'border-line bg-paper/95 backdrop-blur' : 'border-transparent bg-paper'
-      }`}
-    >
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:rounded focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ${
+          solid ? 'border-line bg-paper/95 shadow-[0_1px_0_rgba(11,27,46,0.02)] backdrop-blur' : 'border-transparent bg-paper'
+        }`}
       >
-        Skip to content
-      </a>
-      <div className="container-page flex h-20 items-center justify-between">
-        <Link to="/" aria-label="WeWin Consulting Group home">
-          <Logo />
-        </Link>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:rounded focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
+        >
+          Skip to content
+        </a>
+        <div className="container-page flex h-16 items-center justify-between lg:h-20">
+          <Link to="/" aria-label="WeWin Consulting Group home" className="-ml-1 rounded p-1">
+            <Logo />
+          </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
-          <NavLink to="/" end className={linkClass}>
-            Home
-          </NavLink>
-          <NavLink to="/about" className={linkClass}>
-            About Us
-          </NavLink>
-          <NavLink to={debt.path} className={linkClass}>
-            {debt.navLabel}
-          </NavLink>
-          <NavLink to={funding.path} className={linkClass}>
-            {funding.navLabel}
-          </NavLink>
-          <div ref={dropdownRef} className="relative">
-            <button
-              type="button"
-              aria-expanded={dropdown}
-              aria-haspopup="true"
-              onClick={() => setDropdown((d) => !d)}
-              className={`flex items-center gap-1 rounded-md px-3 py-2 text-[14px] font-medium transition-colors ${
-                location.pathname.startsWith(strategiesPath) ? 'text-ink' : 'text-ink/65 hover:text-ink'
-              }`}
-            >
-              {strategies.navLabel}
-              <ChevronDown className={`h-4 w-4 transition-transform ${dropdown ? 'rotate-180' : ''}`} aria-hidden="true" />
-            </button>
-            {dropdown && (
-              <div className="absolute left-1/2 top-full mt-2 w-80 -translate-x-1/2 rounded-lg border border-line bg-white p-2 shadow-lift">
-                <Link to={strategiesPath} className="block rounded-md px-3 py-2.5 text-sm font-semibold text-ink hover:bg-paper">
-                  Overview
-                </Link>
-                <div className="my-1 h-px bg-line" />
-                {strategyLinks.map((l) => (
-                  <Link key={l.to} to={l.to} className="block rounded-md px-3 py-2.5 text-sm text-ink/75 hover:bg-paper hover:text-ink">
-                    {l.label}
+          <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex">
+            <NavLink to="/" end className={linkClass}>
+              Home
+            </NavLink>
+            <NavLink to="/about" className={linkClass}>
+              About Us
+            </NavLink>
+            <NavLink to={debt.path} className={linkClass}>
+              {debt.navLabel}
+            </NavLink>
+            <NavLink to={funding.path} className={linkClass}>
+              {funding.navLabel}
+            </NavLink>
+            <div ref={dropdownRef} className="relative">
+              <button
+                type="button"
+                aria-expanded={dropdown}
+                aria-haspopup="true"
+                onClick={() => setDropdown((d) => !d)}
+                className={`flex items-center gap-1 rounded-md px-3 py-2 text-[14px] font-medium transition-colors ${
+                  location.pathname.startsWith(strategiesPath) ? 'text-ink' : 'text-ink/65 hover:text-ink'
+                }`}
+              >
+                {strategies.navLabel}
+                <ChevronDown className={`h-4 w-4 transition-transform ${dropdown ? 'rotate-180' : ''}`} aria-hidden="true" />
+              </button>
+              {dropdown && (
+                <div className="absolute left-1/2 top-full mt-3 w-[22rem] -translate-x-1/2 rounded-lg border border-line bg-white p-2 shadow-lift">
+                  <Link to={strategiesPath} className="block rounded-md px-3 py-2.5 hover:bg-paper">
+                    <span className="block text-sm font-semibold text-ink">Financial Strategies overview</span>
+                    <span className="mt-0.5 block text-xs text-muted">Corporate and personal planning in one place</span>
                   </Link>
-                ))}
-              </div>
-            )}
-          </div>
-          <NavLink to="/contact" className={linkClass}>
-            Contact
-          </NavLink>
-        </nav>
+                  <div className="my-1.5 h-px bg-line" />
+                  {strategyLinks.map((l) => (
+                    <Link key={l.to} to={l.to} className="block rounded-md px-3 py-2 text-sm text-ink/75 hover:bg-paper hover:text-ink">
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+            <NavLink to="/contact" className={linkClass}>
+              Contact
+            </NavLink>
+          </nav>
 
-        <div className="hidden lg:block">
-          <Button to="/contact" className="px-5 py-2.5 text-sm">
-            Book a Consultation
-          </Button>
+          <div className="hidden lg:block">
+            <Button to="/contact" size="sm">
+              Book a Consultation
+            </Button>
+          </div>
+
+          <button
+            type="button"
+            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-md text-ink lg:hidden"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((o) => !o)}
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
 
-        <button
-          type="button"
-          className="rounded-md p-2 text-ink lg:hidden"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </div>
+      </header>
 
+      {/* Rendered outside <header>: its backdrop blur would otherwise contain this fixed panel and collapse it */}
       {open && (
-        <nav aria-label="Mobile" className="max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-line bg-paper lg:hidden">
-          <div className="container-page space-y-1 py-4">
-            {[
-              { to: '/', label: 'Home' },
-              { to: '/about', label: 'About Us' },
-              { to: debt.path, label: debt.navLabel },
-              { to: funding.path, label: funding.navLabel },
-              { to: strategiesPath, label: strategies.navLabel },
-            ].map((l) => (
-              <Link key={l.to} to={l.to} className="block rounded-md px-3 py-3 text-[15px] font-medium text-ink hover:bg-paper-dark">
-                {l.label}
-              </Link>
-            ))}
-            <div className="ml-3 border-l border-line pl-3">
-              {strategyLinks.map((l) => (
-                <Link key={l.to} to={l.to} className="block rounded-md px-3 py-2 text-sm text-ink/70 hover:bg-paper-dark">
-                  {l.label}
-                </Link>
-              ))}
+        <nav
+          id="mobile-menu"
+          aria-label="Mobile"
+          className="fixed inset-x-0 bottom-0 top-16 z-50 flex flex-col overflow-y-auto bg-paper lg:hidden"
+        >
+          <div className="container-page flex-1 pt-2">
+            <NavLink to="/" end className={mobileLinkClass}>
+              Home
+            </NavLink>
+            <NavLink to="/about" className={mobileLinkClass}>
+              About Us
+            </NavLink>
+            <NavLink to={debt.path} className={mobileLinkClass}>
+              {debt.navLabel}
+            </NavLink>
+            <NavLink to={funding.path} className={mobileLinkClass}>
+              {funding.navLabel}
+            </NavLink>
+
+            <div className="border-b border-line">
+              <button
+                type="button"
+                aria-expanded={mobileSubmenu}
+                onClick={() => setMobileSubmenu((s) => !s)}
+                className={`flex w-full items-center justify-between py-4 text-left font-serif text-[1.35rem] font-semibold ${
+                  location.pathname.startsWith(strategiesPath) ? 'text-brass-dark' : 'text-ink'
+                }`}
+              >
+                {strategies.navLabel}
+                <ChevronDown className={`h-5 w-5 transition-transform ${mobileSubmenu ? 'rotate-180' : ''}`} aria-hidden="true" />
+              </button>
+              {mobileSubmenu && (
+                <div className="-mt-1 space-y-0.5 pb-4">
+                  <Link to={strategiesPath} className="block rounded-md py-2.5 pl-3 text-[15px] font-semibold text-ink">
+                    Overview
+                  </Link>
+                  {strategyLinks.map((l) => (
+                    <Link key={l.to} to={l.to} className="block rounded-md py-2.5 pl-3 text-[15px] text-ink/75">
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
-            <Link to="/contact" className="block rounded-md px-3 py-3 text-[15px] font-medium text-ink hover:bg-paper-dark">
+
+            <NavLink to="/contact" className={mobileLinkClass}>
               Contact
-            </Link>
-            <div className="pt-3">
-              <Button to="/contact" className="w-full">
-                Book a Consultation
-              </Button>
-            </div>
+            </NavLink>
+          </div>
+
+          <div
+            className="container-page space-y-4 border-t border-line bg-white py-5"
+            style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}
+          >
+            <Button to="/contact" className="w-full py-3.5" arrow>
+              Book a Consultation
+            </Button>
+            {(phone || email) && (
+              <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-ink/75">
+                {phone && (
+                  <a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="flex items-center gap-2 py-1">
+                    <Phone className="h-4 w-4" aria-hidden="true" /> {phone}
+                  </a>
+                )}
+                {email && (
+                  <a href={`mailto:${email}`} className="flex items-center gap-2 py-1">
+                    <Mail className="h-4 w-4" aria-hidden="true" /> {email}
+                  </a>
+                )}
+              </div>
+            )}
+            <p className="text-center text-xs text-muted">Confidential consultations · No obligation</p>
           </div>
         </nav>
       )}
-    </header>
+    </>
   );
 }
