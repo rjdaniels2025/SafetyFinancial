@@ -99,9 +99,9 @@ export default function FinancialStrategiesPage() {
         id="corporate-restructuring"
         index={1}
         tone="paper"
-        title="Corporate Restructuring & Asset Protection"
+        title="Corporate Restructuring"
         description="Restructure your business the right way. We organize corporate debt, ownership and assets so the structure supports a more tax-efficient approach, helps protect what you have built, and prepares the business for the future — working with a coordinated team of CPAs and corporate, tax and litigation lawyers."
-        cta={{ label: 'Discuss restructuring', service: 'Corporate Restructuring, Trusts & Estate Freezes' }}
+        cta={{ label: 'Discuss corporate restructuring', service: 'Corporate Restructuring' }}
         topics={[
           'Corporate debt restructuring',
           'Holding company and operating company structures',

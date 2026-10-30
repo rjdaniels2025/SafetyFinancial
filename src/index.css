@@ -258,6 +258,19 @@
   }
 
   /* Gradient accent for display text */
+  /* Brushed-silver fill for the "Win" in the wordmark; the dark variant keeps it legible on white */
+  .text-silver {
+    background: linear-gradient(115deg, #e6e9ec 0%, #a1a7af 40%, #dcdfe3 58%, #a7adb4 82%, #c8ccd1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-silver-dark {
+    background: linear-gradient(115deg, #8d949c 0%, #6a727a 40%, #a3aab1 58%, #6c747c 82%, #858c94 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
   .text-gradient-accent {
     background: linear-gradient(100deg, #1f5a3c 0%, #2a6e4b 50%, #5f7a6c 100%);
     -webkit-background-clip: text;

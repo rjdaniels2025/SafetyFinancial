@@ -47,14 +47,14 @@ export const coreServices: CoreService[] = [
       'Integrated financial planning for individuals, families, entrepreneurs, and corporations, covering corporate restructuring, corporate financial strategies, tax-planning coordination, financial protection, retirement planning, and long-term wealth objectives.',
     cta: 'Explore Financial Strategies',
     icon: Compass,
-    tagline: 'Restructuring, tax, protection, retirement and wealth planning',
+    tagline: 'Corporate restructuring, tax, protection, retirement and wealth planning',
     highlights: ['Corporate restructuring', 'Corporate & tax strategies', 'Protection & legacy', 'Retirement & wealth'],
   },
 ];
 
 /** Subsections of the Financial Strategies page, used for anchors and the navigation dropdown. */
 export const strategySections = [
-  { id: 'corporate-restructuring', title: 'Corporate Restructuring & Asset Protection', short: 'Restructuring' },
+  { id: 'corporate-restructuring', title: 'Corporate Restructuring', short: 'Corporate Restructuring' },
   { id: 'corporate-tax', title: 'Corporate Financial & Tax Strategies', short: 'Corporate & Tax' },
   { id: 'corporate-protection', title: 'Corporate Protection & Legacy Planning', short: 'Corporate Protection' },
   { id: 'personal-protection', title: 'Personal Financial Protection', short: 'Personal Protection' },
@@ -88,7 +88,7 @@ export const strategyGuides = [
 export const serviceOfInterestOptions = [
   'Debt Solutions & Credit Counselling',
   'Business Funding Solutions',
-  'Corporate Restructuring, Trusts & Estate Freezes',
+  'Corporate Restructuring',
   'Corporate Financial & Tax Strategies',
   'Corporate Protection & Corporate Life Insurance',
   'Personal Financial Protection',

@@ -27,7 +27,7 @@ const audiences = [
 const specialized = [
   { title: 'Credit analysis & debt resolution', to: '/debt-solutions' },
   { title: 'Grants & business incentives', to: '/business-funding#grants' },
-  { title: 'Corporate restructuring & asset protection', to: '/financial-strategies#corporate-restructuring' },
+  { title: 'Corporate restructuring', to: '/financial-strategies#corporate-restructuring' },
   { title: 'Holding companies & corporate structure', to: '/financial-strategies/corporate-structure' },
   { title: 'Estate freezes', to: '/financial-strategies/estate-freeze' },
   { title: 'Family trusts', to: '/financial-strategies/family-trusts' },

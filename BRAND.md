@@ -17,22 +17,25 @@ Brand attributes: **clarity, credibility, discretion, strategic thinking.**
 
 | File | Use |
 | --- | --- |
-| `public/brand/wewin-logo.png` | Primary horizontal logo on light backgrounds (transparent PNG) |
+| `public/brand/wewin-logo-master.png` | The client-supplied master artwork (square, on green) — social profile images and print reference |
+| `public/brand/wewin-logo.png` | Horizontal logo on light backgrounds: the mark on a green tile (transparent PNG) |
 | `public/brand/wewin-logo-reversed.png` | Horizontal logo on forest green or dark backgrounds (transparent PNG) |
-| `public/brand/wewin-mark.svg` | Symbol only, forest green tile — favicons, social avatars, document headers |
-| `public/brand/wewin-mark-reversed.svg` | Symbol only, light tile — for dark backgrounds |
+| `public/brand/wewin-mark.svg` | Symbol on a forest green tile — favicons, social avatars, document headers |
+| `public/brand/wewin-mark-reversed.svg` | Symbol only, no tile — for forest green or dark backgrounds |
 | `public/brand/wewin-mark-512.png` | Square symbol for profile images and app icons |
 
-**The mark:** a "W" drawn as a single continuous stroke whose final line rises above its starting point —
-a quiet signal of forward progress. It appears in metallic silver on a forest green tile, or in forest green on a
-silver-white tile when used on dark backgrounds.
+**The mark:** two interlocking V strokes that form a "W" — a white stroke behind a brushed-silver one, separated
+by a thin cut. The mark is always shown on forest green: directly on green backgrounds, or on a green tile when
+placed on white. In code it is the `WMark` / `LogoMark` component in `src/components/ui/Logo.tsx`.
 
-**Wordmark:** "WeWin" in Source Serif 4 Semibold, with "CONSULTING GROUP" in Inter Semibold, uppercase,
-letter-spaced 0.24em, beneath it.
+**Wordmark:** "We" in Inter Light and "Win" in Inter Bold with a brushed-silver fill, with "CONSULTING GROUP" in
+Inter Medium, uppercase and widely letter-spaced, beneath it. On green, "We" and "CONSULTING GROUP" are white; on
+white they are forest green and "Win" uses a deeper silver so it stays legible.
 
-**Do:** keep clear space around the logo of at least half the height of the "W" tile; use the reversed
-version on dark backgrounds.
-**Don't:** recolour the mark, stretch it, add effects (shadows, gradients, glows), or set the name as "We Win".
+**Do:** keep clear space around the logo of at least half the height of the "W"; use the reversed version on
+dark backgrounds.
+**Don't:** recolour the mark, stretch it, place the white-and-silver mark directly on white, add effects (shadows,
+glows), or set the name as "We Win".
 
 ## Colour palette
 
@@ -47,7 +50,7 @@ white keeps pages clean and open.
 | Green accent (`accent-dark`) | `#2A6E4B` | Accent text on white (eyebrows, links, gradients) |
 | Silver (`accent`) | `#7D8A84` | Rules, numerals and focus rings. Use sparingly |
 | Light silver (`accent-light`) | `#D3D9D6` | Accent text and icons on green backgrounds |
-| Metallic silver | `#C9D0CD` | The "W" mark on green tiles |
+| Brushed silver | `#E6E9EC` → `#A1A7AF` | Gradient used in the logo mark and the "Win" of the wordmark |
 | Silver tint (`accent-50`) | `#EEF3F0` | Notices and subtle highlighted panels |
 | White | `#FFFFFF` | Primary page sections and cards |
 | Silver white (`paper`) | `#F5F7F6` | Alternating page background |
