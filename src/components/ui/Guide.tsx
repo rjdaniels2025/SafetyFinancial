@@ -1,10 +1,13 @@
-import type { ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import HeroBackdrop from '../motion/HeroBackdrop';
+import useScrollExit from '../../hooks/useScrollExit';
+import { useDarkHero } from '../../lib/darkHero';
 import Reveal from './Reveal';
 import { strategyGuides } from '../../data/services';
 
-/** Light editorial header for in-depth guides. `accent` is set in italic green within the title. */
+/** Dark cinematic header for in-depth guides. `accent` is set in italic silver within the title. */
 export function GuideHero({
   eyebrow,
   before,
@@ -18,33 +21,37 @@ export function GuideHero({
   after?: string;
   children: ReactNode;
 }) {
+  const ref = useRef<HTMLElement>(null);
+  const exit = useScrollExit(ref);
+  useDarkHero();
+
   return (
-    <section className="relative overflow-hidden border-b border-line bg-paper pb-14 pt-28 sm:pb-20 sm:pt-40">
-      <div className="aurora" style={{ '--aurora-a': 0.3, '--aurora-b': 0.08 } as React.CSSProperties} />
-      <div className="container-page relative">
+    <section ref={ref} className="relative isolate overflow-hidden bg-ink pb-16 pt-32 text-paper sm:pb-24 sm:pt-44">
+      <HeroBackdrop exit={exit} />
+      <div className="hero-exit container-page relative">
         <Reveal variant="fade">
           <Link
             to="/financial-strategies#corporate-restructuring"
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent-dark"
+            className="inline-flex items-center gap-2 text-sm font-medium text-paper/70 transition-colors hover:text-paper"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             Corporate Restructuring
           </Link>
-          <p className="eyebrow mt-8 flex items-center gap-3">
-            <span className="h-px w-8 bg-accent" aria-hidden="true" />
+          <p className="mt-8 flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow text-accent-light">
+            <span className="h-px w-8 bg-accent-light/70" aria-hidden="true" />
             {eyebrow}
           </p>
         </Reveal>
-        <h1 className="mt-5 max-w-4xl font-serif text-[2.6rem] font-semibold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl">
-          <span className="line">
+        <h1 className="title-shadow mt-5 max-w-4xl font-serif text-[2.6rem] font-semibold leading-[1.04] tracking-tight text-paper sm:text-6xl lg:text-7xl">
+          <span className="focus-line">
             <span style={{ animationDelay: '80ms' }}>
-              {before} <em className="font-normal italic text-accent-dark">{accent}</em>
+              {before} <em className="font-normal italic text-accent-light">{accent}</em>
               {after}
             </span>
           </span>
         </h1>
-        <Reveal delay={250}>
-          <div className="mt-7 max-w-2xl text-lg leading-relaxed text-ink/75 sm:text-xl">{children}</div>
+        <Reveal delay={300}>
+          <div className="title-shadow mt-7 max-w-2xl text-lg leading-relaxed text-paper/80 sm:text-xl">{children}</div>
         </Reveal>
       </div>
     </section>

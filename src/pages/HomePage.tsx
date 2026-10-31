@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Handshake, Lock, MessageSquareText, Users } from 'lucide-react';
 import Button from '../components/ui/Button';
@@ -10,6 +10,8 @@ import { WMark } from '../components/ui/Logo';
 import { coreServices } from '../data/services';
 import { site } from '../config/site';
 import usePageMeta from '../hooks/usePageMeta';
+import useScrollExit from '../hooks/useScrollExit';
+import { useDarkHero } from '../lib/darkHero';
 import { trackSpotlight } from '../hooks/spotlight';
 
 const assurances = [
@@ -52,7 +54,10 @@ const process = [
 
 const INTRO_KEY = 'wewin-intro-seen';
 
-/** True on the first homepage view of a browsing session, so the logo intro plays once per visit. */
+/**
+ * True on the first homepage view of a browsing session, so the opening title sequence plays once per visit.
+ * Any scroll, tap or key press skips straight to the finished scene.
+ */
 function useHeroIntro() {
   const [intro] = useState(() => {
     try {
@@ -62,45 +67,93 @@ function useHeroIntro() {
     }
     return window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
   });
-  useEffect(() => {
+
+  useLayoutEffect(() => {
     try {
       sessionStorage.setItem(INTRO_KEY, '1');
     } catch {
       // Ignore: see above
     }
-  }, []);
+    if (!intro) return;
+    const root = document.documentElement;
+    root.setAttribute('data-intro', '');
+    const end = () => {
+      root.removeAttribute('data-intro');
+      events.forEach((type) => window.removeEventListener(type, skip));
+    };
+    const skip = () => {
+      // Jump every finite animation to its end; endless ambient loops carry on
+      document.getAnimations().forEach((a) => {
+        if (a.effect?.getTiming().iterations !== Infinity) a.finish();
+      });
+      end();
+    };
+    const events = ['wheel', 'touchstart', 'keydown', 'pointerdown'] as const;
+    events.forEach((type) => window.addEventListener(type, skip, { passive: true }));
+    const timer = window.setTimeout(end, 3400);
+    return () => {
+      window.clearTimeout(timer);
+      end();
+    };
+  }, [intro]);
+
   return intro;
 }
 
 export default function HomePage() {
   usePageMeta(`${site.name} | Financial Clarity. Strategic Solutions.`, site.description, '/');
   const intro = useHeroIntro();
-  // While the logo draws itself in, the rest of the hero waits for it; on later visits it appears straight away
-  const t = (ms: number) => (intro ? ms + 900 : ms);
+  // During the title sequence the hero waits for the mark to settle; on later visits it appears straight away
+  const t = (ms: number) => (intro ? ms + 1750 : ms);
+  const heroRef = useRef<HTMLElement>(null);
+  const markRef = useRef<HTMLSpanElement>(null);
+  const exit = useScrollExit(heroRef);
+  useDarkHero();
+
+  // Start the mark large at the centre of the screen; CSS then glides it into its place above the headline
+  useLayoutEffect(() => {
+    const mark = markRef.current;
+    if (!intro || !mark) return;
+    const rect = mark.getBoundingClientRect();
+    const scale = window.innerWidth >= 1024 ? 2.6 : 2.1;
+    mark.style.setProperty('--s', String(scale));
+    mark.style.setProperty('--dx', `${window.innerWidth / 2 - (rect.width * scale) / 2 - rect.left}px`);
+    mark.style.setProperty('--dy', `${window.innerHeight / 2 - (rect.height * scale) / 2 - rect.top}px`);
+  }, [intro]);
 
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-ink pb-16 pt-28 text-paper sm:pb-24 sm:pt-36 lg:flex lg:min-h-[min(100svh,980px)] lg:items-center lg:pb-28 lg:pt-36">
-        <HeroBackdrop />
-        <div className="container-page relative grid w-full items-center gap-14 lg:grid-cols-12">
+      <section
+        ref={heroRef}
+        className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ink pb-28 pt-28 text-paper sm:pb-32 sm:pt-36 lg:min-h-[min(100svh,980px)] lg:pb-32 lg:pt-36"
+      >
+        <HeroBackdrop variant="home" bank="#FFFFFF" bankRest={88} exit={exit} />
+        {intro && (
+          <>
+            <div className="intro-bloom" aria-hidden="true" />
+            <div className="letterbox letterbox-top" aria-hidden="true" />
+            <div className="letterbox letterbox-bottom" aria-hidden="true" />
+          </>
+        )}
+        <div className="hero-exit container-page relative grid w-full items-center gap-14 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <WMark draw={intro} className="h-12 w-auto sm:h-[60px]" />
-            <h1 className="h-display mt-8 text-paper sm:mt-10">
-              <span className="line">
+            <span ref={markRef} className={`block w-fit ${intro ? 'w-intro' : ''}`}>
+              <WMark draw={intro} className="h-12 w-auto sm:h-[60px]" />
+            </span>
+            <h1 className="h-display title-shadow mt-8 text-paper sm:mt-10">
+              <span className="focus-line">
                 <span style={{ animationDelay: `${t(120)}ms` }}>Financial Clarity.</span>
               </span>
-              <span className="line">
-                <span style={{ animationDelay: `${t(240)}ms` }}>Strategic Solutions.</span>
+              <span className="focus-line">
+                <span style={{ animationDelay: `${t(260)}ms` }}>Strategic Solutions.</span>
               </span>
-              <span className="line">
-                <span style={{ animationDelay: `${t(360)}ms` }}>
-                  Stronger Futures.
-                </span>
+              <span className="focus-line">
+                <span style={{ animationDelay: `${t(400)}ms` }}>Stronger Futures.</span>
               </span>
             </h1>
             <Reveal delay={t(480)}>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/75 sm:mt-7">
+              <p className="title-shadow mt-6 max-w-xl text-lg leading-relaxed text-paper/80 sm:mt-7">
                 WeWin Consulting Group helps individuals, families, entrepreneurs, and corporations navigate financial
                 challenges, explore funding opportunities, and develop tailored financial strategies for the future.
               </p>
@@ -165,7 +218,7 @@ export default function HomePage() {
       </section>
 
       {/* Assurances */}
-      <section aria-label="Our commitments" className="relative border-y border-line bg-white">
+      <section aria-label="Our commitments" className="relative border-b border-line bg-white">
         <div className="container-page">
           <ul className="grid grid-cols-2 gap-px bg-line lg:-mx-6 lg:grid-cols-4">
             {assurances.map((a, i) => {

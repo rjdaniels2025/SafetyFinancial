@@ -1,6 +1,8 @@
-import type { ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 import { Info } from 'lucide-react';
-import { ArcPattern } from '../illustrations/Illustrations';
+import HeroBackdrop from '../motion/HeroBackdrop';
+import useScrollExit from '../../hooks/useScrollExit';
+import { useDarkHero } from '../../lib/darkHero';
 import Button from './Button';
 import Reveal from './Reveal';
 
@@ -16,25 +18,28 @@ export function PageHero({
   children?: ReactNode;
   actions?: ReactNode;
 }) {
+  const ref = useRef<HTMLElement>(null);
+  const exit = useScrollExit(ref);
+  useDarkHero();
+
   return (
-    <section className="relative overflow-hidden bg-ink pb-14 pt-28 text-paper sm:pb-24 sm:pt-44">
-      <div className="aurora" />
-      <ArcPattern className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 opacity-70 sm:-right-10 sm:h-[34rem] sm:w-[34rem] sm:opacity-100" />
-      <div className="container-page relative">
+    <section ref={ref} className="relative isolate overflow-hidden bg-ink pb-16 pt-32 text-paper sm:pb-28 sm:pt-48">
+      <HeroBackdrop exit={exit} />
+      <div className="hero-exit container-page relative">
         <Reveal variant="fade">
           <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow text-accent-light">
             <span className="h-px w-8 bg-accent-light/70" aria-hidden="true" />
             {eyebrow}
           </p>
         </Reveal>
-        <h1 className="h-display mt-4 max-w-3xl text-paper sm:mt-5">
-          <span className="line">
+        <h1 className="h-display title-shadow mt-4 max-w-3xl text-paper sm:mt-5">
+          <span className="focus-line">
             <span style={{ animationDelay: '80ms' }}>{title}</span>
           </span>
         </h1>
         {children && (
-          <Reveal delay={260}>
-            <div className="mt-5 max-w-2xl text-[17px] leading-relaxed text-paper/75 sm:mt-6 sm:text-lg">{children}</div>
+          <Reveal delay={300}>
+            <div className="title-shadow mt-5 max-w-2xl text-[17px] leading-relaxed text-paper/80 sm:mt-6 sm:text-lg">{children}</div>
           </Reveal>
         )}
         {actions && (
@@ -140,11 +145,9 @@ export function ConsultationBand({
   return (
     <section className="bg-paper py-14 sm:py-24">
       <div className="container-page">
-        <Reveal variant="scale" className="relative overflow-hidden rounded-3xl bg-ink px-6 py-14 text-center shadow-float sm:px-14 sm:py-20">
-          <div className="aurora" style={{ '--aurora-a': 0.22 } as React.CSSProperties} />
-          <ArcPattern spin className="pointer-events-none absolute -right-20 -top-20 h-96 w-96 rotate-180 opacity-70" />
-          <ArcPattern spin className="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 opacity-40" />
-          <h2 className="h-section relative mx-auto max-w-2xl text-paper">{title}</h2>
+        <Reveal variant="scale" className="relative isolate overflow-hidden rounded-3xl bg-ink px-6 py-16 text-center shadow-float sm:px-14 sm:py-24">
+          <HeroBackdrop variant="band" />
+          <h2 className="h-section title-shadow relative mx-auto max-w-2xl text-paper">{title}</h2>
           <p className="relative mx-auto mt-4 max-w-xl text-paper/70">{text}</p>
           <div className="relative mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Button to="/contact" variant="light" arrow>

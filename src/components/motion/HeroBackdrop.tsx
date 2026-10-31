@@ -1,10 +1,29 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type MutableRefObject } from 'react';
+import SmokeField from './SmokeField';
+
+interface HeroBackdropProps {
+  /**
+   * `home`: the full scene with the gliding silver floor and a passing beam of light.
+   * `page`: interior page headers. `band`: the closing consultation banner.
+   */
+  variant?: 'home' | 'page' | 'band';
+  /** Colour of the section below the hero, for a cloud bank that blends into it. */
+  bank?: string;
+  bankRest?: number;
+  exit?: MutableRefObject<number>;
+}
+
+const smoke = {
+  home: { intensity: 0.62, biasRight: true },
+  page: { intensity: 0.5, biasRight: true },
+  band: { intensity: 0.42, biasRight: false },
+};
 
 /**
- * Layered, slowly moving backdrop for the homepage hero: drifting light, a passing beam and a silver grid
- * gliding toward the viewer. Pure CSS animation, paused whenever the hero is scrolled out of view.
+ * Layered cinematic backdrop for dark sections: drifting light, live smoke, film grain and a vignette.
+ * CSS layers are paused whenever the section is scrolled out of view.
  */
-export default function HeroBackdrop() {
+export default function HeroBackdrop({ variant = 'page', bank, bankRest, exit }: HeroBackdropProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,15 +40,21 @@ export default function HeroBackdrop() {
     <div ref={ref} aria-hidden="true" className="hero-backdrop pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <div className="hb-glow hb-glow-1" />
       <div className="hb-glow hb-glow-2" />
-      <div className="hb-glow hb-glow-3" />
-      <div className="hb-horizon">
-        <div className="hb-floor">
-          <div className="hb-plane" />
-        </div>
-      </div>
-      <div className="hb-beam" />
-      <div className="hb-grain" />
+      {variant === 'home' && (
+        <>
+          <div className="hb-glow hb-glow-3" />
+          <div className="hb-horizon">
+            <div className="hb-floor">
+              <div className="hb-plane" />
+            </div>
+          </div>
+          <div className="hb-beam" />
+        </>
+      )}
+      {/* The vignette sits under the smoke so the cloud bank stays pure white where it meets the next section */}
       <div className="hb-vignette" />
+      <SmokeField {...smoke[variant]} bank={bank} bankRest={bankRest} exit={exit} />
+      <div className="hb-grain" />
     </div>
   );
 }

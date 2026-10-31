@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="container-page py-12 sm:py-16">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-12 md:gap-12">
           <div className="col-span-2 md:col-span-4">
-            <Logo reversed />
+            <Logo reversed bare />
             <p className="mt-5 max-w-xs text-sm leading-relaxed">
               Financial consulting for individuals, families, entrepreneurs and corporations in Canada.
             </p>

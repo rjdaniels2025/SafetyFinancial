@@ -63,21 +63,24 @@ export function LogoMark({ className = 'h-9 w-9' }: { className?: string }) {
 }
 
 interface LogoProps {
+  /** Light wordmark for forest green backgrounds. */
   reversed?: boolean;
+  /** Show the symbol without its tile (only on green backgrounds). */
+  bare?: boolean;
 }
 
-/** Full lockup: symbol plus the WeWin wordmark. `reversed` is for forest green backgrounds. */
-export default function Logo({ reversed = false }: LogoProps) {
+/** Full lockup: symbol plus the WeWin wordmark. */
+export default function Logo({ reversed = false, bare = false }: LogoProps) {
   return (
     <span className="flex items-center gap-3">
-      {reversed ? <WMark className="h-8 w-10 flex-shrink-0" /> : <LogoMark className="h-10 w-10" />}
+      {bare ? <WMark className="h-8 w-10 flex-shrink-0" /> : <LogoMark className="h-10 w-10" />}
       <span className="flex flex-col items-stretch leading-none">
         <span className="font-sans text-[1.5rem] tracking-[-0.02em]">
-          <span className={`font-light ${reversed ? 'text-white' : 'text-ink'}`}>We</span>
+          <span className={`font-light transition-colors duration-300 ${reversed ? 'text-white' : 'text-ink'}`}>We</span>
           <span className={`font-bold ${reversed ? 'text-silver' : 'text-silver-dark'}`}>Win</span>
         </span>
         <span
-          className={`mt-1 text-[0.5rem] font-medium uppercase tracking-[0.32em] ${reversed ? 'text-white' : 'text-ink'}`}
+          className={`mt-1 text-[0.5rem] font-medium uppercase tracking-[0.32em] transition-colors duration-300 ${reversed ? 'text-white' : 'text-ink'}`}
         >
           Consulting Group
         </span>

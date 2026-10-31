@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown, Mail, Menu, Phone, X } from 'lucide-react';
 import Logo from '../ui/Logo';
 import { setScrollLocked } from '../../lib/smoothScroll';
+import { useHasDarkHero } from '../../lib/darkHero';
 import Button from '../ui/Button';
 import { coreServices, strategyGuides, strategySections } from '../../data/services';
 import { site } from '../../config/site';
@@ -60,9 +61,19 @@ export default function Header() {
     };
   }, [dropdown]);
 
+  const [debt, funding, strategies] = coreServices;
+  const solid = scrolled || open;
+  // Over a dark hero the header starts transparent with light text, and turns solid once the visitor scrolls
+  const overDark = useHasDarkHero() && !solid;
+  const { phone, email } = site.contact;
+
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `relative rounded-md px-3 py-2 text-[14px] font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-[1px] after:h-px after:origin-center after:bg-accent after:transition-transform after:duration-300 after:ease-brand ${
-      isActive ? 'text-ink after:scale-x-100' : 'text-ink/65 after:scale-x-0 hover:text-ink hover:after:scale-x-100'
+    `relative rounded-md px-3 py-2 text-[14px] font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-[1px] after:h-px after:origin-center after:transition-transform after:duration-300 after:ease-brand ${
+      overDark ? 'after:bg-accent-light' : 'after:bg-accent'
+    } ${
+      isActive
+        ? `${overDark ? 'text-paper' : 'text-ink'} after:scale-x-100`
+        : `${overDark ? 'text-paper/70 hover:text-paper' : 'text-ink/65 hover:text-ink'} after:scale-x-0 hover:after:scale-x-100`
     }`;
 
   const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -70,15 +81,15 @@ export default function Header() {
       isActive ? 'text-accent-dark' : 'text-ink'
     }`;
 
-  const [debt, funding, strategies] = coreServices;
-  const solid = scrolled || open;
-  const { phone, email } = site.contact;
-
   return (
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ${
-          solid ? 'border-line/80 bg-paper/85 shadow-[0_8px_30px_-18px_rgba(18,58,38,0.25)] backdrop-blur-md' : 'border-transparent bg-paper'
+          solid
+            ? 'border-line/80 bg-paper/85 shadow-[0_8px_30px_-18px_rgba(18,58,38,0.25)] backdrop-blur-md'
+            : overDark
+              ? 'border-transparent bg-transparent'
+              : 'border-transparent bg-paper'
         }`}
       >
         <a
@@ -89,7 +100,7 @@ export default function Header() {
         </a>
         <div className="container-page flex h-16 items-center justify-between lg:h-20">
           <Link to="/" aria-label="WeWin Consulting Group home" className="-ml-1 rounded p-1">
-            <Logo />
+            <Logo reversed={overDark} />
           </Link>
 
           <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex">
@@ -112,7 +123,13 @@ export default function Header() {
                 aria-haspopup="true"
                 onClick={() => setDropdown((d) => !d)}
                 className={`flex items-center gap-1 rounded-md px-3 py-2 text-[14px] font-medium transition-colors ${
-                  location.pathname.startsWith(strategiesPath) ? 'text-ink' : 'text-ink/65 hover:text-ink'
+                  overDark
+                    ? location.pathname.startsWith(strategiesPath)
+                      ? 'text-paper'
+                      : 'text-paper/70 hover:text-paper'
+                    : location.pathname.startsWith(strategiesPath)
+                      ? 'text-ink'
+                      : 'text-ink/65 hover:text-ink'
                 }`}
               >
                 {strategies.navLabel}
@@ -158,14 +175,14 @@ export default function Header() {
           </nav>
 
           <div className="hidden lg:block">
-            <Button to="/contact" size="sm">
+            <Button to="/contact" size="sm" variant={overDark ? 'light' : 'primary'}>
               Book a Consultation
             </Button>
           </div>
 
           <button
             type="button"
-            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-md text-ink lg:hidden"
+            className={`-mr-2 flex h-11 w-11 items-center justify-center rounded-md lg:hidden ${overDark ? 'text-paper' : 'text-ink'}`}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="mobile-menu"
