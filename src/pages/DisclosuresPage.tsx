@@ -346,6 +346,12 @@ export default function DisclosuresPage() {
                   are secured against your property, which can be at risk if payments are not made.
                 </li>
                 <li>
+                  A plan to move from private to institutional financing depends on lender approval, your credit, income and
+                  property value, and market conditions. No refinance, rate or credit result is guaranteed. Borrowing against
+                  home equity to invest increases risk; investment advice is provided only by appropriately registered
+                  advisors.
+                </li>
+                <li>
                   Our referrals are for borrowers. WeWin does not offer, sell or solicit mortgage investments or syndicated
                   mortgages.
                 </li>

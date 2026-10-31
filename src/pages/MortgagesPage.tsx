@@ -12,6 +12,7 @@ const contactHref = `/contact?service=${encodeURIComponent('Mortgage & Private L
 const residential = [
   'Purchase mortgages for homebuyers',
   'Refinancing, including consolidating higher-interest debt',
+  'Refinancing to access home equity for investing',
   'Renewals and switching lenders',
   'Home equity lines of credit',
   'Self-employed and business-owner borrowers',
@@ -25,6 +26,26 @@ const privateAndCommercial = [
   'Commercial and mixed-use property financing',
   'Construction and development financing',
   'Investment and rental property financing',
+];
+
+// The private → institutional path: private financing as a bridge while credit is rebuilt
+const pathway = [
+  {
+    title: 'Private financing as a bridge',
+    text: 'Where a bank will not lend today, a private mortgage arranged by a licensed partner can meet an immediate need — for a defined, short term.',
+  },
+  {
+    title: 'Rebuild your credit',
+    text: 'Through our Debt Solutions service, we review your credit reports, address reporting errors and help you build a plan for payments, balances and debt.',
+  },
+  {
+    title: 'Prepare well before renewal',
+    text: 'We track progress against what institutional lenders typically look for, so you are ready before the private term ends.',
+  },
+  {
+    title: 'Move to an institutional lender',
+    text: 'When your profile qualifies, a licensed partner works to refinance you with a bank, credit union or other institutional lender — typically at a lower cost.',
+  },
 ];
 
 const steps = [
@@ -77,7 +98,45 @@ export default function MortgagesPage() {
         </div>
       </section>
 
-      <section className="py-14 sm:py-20 lg:py-28">
+      <section id="private-to-institutional" className="scroll-mt-24 border-y border-line bg-paper py-14 sm:py-20 lg:py-28">
+        <div className="container-page">
+          <SectionHeader eyebrow="A strategy, not just a loan" title="From a private lender to an institutional lender.">
+            Private mortgages cost more, so they work best as a bridge. We pair the financing with a plan to rebuild your
+            credit, so you are in a position to move to a bank or credit union when the private term ends.
+          </SectionHeader>
+          <Reveal className="mt-8 sm:mt-12">
+            <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {pathway.map((p, i) => (
+                <li key={p.title} className="rounded-2xl border border-line bg-white p-6">
+                  <span className="font-serif text-2xl font-semibold text-accent">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 className="mt-3 font-serif text-lg font-semibold">{p.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-ink/80">{p.text}</p>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+          <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+            <Link
+              to="/debt-solutions"
+              className="text-sm font-semibold text-accent-dark underline decoration-accent underline-offset-4 hover:text-ink"
+            >
+              About our credit analysis and debt solutions →
+            </Link>
+          </div>
+          <div className="mt-8 max-w-4xl">
+            <Notice title="About this strategy">
+              Moving to an institutional lender depends on the lender's approval criteria — including credit history,
+              income, debt levels and property value — and on market conditions at the time. Accurate negative information
+              cannot be removed from a credit report, and rebuilding credit takes time. We do not guarantee any credit score
+              change, approval or rate. Borrowing against home equity to invest increases your risk: investments can lose
+              value while the mortgage must still be repaid, and interest deductibility depends on how the funds are used.
+              Speak with a licensed advisor and your accountant first.
+            </Notice>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-14 sm:py-20 lg:py-28">
         <div className="container-page">
           <SectionHeader eyebrow="How referrals work" title="An introduction, then licensed advice." />
           <Reveal className="mt-8 sm:mt-12">
@@ -86,7 +145,7 @@ export default function MortgagesPage() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-white py-14 sm:py-20 lg:py-28">
+      <section className="border-y border-line bg-paper py-14 sm:py-20 lg:py-28">
         <div className="container-page">
           <SectionHeader eyebrow="Our role" title="Clear about what we do — and what we don't." />
           <Reveal className="mt-8 grid gap-6 sm:mt-12 lg:grid-cols-2">
@@ -105,7 +164,7 @@ export default function MortgagesPage() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-line bg-paper p-6 sm:p-8">
+            <div className="rounded-2xl border border-line bg-white p-6 sm:p-8">
               <h3 className="text-xl font-semibold">Licensed mortgage brokerages & agents</h3>
               <ul className="mt-5 space-y-3">
                 {[
