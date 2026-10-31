@@ -13,6 +13,7 @@ import usePageMeta from '../hooks/usePageMeta';
 import useScrollExit from '../hooks/useScrollExit';
 import { useDarkHero } from '../lib/darkHero';
 import { trackSpotlight } from '../hooks/spotlight';
+import StoryScene from '../components/motion/StoryScene';
 
 const assurances = [
   { icon: Lock, title: 'Confidential consultations' },
@@ -287,6 +288,16 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <StoryScene
+        eyebrow='The WeWin story'
+        chapters={[
+          { scene: 'debt', title: 'Clear the debt.', text: 'Credit analysis and debt-resolution consulting that turns pressure into a plan.' },
+          { scene: 'funding', title: 'Fund the growth.', text: 'Loans, lines of credit, grants and incentives matched to your business and eligibility.' },
+          { scene: 'mortgage', title: 'Secure the home.', text: 'Introductions to licensed mortgage professionals, from first home to private-to-bank refinancing.' },
+          { scene: 'strategy', title: 'Build what lasts.', text: 'Corporate structure, tax coordination, protection and wealth planning with your professional team.' },
+        ]}
+      />
 
       {/* About */}
       <section className="py-14 sm:py-20 lg:py-28">

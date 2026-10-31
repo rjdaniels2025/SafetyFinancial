@@ -4,6 +4,7 @@ import { ConsultationIllustration } from '../components/illustrations/Illustrati
 import { team } from '../data/team';
 import { site } from '../config/site';
 import usePageMeta from '../hooks/usePageMeta';
+import StoryScene from '../components/motion/StoryScene';
 
 const principles = [
   { title: 'Understanding first', text: 'We take time to understand each client’s circumstances before discussing any option.' },
@@ -31,7 +32,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <PageHero eyebrow="About WeWin Consulting Group" title="Strategic Thinking for Complex Financial Decisions." />
+      <PageHero story="about" eyebrow="About WeWin Consulting Group" title="Strategic Thinking for Complex Financial Decisions." />
 
       <section className="bg-white py-14 sm:py-20 lg:py-28">
         <div className="container-page grid items-center gap-14 lg:grid-cols-12">
@@ -55,6 +56,13 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+
+      <StoryScene
+        eyebrow='How we work'
+        chapters={[
+          { scene: 'about', title: 'One plan. A coordinated team.', text: 'Debt, funding, mortgages, tax and protection connected through one plan, with your accountants, lawyers and licensed partners.' },
+        ]}
+      />
 
       <section className="py-14 sm:py-20 lg:py-28">
         <div className="container-page">

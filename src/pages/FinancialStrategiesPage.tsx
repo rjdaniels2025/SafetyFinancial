@@ -79,7 +79,7 @@ export default function FinancialStrategiesPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero story="strategy"
         eyebrow="Corporate & Personal Financial Strategies"
         title="Integrated planning for your business, your family and your future."
         actions={

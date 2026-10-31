@@ -5,6 +5,7 @@ import { ConsultationBand, Notice, PageHero, ProcessSteps, SectionHeader, TopicL
 import FAQ from '../components/ui/FAQ';
 import { debtPackages, packageTerms } from '../data/packages';
 import usePageMeta from '../hooks/usePageMeta';
+import StoryScene from '../components/motion/StoryScene';
 
 const contactLink = `/contact?service=${encodeURIComponent('Debt Solutions & Credit Counselling')}`;
 
@@ -72,7 +73,7 @@ export default function DebtSolutionsPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero story="debt"
         eyebrow="Debt Solutions & Credit Counselling"
         title="Understand Your Credit. Navigate Your Options."
         actions={
@@ -106,6 +107,13 @@ export default function DebtSolutionsPage() {
           </div>
         </div>
       </section>
+
+      <StoryScene
+        eyebrow='How it unfolds'
+        chapters={[
+          { scene: 'debt', title: 'From pressure to balance.', text: 'We map every balance, payment and credit issue, then work through them with you one at a time, toward a plan you can sustain.' },
+        ]}
+      />
 
       <section className="py-14 sm:py-20 lg:py-28">
         <div className="container-page">

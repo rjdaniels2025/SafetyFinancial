@@ -4,6 +4,7 @@ import Reveal from '../components/ui/Reveal';
 import { ConsultationBand, Notice, PageHero, ProcessSteps, SectionHeader, TopicList } from '../components/ui/Sections';
 import FundingIntakeForm from '../components/forms/FundingIntakeForm';
 import usePageMeta from '../hooks/usePageMeta';
+import StoryScene from '../components/motion/StoryScene';
 
 const financingOptions = [
   { title: 'Business loans', text: 'Term financing for defined business purposes.' },
@@ -64,7 +65,7 @@ export default function BusinessFundingPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero story="funding"
         eyebrow="Business Funding Solutions"
         title="Strategic Funding Solutions for Business Growth."
         actions={
@@ -102,6 +103,13 @@ export default function BusinessFundingPage() {
           </Reveal>
         </div>
       </section>
+
+      <StoryScene
+        eyebrow='How it unfolds'
+        chapters={[
+          { scene: 'funding', title: 'From ambition to funded.', text: 'We match your business to the loans, lines of credit, grants and incentives it may qualify for, and help you prepare to apply.' },
+        ]}
+      />
 
       <section className="py-14 sm:py-20 lg:py-28">
         <div className="container-page">

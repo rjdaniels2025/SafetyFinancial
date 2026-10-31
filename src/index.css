@@ -535,3 +535,167 @@ html[data-intro] header {
     filter: blur(calc(var(--exit, 0) * 6px));
   }
 }
+
+/* ---------- Scroll story: line-art chapters of the WeWin story, driven by scroll position ---------- */
+/* A section sets --p (0–1, how far the visitor has scrolled through it). Each stroke maps its own window of
+   that progress (--a → --b) to its draw-in, and optionally (--fa → --fb) to a fade-out, so the picture builds
+   forward and rewinds backward with the visitor's scrolling. Nothing runs on a timer and nothing repeats. */
+@property --intro {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+.ss {
+  --t: var(--p, 0);
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  color: rgba(222, 230, 226, 0.78);
+  filter: drop-shadow(0 0 7px rgba(220, 235, 228, 0.35));
+}
+.ss-chapter {
+  --t: clamp(0, (var(--p, 0) - var(--c0)) / (var(--c1) - var(--c0)), 1);
+  opacity: calc(
+    clamp(0, (var(--p, 0) - var(--c0)) / 0.025, 1) * max(var(--keep, 0), clamp(0, (var(--c1) - var(--p, 0)) / 0.025, 1))
+  );
+}
+.ss-chapter:first-child {
+  opacity: max(var(--keep, 0), clamp(0, (var(--c1) - var(--p, 0)) / 0.025, 1));
+}
+.ss-el,
+.ss-tilt {
+  --k: clamp(0, (var(--t) - var(--a, 0)) / (var(--b, 1) - var(--a, 0)), 1);
+  --f: clamp(0, (var(--t) - var(--fa, 2)) / (var(--fb, 3) - var(--fa, 2)), 1);
+}
+.ss-line,
+.ss-flow,
+.ss-orbit {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.ss-line {
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: calc(1 - var(--k));
+  opacity: calc(min(1, var(--k) * 12) * (1 - var(--f)));
+}
+.ss-node {
+  fill: #fff;
+  opacity: calc(var(--k) * (1 - var(--f)));
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(calc(0.4 + 0.6 * var(--k)));
+}
+.ss-glow {
+  fill: rgba(255, 244, 222, 0.6);
+  stroke: currentColor;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+  opacity: var(--k);
+}
+.ss-flow {
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-dasharray: 0.06 1;
+  stroke-dashoffset: calc(1.06 * (1 - var(--k)));
+  opacity: calc(min(1, var(--k) * 20) * min(1, (1 - var(--k)) * 20));
+}
+.ss-orbit {
+  stroke-dasharray: 2 10;
+  opacity: calc(0.45 * min(1, var(--t) * 6));
+  vector-effect: none;
+  stroke-width: 1.2;
+}
+.ss-spin {
+  transform-box: view-box;
+  transform-origin: 300px 300px;
+  transform: rotate(calc(var(--t) * 90deg));
+}
+/* The debt scale: tipped by the weight in act one, back to level in act two; the pans keep hanging straight */
+.ss-tilt {
+  transform-box: view-box;
+  transform-origin: 300px 170px;
+  transform: rotate(calc(-11deg * (1 - var(--k)) * min(1, var(--t) * 2.4)));
+}
+.ss-hang {
+  transform-box: view-box;
+  transform: rotate(calc(11deg * (1 - var(--k)) * min(1, var(--t) * 2.4)));
+}
+
+/* Behind a dark page header: the opening plays as the page loads, the rest as the header scrolls away */
+.ss-hero {
+  --p: calc(var(--intro) * 0.45 + min(1, var(--exit, 0) * 1.8) * 0.55);
+  position: absolute;
+  pointer-events: none;
+  right: -14%;
+  bottom: -6%;
+  width: 92vw;
+  aspect-ratio: 1;
+  opacity: 0.28;
+  animation: ss-intro 3.4s cubic-bezier(0.45, 0, 0.25, 1) 0.5s both;
+}
+@keyframes ss-intro {
+  from { --intro: 0; }
+  to { --intro: 1; }
+}
+@media (min-width: 1024px) {
+  .ss-hero {
+    right: max(2vw, calc((100vw - 72rem) / 2 - 2rem));
+    top: 50%;
+    bottom: auto;
+    width: min(36vw, 520px);
+    transform: translateY(-46%);
+    opacity: 0.8;
+    /* Long interior headlines can reach this far right: fade the scene's left edge out behind them */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+  }
+}
+
+/* Full-screen story breaks between sections: pinned while the visitor scrolls through them */
+.ss-stage-art {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  width: min(96vw, 58svh);
+  aspect-ratio: 1;
+  opacity: 0.6;
+  transform: translateX(-50%);
+}
+@media (min-width: 1024px) {
+  .ss-stage-art {
+    left: auto;
+    right: max(3vw, calc((100vw - 72rem) / 2));
+    top: 50%;
+    bottom: auto;
+    width: min(46vw, 78svh, 640px);
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+}
+/* Captions come into focus with their part of the scroll and leave as the next one arrives */
+.ss-caption {
+  --in: clamp(0, (var(--p, 0) - var(--c0, 0)) / 0.06, 1);
+  --out: max(var(--keep, 0), clamp(0, (var(--c1, 1) - var(--p, 0)) / 0.06, 1));
+  opacity: calc(var(--in) * var(--out));
+  filter: blur(calc((1 - var(--in) * var(--out)) * 10px));
+  transform: translate3d(0, calc((1 - var(--in)) * 28px - (1 - var(--out)) * 28px), 0);
+}
+.ss-caption:first-child {
+  --in: 1;
+}
+.ss-progress {
+  transform-origin: left;
+  transform: scaleX(var(--p, 0));
+}
+
+/* Reduced motion: every scene is shown finished and still */
+@media (prefers-reduced-motion: reduce) {
+  .ss-hero {
+    animation: none;
+    --p: 1;
+  }
+}

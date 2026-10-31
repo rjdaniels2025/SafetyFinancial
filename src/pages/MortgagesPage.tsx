@@ -6,6 +6,7 @@ import { ConsultationBand, Notice, PageHero, ProcessSteps, SectionHeader, TopicL
 import { mortgagePage } from '../data/services';
 import { site } from '../config/site';
 import usePageMeta from '../hooks/usePageMeta';
+import StoryScene from '../components/motion/StoryScene';
 
 const contactHref = `/contact?service=${encodeURIComponent('Mortgage & Private Lending Referrals')}`;
 
@@ -65,7 +66,7 @@ export default function MortgagesPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero story="mortgage"
         eyebrow="Mortgage & Private Lending"
         title="Mortgage and Private Lending Referrals."
         actions={
@@ -97,6 +98,13 @@ export default function MortgagesPage() {
           </div>
         </div>
       </section>
+
+      <StoryScene
+        eyebrow='How it unfolds'
+        chapters={[
+          { scene: 'mortgage', title: 'From a private lender to a bank.', text: 'Private financing as the bridge, a credit plan as the foundation, and an institutional lender as the destination.' },
+        ]}
+      />
 
       <section id="private-to-institutional" className="scroll-mt-24 border-y border-line bg-paper py-14 sm:py-20 lg:py-28">
         <div className="container-page">
