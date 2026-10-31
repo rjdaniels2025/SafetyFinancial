@@ -4,6 +4,7 @@ export const publicRoutes = [
   '/about',
   '/debt-solutions',
   '/business-funding',
+  '/mortgages',
   '/financial-strategies',
   '/financial-strategies/corporate-life-insurance',
   '/financial-strategies/corporate-structure',

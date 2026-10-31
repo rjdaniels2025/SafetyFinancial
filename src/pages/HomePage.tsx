@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
+import { useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Handshake, Lock, MessageSquareText, Users } from 'lucide-react';
 import Button from '../components/ui/Button';
@@ -30,7 +30,8 @@ const audiences = [
 
 const specialized = [
   { title: 'Credit analysis & debt resolution', to: '/debt-solutions' },
-  { title: 'Grants & business incentives', to: '/business-funding#grants' },
+  { title: 'Grants, SR&ED & business incentives', to: '/business-funding#grants' },
+  { title: 'Mortgage & private lending referrals', to: '/mortgages' },
   { title: 'Corporate restructuring', to: '/financial-strategies#corporate-restructuring' },
   { title: 'Holding companies & corporate structure', to: '/financial-strategies/corporate-structure' },
   { title: 'Estate freezes', to: '/financial-strategies/estate-freeze' },
@@ -41,6 +42,7 @@ const specialized = [
   { title: 'Individual Pension Plans (IPPs)', to: '/financial-strategies#wealth-retirement' },
   { title: 'Retirement & wealth planning', to: '/financial-strategies#wealth-retirement' },
   { title: 'Succession & continuity planning', to: '/financial-strategies#corporate-protection' },
+  { title: 'Group benefits for business owners', to: '/financial-strategies#group-benefits' },
 ];
 
 const process = [

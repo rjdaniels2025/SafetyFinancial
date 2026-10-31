@@ -31,6 +31,21 @@ const steps = [
   { title: 'Follow-up', text: 'We stay in touch as you move through the process and plan your next steps.' },
 ];
 
+// Featured programs. Details checked against OCI and CRA sources (October 2026); programs change, so keep these
+// general and point to the administering organization for current terms.
+const featuredPrograms = [
+  {
+    name: 'Retail Modernization Project Grant',
+    by: 'Ontario Centre of Innovation (OCI)',
+    text: "For Ontario retailers adopting digital tools: up to $5,000 in matched funding through OCI's Digitalization Competence Centre, toward eligible hardware, software and implementation costs. Applications are first come, first served while funds last.",
+  },
+  {
+    name: 'SR&ED tax incentive',
+    by: 'Canada Revenue Agency',
+    text: 'The Scientific Research and Experimental Development program provides investment tax credits for eligible research and development carried out in Canada, including an enhanced refundable credit of up to 35% for qualifying Canadian-controlled private corporations. We help you assess potential eligibility and coordinate with SR&ED specialists and your accountant.',
+  },
+];
+
 const grants = [
   'Grant opportunity identification',
   'Government program research',
@@ -106,11 +121,20 @@ export default function BusinessFundingPage() {
             </SectionHeader>
           </div>
           <Reveal className="space-y-8 lg:col-span-7" delay={100}>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {featuredPrograms.map((p) => (
+                <div key={p.name} className="rounded-2xl border border-line bg-paper p-6">
+                  <p className="text-xs font-semibold uppercase tracking-eyebrow text-accent-dark">{p.by}</p>
+                  <h3 className="mt-2 font-serif text-xl font-semibold">{p.name}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-ink/80">{p.text}</p>
+                </div>
+              ))}
+            </div>
             <TopicList items={grants} />
             <Notice title="About grants and programs">
               Grant availability, eligibility, deadlines, eligible expenses and funding amounts vary by program and can change
-              without notice. Program decisions are made by the administering organization. We do not guarantee financing
-              approval or grant awards.
+              without notice. Program decisions are made by the administering organization; SR&ED claims are reviewed by the
+              Canada Revenue Agency. We do not guarantee financing approval, grant awards or tax credits.
             </Notice>
           </Reveal>
         </div>

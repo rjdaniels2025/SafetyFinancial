@@ -130,6 +130,7 @@ export default function FinancialStrategiesPage() {
           'Estate and succession planning',
           'Corporate-owned life insurance strategies',
           'Capital Dividend Account (CDA) coordination',
+          'SR&ED tax incentive coordination for eligible research and development',
           'Shareholder and key person protection',
           'Business continuity planning',
           'Coordination with accountants, CPAs and corporate tax lawyers',
@@ -140,6 +141,12 @@ export default function FinancialStrategiesPage() {
           specialized advice are provided by appropriately qualified professionals, such as CPAs and tax lawyers, with whom we
           coordinate.
         </Notice>
+        <Link
+          to="/business-funding#grants"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent-dark underline decoration-accent underline-offset-4 hover:text-ink"
+        >
+          SR&amp;ED and other tax incentives for businesses →
+        </Link>
       </StrategySection>
 
       <StrategySection
@@ -181,9 +188,38 @@ export default function FinancialStrategiesPage() {
       </StrategySection>
 
       <StrategySection
-        id="personal-protection"
+        id="group-benefits"
         index={4}
         tone="white"
+        title="Group Benefits for Business Owners"
+        description="Benefits plans that help business owners protect themselves and their teams, attract and keep good people, and manage costs, from owner-operators to growing companies."
+        cta={{ label: 'Discuss group benefits', service: 'Group Benefits for Business Owners' }}
+        topics={[
+          'Group life and accidental death & dismemberment insurance',
+          'Short- and long-term disability coverage',
+          'Extended health and dental care',
+          'Critical illness coverage',
+          'Health spending accounts for owners and small teams',
+          'Employee assistance programs',
+          'Plan design for owner-operators and small businesses',
+          'Plan reviews, renewals and cost management',
+        ]}
+      >
+        <Notice>
+          Insured group benefits are offered only through life insurance agents licensed by FSRA and are provided by the
+          insurer under its contract. Coverage, eligibility, pricing and renewals are set by the insurer and may require
+          medical evidence. Agents are generally compensated by commissions from the insurer, as described in our{' '}
+          <Link to="/disclosures#compensation" className="font-medium underline underline-offset-2">
+            Disclosures
+          </Link>
+          .
+        </Notice>
+      </StrategySection>
+
+      <StrategySection
+        id="personal-protection"
+        index={5}
+        tone="paper"
         title="Personal Financial Protection"
         description="Explore financial protection options designed to help individuals and families prepare for unexpected events, protect important obligations, and plan for long-term security."
         cta={{ label: 'Discuss personal protection', service: 'Personal Financial Protection' }}
@@ -221,8 +257,8 @@ export default function FinancialStrategiesPage() {
 
       <StrategySection
         id="wealth-retirement"
-        index={5}
-        tone="paper"
+        index={6}
+        tone="white"
         title="Wealth, Retirement & Financial Architecture"
         description="Explore retirement, wealth-planning, and financial architecture concepts designed to support longer-term personal and corporate objectives."
         cta={{ label: 'Discuss long-term planning', service: 'Wealth, Retirement & Financial Architecture' }}

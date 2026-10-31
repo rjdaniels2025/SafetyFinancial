@@ -43,6 +43,9 @@ export const site = {
     mga: '',
     // Insurance companies the agents are contracted with, e.g. ['Insurer A', 'Insurer B']
     insurers: [] as string[],
+    // Mortgage brokerages / agents WeWin refers to, as they should appear publicly, e.g.
+    // { name: 'Example Mortgages Inc.', licence: 'FSRA brokerage licence no. 12345' }
+    mortgagePartners: [] as { name: string; licence: string }[],
     // Registration under Ontario's Collection and Debt Settlement Services Act, if held
     debtSettlementRegistration: '',
   },

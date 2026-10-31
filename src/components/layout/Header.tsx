@@ -5,7 +5,7 @@ import Logo from '../ui/Logo';
 import { setScrollLocked } from '../../lib/smoothScroll';
 import { useHasDarkHero } from '../../lib/darkHero';
 import Button from '../ui/Button';
-import { coreServices, strategyGuides, strategySections } from '../../data/services';
+import { coreServices, mortgagePage, strategyGuides, strategySections } from '../../data/services';
 import { site } from '../../config/site';
 
 const strategiesPath = '/financial-strategies';
@@ -68,7 +68,7 @@ export default function Header() {
   const { phone, email } = site.contact;
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `relative rounded-md px-3 py-2 text-[14px] font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-[1px] after:h-px after:origin-center after:transition-transform after:duration-300 after:ease-brand ${
+    `relative whitespace-nowrap rounded-md px-3 py-2 text-[14px] font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-[1px] after:h-px after:origin-center after:transition-transform after:duration-300 after:ease-brand ${
       overDark ? 'after:bg-accent-light' : 'after:bg-accent'
     } ${
       isActive
@@ -103,10 +103,8 @@ export default function Header() {
             <Logo reversed={overDark} />
           </Link>
 
-          <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex">
-            <NavLink to="/" end className={linkClass}>
-              Home
-            </NavLink>
+          <nav aria-label="Main" className="hidden items-center gap-0.5 xl:flex">
+            {/* No "Home" link here: the logo goes home, and the row needs the room */}
             <NavLink to="/about" className={linkClass}>
               About Us
             </NavLink>
@@ -116,13 +114,16 @@ export default function Header() {
             <NavLink to={funding.path} className={linkClass}>
               {funding.navLabel}
             </NavLink>
+            <NavLink to={mortgagePage.path} className={linkClass}>
+              {mortgagePage.navLabel}
+            </NavLink>
             <div ref={dropdownRef} className="relative">
               <button
                 type="button"
                 aria-expanded={dropdown}
                 aria-haspopup="true"
                 onClick={() => setDropdown((d) => !d)}
-                className={`flex items-center gap-1 rounded-md px-3 py-2 text-[14px] font-medium transition-colors ${
+                className={`flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-[14px] font-medium transition-colors ${
                   overDark
                     ? location.pathname.startsWith(strategiesPath)
                       ? 'text-paper'
@@ -174,7 +175,7 @@ export default function Header() {
             </NavLink>
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <Button to="/contact" size="sm" variant={overDark ? 'light' : 'primary'}>
               Book a Consultation
             </Button>
@@ -182,7 +183,7 @@ export default function Header() {
 
           <button
             type="button"
-            className={`-mr-2 flex h-11 w-11 items-center justify-center rounded-md lg:hidden ${overDark ? 'text-paper' : 'text-ink'}`}
+            className={`-mr-2 flex h-11 w-11 items-center justify-center rounded-md xl:hidden ${overDark ? 'text-paper' : 'text-ink'}`}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -199,7 +200,7 @@ export default function Header() {
         <nav
           id="mobile-menu"
           aria-label="Mobile"
-          className="fixed inset-x-0 bottom-0 top-16 z-50 flex animate-[reveal-fade_0.25s_ease-out_both] flex-col overflow-y-auto bg-paper lg:hidden"
+          className="fixed inset-x-0 bottom-0 top-16 z-50 flex animate-[reveal-fade_0.25s_ease-out_both] flex-col overflow-y-auto bg-paper lg:top-20 xl:hidden"
         >
           <div className="container-page flex-1 pt-2 [&>*]:animate-[reveal-left_0.5s_cubic-bezier(0.22,1,0.36,1)_both] [&>*:nth-child(2)]:[animation-delay:40ms] [&>*:nth-child(3)]:[animation-delay:80ms] [&>*:nth-child(4)]:[animation-delay:120ms] [&>*:nth-child(5)]:[animation-delay:160ms] [&>*:nth-child(6)]:[animation-delay:200ms]">
             <NavLink to="/" end className={mobileLinkClass}>
@@ -213,6 +214,9 @@ export default function Header() {
             </NavLink>
             <NavLink to={funding.path} className={mobileLinkClass}>
               {funding.navLabel}
+            </NavLink>
+            <NavLink to={mortgagePage.path} className={mobileLinkClass}>
+              {mortgagePage.title}
             </NavLink>
 
             <div className="border-b border-line">

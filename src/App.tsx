@@ -12,6 +12,7 @@ import { startSmoothScroll } from './lib/smoothScroll';
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const DebtSolutionsPage = lazy(() => import('./pages/DebtSolutionsPage'));
 const BusinessFundingPage = lazy(() => import('./pages/BusinessFundingPage'));
+const MortgagesPage = lazy(() => import('./pages/MortgagesPage'));
 const FinancialStrategiesPage = lazy(() => import('./pages/FinancialStrategiesPage'));
 const CorporateLifeInsurancePage = lazy(() => import('./pages/CorporateLifeInsurancePage'));
 const CorporateStructurePage = lazy(() => import('./pages/guides/CorporateStructurePage'));
@@ -41,6 +42,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/debt-solutions" element={<DebtSolutionsPage />} />
               <Route path="/business-funding" element={<BusinessFundingPage />} />
+              <Route path="/mortgages" element={<MortgagesPage />} />
               <Route path="/financial-strategies" element={<FinancialStrategiesPage />} />
               <Route path="/financial-strategies/corporate-life-insurance" element={<CorporateLifeInsurancePage />} />
               <Route path="/financial-strategies/corporate-structure" element={<CorporateStructurePage />} />

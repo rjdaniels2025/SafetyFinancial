@@ -18,7 +18,7 @@ function External({ href, children }: { href: string; children: ReactNode }) {
 
 const regulators: { activity: string; regulator: string; role: ReactNode }[] = [
   {
-    activity: 'Life insurance, accident and sickness insurance, and segregated fund contracts',
+    activity: 'Life insurance, accident and sickness insurance (including group benefits), and segregated fund contracts',
     regulator: 'Financial Services Regulatory Authority of Ontario (FSRA) — Insurance Act (Ontario)',
     role: 'Offered only through life insurance agents licensed by FSRA.',
   },
@@ -63,6 +63,7 @@ const sections = [
   { id: 'compensation', title: 'Compensation, referrals and conflicts of interest' },
   { id: 'debt', title: 'Debt solutions and credit' },
   { id: 'funding', title: 'Business funding and grants' },
+  { id: 'mortgages', title: 'Mortgages and private lending' },
   { id: 'corporate', title: 'Corporate restructuring, tax and legal' },
   { id: 'investments', title: 'Investments, pensions and retirement' },
   { id: 'website', title: 'Information on this website' },
@@ -74,7 +75,7 @@ const atAGlance = [
   'WeWin provides financial consulting, education and referrals.',
   'Insurance is offered only through FSRA-licensed life insurance agents.',
   'Agents are generally paid commissions by insurers, and conflicts of interest are disclosed.',
-  'We are not a lender, mortgage brokerage, securities dealer, law firm or accounting firm.',
+  'We are not a lender, mortgage brokerage, securities dealer, law firm or accounting firm; mortgages are referred to FSRA-licensed partners.',
   'No outcome — approval, settlement, credit change or tax result — is guaranteed.',
   'You are never required to buy one product to receive another service.',
 ];
@@ -168,9 +169,9 @@ export default function DisclosuresPage() {
             <Section id="insurance" title="3. Insurance products and your agent">
               <h3>Licensing</h3>
               <p>
-                Life insurance, accident and sickness insurance (including critical illness and disability coverage) and
-                segregated fund contracts are offered only through life insurance agents licensed by the Financial Services
-                Regulatory Authority of Ontario. You can confirm an agent's licence using FSRA's public licence search at{' '}
+                Life insurance, accident and sickness insurance (including critical illness and disability coverage, and
+                insured group benefits plans) and segregated fund contracts are offered only through life insurance agents
+                licensed by the Financial Services Regulatory Authority of Ontario. You can confirm an agent's licence using FSRA's public licence search at{' '}
                 <External href="https://www.fsrao.ca">fsrao.ca</External>.
               </p>
               {insuranceAgents.length > 0 && (
@@ -316,10 +317,42 @@ export default function DisclosuresPage() {
                   Grant and government programs are subject to eligibility, availability, deadlines, eligible-expense rules and
                   program conditions, and decisions are made by the administering organization. Funding is not guaranteed.
                 </li>
+                <li>
+                  SR&amp;ED investment tax credits are claimed through your corporation's tax return and are subject to review
+                  and reassessment by the Canada Revenue Agency. Claims are prepared with your accountant or an SR&amp;ED
+                  specialist, who may charge their own fees.
+                </li>
               </ul>
             </Section>
 
-            <Section id="corporate" title="7. Corporate restructuring, tax and legal">
+            <Section id="mortgages" title="7. Mortgages and private lending">
+              <ul>
+                <li>
+                  WeWin is not licensed under the <em>Mortgage Brokerages, Lenders and Administrators Act, 2006</em> and does
+                  not deal or trade in mortgages. We do not advise on mortgage products, rates or terms, collect mortgage
+                  applications or documents, or negotiate with lenders.
+                </li>
+                <li>
+                  With your consent, we introduce you to mortgage brokerages or agents licensed by FSRA. The licensed partner
+                  provides all mortgage advice and arrangements, and the disclosures Ontario law requires.
+                </li>
+                <li>
+                  WeWin may receive a referral fee from a partner brokerage. If so, it is disclosed to you in writing before
+                  you proceed, and you are free to use any mortgage professional you choose.
+                </li>
+                <li>
+                  Private and alternative mortgages usually cost more than conventional mortgages, through higher interest
+                  rates and lender, broker and legal fees, and often have short terms that must be renewed or refinanced. They
+                  are secured against your property, which can be at risk if payments are not made.
+                </li>
+                <li>
+                  Our referrals are for borrowers. WeWin does not offer, sell or solicit mortgage investments or syndicated
+                  mortgages.
+                </li>
+              </ul>
+            </Section>
+
+            <Section id="corporate" title="8. Corporate restructuring, tax and legal">
               <ul>
                 <li>
                   Legal documents — including reorganizations, share structures, trust deeds and agreements — are prepared by
@@ -351,7 +384,7 @@ export default function DisclosuresPage() {
               </ul>
             </Section>
 
-            <Section id="investments" title="8. Investments, pensions and retirement">
+            <Section id="investments" title="9. Investments, pensions and retirement">
               <ul>
                 <li>
                   WeWin is not registered to trade in or advise on securities and does not recommend specific securities.
@@ -369,7 +402,7 @@ export default function DisclosuresPage() {
               </ul>
             </Section>
 
-            <Section id="website" title="9. Information on this website">
+            <Section id="website" title="10. Information on this website">
               <p>
                 Content on this website is general information for residents of {site.jurisdiction}. It is not personalized
                 financial, insurance, investment, tax or legal advice, and it reflects our understanding of the rules on the
@@ -381,7 +414,7 @@ export default function DisclosuresPage() {
               </p>
             </Section>
 
-            <Section id="identity" title="10. Identity verification and privacy">
+            <Section id="identity" title="11. Identity verification and privacy">
               <p>
                 Insurers, MGAs, lenders and other financial institutions are required by federal anti-money-laundering law to
                 verify your identity for certain products and may ask for identification and information about the source of
@@ -390,7 +423,7 @@ export default function DisclosuresPage() {
               </p>
             </Section>
 
-            <Section id="complaints" title="11. Making a complaint">
+            <Section id="complaints" title="12. Making a complaint">
               <p>We take concerns seriously. If you are not satisfied:</p>
               <ol className="mb-4 list-decimal space-y-2 pl-5">
                 <li>

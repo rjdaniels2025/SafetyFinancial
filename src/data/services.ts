@@ -57,9 +57,19 @@ export const strategySections = [
   { id: 'corporate-restructuring', title: 'Corporate Restructuring', short: 'Corporate Restructuring' },
   { id: 'corporate-tax', title: 'Corporate Financial & Tax Strategies', short: 'Corporate & Tax' },
   { id: 'corporate-protection', title: 'Corporate Protection & Legacy Planning', short: 'Corporate Protection' },
+  { id: 'group-benefits', title: 'Group Benefits for Business Owners', short: 'Group Benefits' },
   { id: 'personal-protection', title: 'Personal Financial Protection', short: 'Personal Protection' },
   { id: 'wealth-retirement', title: 'Wealth, Retirement & Financial Architecture', short: 'Wealth & Retirement' },
 ];
+
+/** The mortgage and private lending referral page. Not a core service: WeWin only introduces clients to
+ * licensed partners (see the Disclosures page). */
+export const mortgagePage = {
+  path: '/mortgages',
+  title: 'Mortgage & Private Lending',
+  navLabel: 'Mortgages',
+  blurb: 'Referrals to licensed mortgage professionals and private lending partners',
+};
 
 /** In-depth guide pages that sit under Financial Strategies. */
 export const strategyGuides = [
@@ -88,9 +98,11 @@ export const strategyGuides = [
 export const serviceOfInterestOptions = [
   'Debt Solutions & Credit Counselling',
   'Business Funding Solutions',
+  'Mortgage & Private Lending Referrals',
   'Corporate Restructuring',
   'Corporate Financial & Tax Strategies',
   'Corporate Protection & Corporate Life Insurance',
+  'Group Benefits for Business Owners',
   'Personal Financial Protection',
   'Wealth, Retirement & Financial Architecture',
   'Not sure yet',

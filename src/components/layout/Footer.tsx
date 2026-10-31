@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Logo from '../ui/Logo';
 import { site } from '../../config/site';
-import { coreServices, strategyGuides } from '../../data/services';
+import { coreServices, mortgagePage, strategyGuides } from '../../data/services';
 
 export default function Footer() {
   const { email, phone, address, hours } = site.contact;
@@ -28,6 +28,11 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link to={mortgagePage.path} className="inline-block py-2.5 hover:text-paper sm:py-0">
+                  {mortgagePage.title}
+                </Link>
+              </li>
               {strategyGuides.map((g) => (
                 <li key={g.path}>
                   <Link to={g.path} className="inline-block py-2.5 hover:text-paper sm:py-0">
