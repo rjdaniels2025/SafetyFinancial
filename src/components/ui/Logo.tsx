@@ -7,11 +7,17 @@ const SILVER_V = 'M127 21 219 245 311 21';
 const STROKE = 42;
 const CUT = 8;
 
-/** The bare W symbol. Place it on a forest green or other dark background. */
-export function WMark({ className = '' }: { className?: string }) {
+/**
+ * The bare W symbol. Place it on a forest green or other dark background.
+ * `draw` plays the intro: each stroke draws itself in turn, then a glint of light runs along the silver.
+ */
+export function WMark({ className = '', draw = false }: { className?: string; draw?: boolean }) {
   const id = useId().replace(/:/g, '');
+  const stroke = { fill: 'none', strokeWidth: STROKE, strokeLinecap: 'round', strokeLinejoin: 'round' } as const;
+  // pathLength normalises both strokes to 1 so the CSS draw animation needs no measuring
+  const drawLength = draw ? { pathLength: 1 } : {};
   return (
-    <svg viewBox="0 0 332 266" className={className} aria-hidden="true">
+    <svg viewBox="0 0 332 266" className={`${draw ? 'w-draw' : ''} ${className}`} aria-hidden="true">
       <defs>
         <linearGradient id={`${id}-silver`} gradientUnits="userSpaceOnUse" x1="127" y1="0" x2="311" y2="266">
           <stop offset="0" stopColor="#E6E9EC" />
@@ -23,26 +29,26 @@ export function WMark({ className = '' }: { className?: string }) {
         {/* Hides the part of the white stroke that passes behind the silver one, leaving a clean cut */}
         <mask id={`${id}-cut`} maskUnits="userSpaceOnUse" x="0" y="0" width="332" height="266">
           <rect width="332" height="266" fill="#fff" />
-          <path d={SILVER_V} fill="none" stroke="#000" strokeWidth={STROKE + CUT * 2} strokeLinecap="round" strokeLinejoin="round" />
+          <path d={SILVER_V} className="w-stroke-2" {...drawLength} {...stroke} stroke="#000" strokeWidth={STROKE + CUT * 2} />
         </mask>
+        {draw && (
+          <>
+            <mask id={`${id}-silver-only`} maskUnits="userSpaceOnUse" x="0" y="0" width="332" height="266">
+              <path d={SILVER_V} {...stroke} stroke="#fff" />
+            </mask>
+            <filter id={`${id}-soften`} x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="9" />
+            </filter>
+          </>
+        )}
       </defs>
-      <path
-        d={WHITE_V}
-        mask={`url(#${id}-cut)`}
-        fill="none"
-        stroke="#FFFFFF"
-        strokeWidth={STROKE}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d={SILVER_V}
-        fill="none"
-        stroke={`url(#${id}-silver)`}
-        strokeWidth={STROKE}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d={WHITE_V} className="w-stroke-1" {...drawLength} mask={`url(#${id}-cut)`} {...stroke} stroke="#FFFFFF" />
+      <path d={SILVER_V} className="w-stroke-2" {...drawLength} {...stroke} stroke={`url(#${id}-silver)`} />
+      {draw && (
+        <g mask={`url(#${id}-silver-only)`}>
+          <path d={SILVER_V} className="w-glint" pathLength={1} filter={`url(#${id}-soften)`} {...stroke} stroke="#FFFFFF" strokeWidth={70} strokeLinecap="butt" />
+        </g>
+      )}
     </svg>
   );
 }

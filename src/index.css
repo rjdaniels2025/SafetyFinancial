@@ -278,3 +278,163 @@
     color: transparent;
   }
 }
+
+/* ---------- Cinematic motion ---------- */
+
+/* Logo intro: the white stroke draws in, then the silver one, then a glint of light runs along the silver */
+@keyframes w-draw {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  6% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+@keyframes w-glint {
+  from { stroke-dashoffset: 0.25; }
+  to { stroke-dashoffset: -1; }
+}
+.w-draw .w-stroke-1,
+.w-draw .w-stroke-2 {
+  stroke-dasharray: 1 2;
+}
+.w-draw .w-stroke-1 {
+  animation: w-draw 0.85s cubic-bezier(0.65, 0, 0.35, 1) 0.15s both;
+}
+.w-draw .w-stroke-2 {
+  animation: w-draw 0.85s cubic-bezier(0.65, 0, 0.35, 1) 0.5s both;
+}
+.w-draw .w-glint {
+  stroke-dasharray: 0.22 2;
+  stroke-dashoffset: 0.25;
+  opacity: 0.85;
+  animation: w-glint 1s cubic-bezier(0.45, 0, 0.25, 1) 1.3s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .w-draw .w-glint {
+    display: none;
+  }
+}
+
+/* Hero backdrop: drifting light over deep green, with a silver grid gliding beneath like a slow camera move */
+.hero-backdrop {
+  background: radial-gradient(120% 90% at 72% 0%, #1f5a3c 0%, #123a26 48%, #0b2619 100%);
+}
+.hero-backdrop[data-paused] *,
+.hero-backdrop[data-paused] *::before {
+  animation-play-state: paused !important;
+}
+.hb-glow {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+}
+.hb-glow-1 {
+  width: 75vmax;
+  height: 75vmax;
+  top: -38vmax;
+  right: -18vmax;
+  background: radial-gradient(closest-side, rgba(52, 128, 88, 0.55), transparent);
+  animation: hb-float-1 26s ease-in-out infinite;
+}
+.hb-glow-2 {
+  width: 60vmax;
+  height: 60vmax;
+  bottom: -34vmax;
+  left: -22vmax;
+  background: radial-gradient(closest-side, rgba(201, 208, 205, 0.11), transparent);
+  animation: hb-float-2 32s ease-in-out infinite;
+}
+.hb-glow-3 {
+  width: 42vmax;
+  height: 42vmax;
+  top: 18%;
+  left: 30%;
+  background: radial-gradient(closest-side, rgba(211, 217, 214, 0.07), transparent);
+  animation: hb-float-3 38s ease-in-out infinite;
+}
+@keyframes hb-float-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-9%, 7%, 0) scale(1.12); }
+}
+@keyframes hb-float-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(12%, -8%, 0) scale(0.92); }
+}
+@keyframes hb-float-3 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(14%, -10%, 0); }
+  66% { transform: translate3d(-12%, 8%, 0); }
+}
+/* A receding floor of fine silver lines; the inner plane slides one grid cell per loop */
+.hb-horizon {
+  position: absolute;
+  left: -40%;
+  right: -40%;
+  bottom: 0;
+  height: 58%;
+  perspective: 420px;
+  perspective-origin: 50% 0%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 55%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 55%);
+}
+.hb-floor {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  transform: rotateX(68deg);
+  transform-origin: 50% 0%;
+}
+.hb-plane {
+  position: absolute;
+  inset: -52px 0 0 0;
+  background-image:
+    linear-gradient(to right, rgba(211, 217, 214, 0.13) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(211, 217, 214, 0.13) 1px, transparent 1px);
+  background-size: 52px 52px;
+  animation: hb-glide 5s linear infinite;
+  will-change: transform;
+}
+@keyframes hb-glide {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, 52px, 0); }
+}
+/* A faint band of light that sweeps across the scene, like light passing a lens */
+.hb-beam {
+  position: absolute;
+  inset: -20% -60%;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.055) 50%, transparent 58%);
+  animation: hb-beam 16s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes hb-beam {
+  0% { transform: translate3d(-30%, 0, 0); }
+  55%, 100% { transform: translate3d(30%, 0, 0); }
+}
+.hb-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hb-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 85% 75% at 50% 45%, transparent 55%, rgba(6, 22, 14, 0.55) 100%);
+}
+
+/* Restructuring story: surplus flows upward and the holding company glows */
+@keyframes story-flow {
+  0% { top: 100%; opacity: 0; }
+  15%, 80% { opacity: 1; }
+  100% { top: 0%; opacity: 0; }
+}
+.story-dot {
+  transform: translate(-50%, -50%);
+  animation: story-flow 2.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes story-halo {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(211, 217, 214, 0.35), 0 0 40px -6px rgba(211, 217, 214, 0.25); }
+  50% { box-shadow: 0 0 0 10px rgba(211, 217, 214, 0), 0 0 60px -4px rgba(211, 217, 214, 0.35); }
+}
+.story-halo {
+  animation: story-halo 2.8s ease-in-out infinite;
+}

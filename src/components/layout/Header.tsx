@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown, Mail, Menu, Phone, X } from 'lucide-react';
 import Logo from '../ui/Logo';
+import { setScrollLocked } from '../../lib/smoothScroll';
 import Button from '../ui/Button';
 import { coreServices, strategyGuides, strategySections } from '../../data/services';
 import { site } from '../../config/site';
@@ -35,10 +36,12 @@ export default function Header() {
     if (!open) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    setScrollLocked(true);
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
     document.addEventListener('keydown', onKey);
     return () => {
       document.body.style.overflow = previous;
+      setScrollLocked(false);
       document.removeEventListener('keydown', onKey);
     };
   }, [open]);

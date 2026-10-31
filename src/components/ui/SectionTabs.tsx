@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { scrollToElement } from '../../lib/smoothScroll';
 
 interface SectionTabsProps {
   label: string;
@@ -46,7 +47,8 @@ export default function SectionTabs({ label, sections }: SectionTabsProps) {
 
   const go = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const target = document.getElementById(id);
+    if (target) scrollToElement(target);
     history.replaceState(null, '', `#${id}`);
   };
 

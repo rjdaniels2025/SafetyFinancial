@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -6,6 +6,7 @@ import ScrollManager from './components/layout/ScrollManager';
 import MobileBookingBar from './components/layout/MobileBookingBar';
 import ScrollProgress from './components/layout/ScrollProgress';
 import HomePage from './pages/HomePage';
+import { startSmoothScroll } from './lib/smoothScroll';
 
 // Interior pages load on demand to keep the first page fast
 const AboutPage = lazy(() => import('./pages/AboutPage'));
@@ -24,6 +25,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
   const { pathname } = useLocation();
+  useEffect(startSmoothScroll, []);
 
   return (
     <div className="flex min-h-screen flex-col">

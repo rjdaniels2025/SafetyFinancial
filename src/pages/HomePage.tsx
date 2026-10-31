@@ -1,10 +1,12 @@
-import type { CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Handshake, Lock, MessageSquareText, Users } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Reveal from '../components/ui/Reveal';
 import { ConsultationBand, ProcessSteps, SectionHeader } from '../components/ui/Sections';
 import { ArcPattern } from '../components/illustrations/Illustrations';
+import HeroBackdrop from '../components/motion/HeroBackdrop';
+import { WMark } from '../components/ui/Logo';
 import { coreServices } from '../data/services';
 import { site } from '../config/site';
 import usePageMeta from '../hooks/usePageMeta';
@@ -48,58 +50,74 @@ const process = [
   { title: 'Long-term support', text: 'As goals evolve, we help you revisit your strategy across debt, funding and planning.' },
 ];
 
+const INTRO_KEY = 'wewin-intro-seen';
+
+/** True on the first homepage view of a browsing session, so the logo intro plays once per visit. */
+function useHeroIntro() {
+  const [intro] = useState(() => {
+    try {
+      if (sessionStorage.getItem(INTRO_KEY)) return false;
+    } catch {
+      // Storage can be unavailable (private browsing); the intro then simply plays
+    }
+    return window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+  });
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(INTRO_KEY, '1');
+    } catch {
+      // Ignore: see above
+    }
+  }, []);
+  return intro;
+}
+
 export default function HomePage() {
   usePageMeta(`${site.name} | Financial Clarity. Strategic Solutions.`, site.description, '/');
+  const intro = useHeroIntro();
+  // While the logo draws itself in, the rest of the hero waits for it; on later visits it appears straight away
+  const t = (ms: number) => (intro ? ms + 900 : ms);
 
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden pb-14 pt-28 sm:pb-20 sm:pt-36 lg:pb-28 lg:pt-44">
-        <div className="aurora" style={{ '--aurora-a': 0.14, '--aurora-b': 0.07 } as CSSProperties} />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:linear-gradient(to_right,#D8DEDB_1px,transparent_1px),linear-gradient(to_bottom,#D8DEDB_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_70%_60%_at_70%_30%,black,transparent)]"
-        />
-        <div className="container-page relative grid items-center gap-14 lg:grid-cols-12">
+      <section className="relative isolate overflow-hidden bg-ink pb-16 pt-28 text-paper sm:pb-24 sm:pt-36 lg:flex lg:min-h-[min(100svh,980px)] lg:items-center lg:pb-28 lg:pt-36">
+        <HeroBackdrop />
+        <div className="container-page relative grid w-full items-center gap-14 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <Reveal variant="fade">
-              <p className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/70 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-eyebrow text-accent-dark backdrop-blur sm:text-xs">
-                <span className="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-                Debt · Funding · Financial Strategy
-              </p>
-            </Reveal>
-            <h1 className="h-display mt-6 sm:mt-7">
+            <WMark draw={intro} className="h-12 w-auto sm:h-[60px]" />
+            <h1 className="h-display mt-8 text-paper sm:mt-10">
               <span className="line">
-                <span style={{ animationDelay: '120ms' }}>Financial Clarity.</span>
+                <span style={{ animationDelay: `${t(120)}ms` }}>Financial Clarity.</span>
               </span>
               <span className="line">
-                <span style={{ animationDelay: '240ms' }}>Strategic Solutions.</span>
+                <span style={{ animationDelay: `${t(240)}ms` }}>Strategic Solutions.</span>
               </span>
               <span className="line">
-                <span className="text-gradient-accent" style={{ animationDelay: '360ms' }}>
+                <span style={{ animationDelay: `${t(360)}ms` }}>
                   Stronger Futures.
                 </span>
               </span>
             </h1>
-            <Reveal delay={480}>
-              <p className="lead mt-6 max-w-xl sm:mt-7">
+            <Reveal delay={t(480)}>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/75 sm:mt-7">
                 WeWin Consulting Group helps individuals, families, entrepreneurs, and corporations navigate financial
                 challenges, explore funding opportunities, and develop tailored financial strategies for the future.
               </p>
             </Reveal>
-            <Reveal delay={600}>
+            <Reveal delay={t(600)}>
               <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
-                <Button to="/contact" arrow className="py-3.5 sm:py-3">
+                <Button to="/contact" variant="light" arrow className="py-3.5 sm:py-3">
                   Book a Consultation
                 </Button>
-                <Button to="/#solutions" variant="secondary" className="py-3.5 sm:py-3">
+                <Button to="/#solutions" variant="outlineLight" className="py-3.5 sm:py-3">
                   Explore Our Solutions
                 </Button>
               </div>
             </Reveal>
           </div>
 
-          <Reveal variant="right" delay={300} className="hidden lg:col-span-5 lg:block">
+          <Reveal variant="right" delay={t(300)} className="hidden lg:col-span-5 lg:block">
             {site.images.hero ? (
               <img
                 src={site.images.hero}
@@ -110,7 +128,7 @@ export default function HomePage() {
             ) : (
               <div
                 onPointerMove={trackSpotlight}
-                className="spotlight relative overflow-hidden rounded-3xl bg-ink p-8 text-paper shadow-float"
+                className="spotlight relative overflow-hidden rounded-3xl border border-paper/10 bg-[#0d2c1d]/70 p-8 text-paper shadow-float"
                 style={{ '--spot': 'rgba(211, 217, 214, 0.10)' } as CSSProperties}
               >
                 <ArcPattern spin className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80" />
@@ -120,16 +138,16 @@ export default function HomePage() {
                 </p>
                 <ul className="relative mt-6 divide-y divide-paper/10 border-y border-paper/10">
                   {coreServices.map((service, i) => (
-                    <li key={service.slug} style={{ animation: `reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${650 + i * 130}ms both` }}>
+                    <li key={service.slug} style={{ animation: `reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${t(650) + i * 130}ms both` }}>
                       <Link to={service.path} className="group relative -mx-3 flex items-start gap-5 rounded-2xl px-3 py-5 transition-colors duration-300 hover:bg-paper/[0.04]">
-                        <span className="font-serif text-2xl font-semibold text-accent transition-transform duration-500 ease-brand group-hover:-translate-y-0.5">
+                        <span className="font-serif text-2xl font-semibold text-accent-light/80 transition-transform duration-500 ease-brand group-hover:-translate-y-0.5">
                           {String(i + 1).padStart(2, '0')}
                         </span>
                         <span className="flex-1">
                           <span className="block font-serif text-lg font-semibold leading-snug">{service.title}</span>
                           <span className="mt-1 block text-sm text-paper/60 transition-colors group-hover:text-paper/80">{service.tagline}</span>
                         </span>
-                        <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-paper/15 transition-all duration-300 ease-brand group-hover:border-accent group-hover:bg-accent">
+                        <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-paper/15 transition-all duration-300 ease-brand group-hover:border-accent-light group-hover:bg-accent-light">
                           <ArrowRight className="h-3.5 w-3.5 text-paper/60 transition-colors group-hover:text-ink" aria-hidden="true" />
                         </span>
                       </Link>

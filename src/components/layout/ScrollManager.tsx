@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { scrollToElement, scrollToTop } from '../../lib/smoothScroll';
 
 /** Scrolls to the top on page changes, or to the #section in the URL when present. */
 export default function ScrollManager() {
@@ -10,11 +11,12 @@ export default function ScrollManager() {
       // Wait a frame so lazily loaded pages have rendered their sections
       const id = decodeURIComponent(hash.slice(1));
       const timer = window.setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const target = document.getElementById(id);
+        if (target) scrollToElement(target);
       }, 60);
       return () => window.clearTimeout(timer);
     }
-    window.scrollTo({ top: 0 });
+    scrollToTop();
   }, [pathname, hash]);
 
   return null;

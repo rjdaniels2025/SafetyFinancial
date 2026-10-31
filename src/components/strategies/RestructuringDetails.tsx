@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Calculator, FileSignature, Gavel, Landmark, type LucideIcon } from 'lucide-react';
 import Reveal from '../ui/Reveal';
 import { Notice } from '../ui/Sections';
-import OwnershipDiagram from './OwnershipDiagram';
+import StructureStory from './StructureStory';
 
 const team: { icon: LucideIcon; title: string; text: string }[] = [
   {
@@ -88,21 +88,8 @@ export default function RestructuringDetails() {
         </div>
       </div>
 
-      {/* Typical structure */}
-      <div className="grid items-center gap-10 lg:grid-cols-12">
-        <Reveal className="lg:col-span-5">
-          <p className="eyebrow">A common structure</p>
-          <h3 className="mt-3 font-serif text-2xl font-semibold sm:text-3xl">Holding company, operating company and family trust</h3>
-          <p className="mt-4 text-[15px] leading-relaxed text-muted">
-            Many owner-managed businesses separate the company that operates the business from a holding company that keeps
-            surplus and valuable assets, with a family trust holding growth shares. An estate freeze can sit at the top of
-            this structure. The right design depends entirely on your circumstances and is confirmed with your lawyers and
-            accountants.
-          </p>
-        </Reveal>
-
-        <OwnershipDiagram className="lg:col-span-7" />
-      </div>
+      {/* Typical structure, told as a scroll-driven story */}
+      <StructureStory />
 
       {/* Concepts */}
       <div className="grid gap-5 md:grid-cols-2">
