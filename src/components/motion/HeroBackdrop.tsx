@@ -1,5 +1,6 @@
 import { useEffect, useRef, type MutableRefObject } from 'react';
 import SmokeField from './SmokeField';
+import StoryLoop, { type StoryVariant } from './StoryLoop';
 
 interface HeroBackdropProps {
   /**
@@ -11,6 +12,8 @@ interface HeroBackdropProps {
   bank?: string;
   bankRest?: number;
   exit?: MutableRefObject<number>;
+  /** A looping line-art chapter of the WeWin story, drawn behind the smoke. */
+  story?: StoryVariant;
 }
 
 const smoke = {
@@ -23,7 +26,7 @@ const smoke = {
  * Layered cinematic backdrop for dark sections: drifting light, live smoke, film grain and a vignette.
  * CSS layers are paused whenever the section is scrolled out of view.
  */
-export default function HeroBackdrop({ variant = 'page', bank, bankRest, exit }: HeroBackdropProps) {
+export default function HeroBackdrop({ variant = 'page', bank, bankRest, exit, story }: HeroBackdropProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -53,6 +56,7 @@ export default function HeroBackdrop({ variant = 'page', bank, bankRest, exit }:
       )}
       {/* The vignette sits under the smoke so the cloud bank stays pure white where it meets the next section */}
       <div className="hb-vignette" />
+      {story && <StoryLoop variant={story} />}
       <SmokeField {...smoke[variant]} bank={bank} bankRest={bankRest} exit={exit} />
       <div className="hb-grain" />
     </div>

@@ -1,6 +1,7 @@
 import { useRef, type ReactNode } from 'react';
 import { Info } from 'lucide-react';
 import HeroBackdrop from '../motion/HeroBackdrop';
+import type { StoryVariant } from '../motion/StoryLoop';
 import useScrollExit from '../../hooks/useScrollExit';
 import { useDarkHero } from '../../lib/darkHero';
 import Button from './Button';
@@ -12,11 +13,14 @@ export function PageHero({
   title,
   children,
   actions,
+  story,
 }: {
   eyebrow: string;
   title: string;
   children?: ReactNode;
   actions?: ReactNode;
+  /** Looping story scene for this page's hero */
+  story?: StoryVariant;
 }) {
   const ref = useRef<HTMLElement>(null);
   const exit = useScrollExit(ref);
@@ -24,7 +28,7 @@ export function PageHero({
 
   return (
     <section ref={ref} className="relative isolate overflow-hidden bg-ink pb-16 pt-32 text-paper sm:pb-28 sm:pt-48">
-      <HeroBackdrop exit={exit} />
+      <HeroBackdrop exit={exit} story={story} />
       <div className="hero-exit container-page relative">
         <Reveal variant="fade">
           <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow text-accent-light">

@@ -535,3 +535,194 @@ html[data-intro] header {
     filter: blur(calc(var(--exit, 0) * 6px));
   }
 }
+
+/* ---------- Story loops: a looping chapter of the WeWin story behind each dark hero ---------- */
+/* One 10s cycle per scene: lines draw in, hold, and fade; "late" pieces arrive in the second act. */
+.story-loop {
+  position: absolute;
+  pointer-events: none;
+  color: rgba(222, 230, 226, 0.7);
+}
+.story-loop svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 7px rgba(220, 235, 228, 0.35));
+}
+/* Interior pages: to the right of the headline on desktop; low and faint behind the text on phones */
+.story-loop-page {
+  right: -14%;
+  bottom: -6%;
+  width: 92vw;
+  aspect-ratio: 1;
+  opacity: 0.28;
+}
+.story-loop-home {
+  right: -12%;
+  bottom: 2%;
+  width: 96vw;
+  aspect-ratio: 1;
+  opacity: 0.42;
+}
+@media (min-width: 1024px) {
+  .story-loop-page {
+    right: max(2vw, calc((100vw - 72rem) / 2 - 2rem));
+    top: 50%;
+    bottom: auto;
+    width: min(36vw, 520px);
+    transform: translateY(-46%);
+    opacity: 0.8;
+    /* Long interior headlines can reach this far right: fade the scene's left edge out behind them */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+  }
+  .story-loop-home {
+    right: max(2vw, calc((100vw - 72rem) / 2));
+    top: 50%;
+    bottom: auto;
+    width: min(42vw, 600px);
+    transform: translateY(-48%);
+    opacity: 0.95;
+  }
+}
+.story-loop .sl-line,
+.story-loop .sl-knot,
+.story-loop .sl-orbit,
+.story-loop .sl-flow {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.story-loop .sl-line {
+  stroke-dasharray: 1 1;
+  animation: sl-line 10s cubic-bezier(0.65, 0, 0.35, 1) var(--d, 0s) infinite both;
+}
+.story-loop .sl-line.sl-late {
+  animation-name: sl-line-late;
+}
+.story-loop .sl-knot {
+  stroke-dasharray: 1 1;
+  opacity: 0.8;
+  animation: sl-knot 10s cubic-bezier(0.65, 0, 0.35, 1) infinite both;
+}
+.story-loop .sl-node {
+  fill: #fff;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sl-node 10s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) infinite both;
+}
+.story-loop .sl-node.sl-node-late {
+  animation-name: sl-node-late;
+}
+.story-loop .sl-glow {
+  fill: rgba(255, 244, 222, 0.6);
+  stroke: currentColor;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+  animation: sl-glow 10s ease-in-out var(--d, 0s) infinite both;
+}
+.story-loop .sl-flow {
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-dasharray: 0.06 1;
+  animation: sl-flow 2.4s linear infinite;
+}
+.story-loop .sl-orbit {
+  stroke-dasharray: 2 10;
+  opacity: 0.45;
+  vector-effect: none;
+  stroke-width: 1.2;
+}
+.story-loop .sl-spin {
+  transform-box: view-box;
+  transform-origin: 300px 300px;
+  animation: sl-spin 70s linear infinite;
+}
+.story-loop .sl-spin-slow {
+  animation-duration: 120s;
+}
+.story-loop .sl-caption {
+  fill: rgba(240, 244, 242, 0.92);
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-style: italic;
+  font-size: 34px;
+}
+/* Homepage: four chapters, each on screen for one 10s cycle of a 40s film */
+.story-loop .sl-chapter {
+  animation: sl-chapter 40s linear var(--ch, 0s) infinite both;
+}
+@keyframes sl-line {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  4% { opacity: 1; }
+  36% { stroke-dashoffset: 0; }
+  86% { stroke-dashoffset: 0; opacity: 1; }
+  97%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes sl-line-late {
+  0%, 40% { stroke-dashoffset: 1; opacity: 0; }
+  43% { opacity: 1; }
+  70% { stroke-dashoffset: 0; }
+  86% { stroke-dashoffset: 0; opacity: 1; }
+  97%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes sl-knot {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  4% { opacity: 0.8; }
+  28% { stroke-dashoffset: 0; opacity: 0.8; }
+  40% { stroke-dashoffset: 0; opacity: 0.8; }
+  56%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes sl-node {
+  0%, 30% { opacity: 0; transform: scale(0.4); }
+  40% { opacity: 1; transform: scale(1); }
+  86% { opacity: 1; transform: scale(1); }
+  97%, 100% { opacity: 0; transform: scale(1); }
+}
+@keyframes sl-node-late {
+  0%, 66% { opacity: 0; transform: scale(0.4); }
+  74% { opacity: 1; transform: scale(1); }
+  86% { opacity: 1; transform: scale(1); }
+  97%, 100% { opacity: 0; transform: scale(1); }
+}
+@keyframes sl-glow {
+  0%, 42% { fill-opacity: 0; opacity: 0; }
+  46% { opacity: 1; fill-opacity: 0; }
+  58% { fill-opacity: 1; }
+  86% { fill-opacity: 1; opacity: 1; }
+  97%, 100% { opacity: 0; }
+}
+@keyframes sl-flow {
+  from { stroke-dashoffset: 1.06; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes sl-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes sl-chapter {
+  0% { opacity: 0; }
+  0.5% { opacity: 1; }
+  24.5% { opacity: 1; }
+  25%, 100% { opacity: 0; }
+}
+/* Reduced motion: a still frame of the finished scene (the homepage shows its last chapter) */
+@media (prefers-reduced-motion: reduce) {
+  .story-loop * {
+    animation: none !important;
+  }
+  .story-loop .sl-line,
+  .story-loop .sl-node,
+  .story-loop .sl-glow {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  .story-loop .sl-knot,
+  .story-loop .sl-chapter {
+    opacity: 0;
+  }
+  .story-loop .sl-chapter:last-child {
+    opacity: 1;
+  }
+}

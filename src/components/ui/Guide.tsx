@@ -27,7 +27,7 @@ export function GuideHero({
 
   return (
     <section ref={ref} className="relative isolate overflow-hidden bg-ink pb-16 pt-32 text-paper sm:pb-24 sm:pt-44">
-      <HeroBackdrop exit={exit} />
+      <HeroBackdrop exit={exit} story="strategy" />
       <div className="hero-exit container-page relative">
         <Reveal variant="fade">
           <Link

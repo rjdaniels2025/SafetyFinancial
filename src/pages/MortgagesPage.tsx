@@ -65,7 +65,7 @@ export default function MortgagesPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero story="mortgage"
         eyebrow="Mortgage & Private Lending"
         title="Mortgage and Private Lending Referrals."
         actions={

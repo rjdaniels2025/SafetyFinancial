@@ -1,10 +1,9 @@
-import { useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Handshake, Lock, MessageSquareText, Users } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Reveal from '../components/ui/Reveal';
 import { ConsultationBand, ProcessSteps, SectionHeader } from '../components/ui/Sections';
-import { ArcPattern } from '../components/illustrations/Illustrations';
 import HeroBackdrop from '../components/motion/HeroBackdrop';
 import { WMark } from '../components/ui/Logo';
 import { coreServices } from '../data/services';
@@ -130,7 +129,7 @@ export default function HomePage() {
         ref={heroRef}
         className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ink pb-28 pt-28 text-paper sm:pb-32 sm:pt-36 lg:min-h-[min(100svh,980px)] lg:pb-32 lg:pt-36"
       >
-        <HeroBackdrop variant="home" bank="#FFFFFF" bankRest={88} exit={exit} />
+        <HeroBackdrop variant="home" bank="#FFFFFF" bankRest={88} exit={exit} story={site.images.hero ? undefined : 'home'} />
         {intro && (
           <>
             <div className="intro-bloom" aria-hidden="true" />
@@ -172,50 +171,17 @@ export default function HomePage() {
             </Reveal>
           </div>
 
-          <Reveal variant="right" delay={t(300)} className="hidden lg:col-span-5 lg:block">
-            {site.images.hero ? (
+          {/* With a photo supplied, it sits here; otherwise the backdrop's story loop plays in this space */}
+          {site.images.hero && (
+            <Reveal variant="right" delay={t(300)} className="hidden lg:col-span-5 lg:block">
               <img
                 src={site.images.hero}
                 alt=""
                 className="aspect-[4/5] w-full rounded-3xl object-cover shadow-float"
                 fetchPriority="high"
               />
-            ) : (
-              <div
-                onPointerMove={trackSpotlight}
-                className="spotlight relative overflow-hidden rounded-3xl border border-paper/10 bg-[#0d2c1d]/70 p-8 text-paper shadow-float"
-                style={{ '--spot': 'rgba(211, 217, 214, 0.10)' } as CSSProperties}
-              >
-                <ArcPattern spin className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80" />
-                <p className="relative flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow text-accent-light">
-                  <span className="h-px w-6 bg-accent-light/70" aria-hidden="true" />
-                  How we can help
-                </p>
-                <ul className="relative mt-6 divide-y divide-paper/10 border-y border-paper/10">
-                  {coreServices.map((service, i) => (
-                    <li key={service.slug} style={{ animation: `reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${t(650) + i * 130}ms both` }}>
-                      <Link to={service.path} className="group relative -mx-3 flex items-start gap-5 rounded-2xl px-3 py-5 transition-colors duration-300 hover:bg-paper/[0.04]">
-                        <span className="font-serif text-2xl font-semibold text-accent-light/80 transition-transform duration-500 ease-brand group-hover:-translate-y-0.5">
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
-                        <span className="flex-1">
-                          <span className="block font-serif text-lg font-semibold leading-snug">{service.title}</span>
-                          <span className="mt-1 block text-sm text-paper/60 transition-colors group-hover:text-paper/80">{service.tagline}</span>
-                        </span>
-                        <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-paper/15 transition-all duration-300 ease-brand group-hover:border-accent-light group-hover:bg-accent-light">
-                          <ArrowRight className="h-3.5 w-3.5 text-paper/60 transition-colors group-hover:text-ink" aria-hidden="true" />
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <p className="relative mt-6 flex items-center gap-2 text-sm text-paper/60">
-                  <Lock className="h-4 w-4 text-accent-light" aria-hidden="true" />
-                  Confidential, no-obligation consultations
-                </p>
-              </div>
-            )}
-          </Reveal>
+            </Reveal>
+          )}
         </div>
       </section>
 

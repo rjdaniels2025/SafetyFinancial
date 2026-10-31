@@ -31,7 +31,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <PageHero eyebrow="About WeWin Consulting Group" title="Strategic Thinking for Complex Financial Decisions." />
+      <PageHero story="about" eyebrow="About WeWin Consulting Group" title="Strategic Thinking for Complex Financial Decisions." />
 
       <section className="bg-white py-14 sm:py-20 lg:py-28">
         <div className="container-page grid items-center gap-14 lg:grid-cols-12">

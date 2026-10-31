@@ -72,7 +72,7 @@ export default function DebtSolutionsPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero story="debt"
         eyebrow="Debt Solutions & Credit Counselling"
         title="Understand Your Credit. Navigate Your Options."
         actions={

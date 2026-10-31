@@ -75,7 +75,7 @@ export default function CorporateLifeInsurancePage() {
 
   return (
     <>
-      <PageHero
+      <PageHero story="strategy"
         eyebrow="Corporate Protection & Legacy Planning"
         title="Corporate Life Insurance"
         actions={

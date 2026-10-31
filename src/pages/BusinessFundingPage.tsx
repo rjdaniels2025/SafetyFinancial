@@ -64,7 +64,7 @@ export default function BusinessFundingPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero story="funding"
         eyebrow="Business Funding Solutions"
         title="Strategic Funding Solutions for Business Growth."
         actions={
